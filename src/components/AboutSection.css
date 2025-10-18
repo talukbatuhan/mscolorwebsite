@@ -1,0 +1,54 @@
+.about-section {
+  background-color: #fff;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.about-section .container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.about-section h2 {
+  font-size: 2.5em;
+  color: #2c3e50;
+  margin-bottom: 30px;
+  position: relative;
+  display: inline-block;
+}
+
+.about-section h2::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background-color: #e74c3c;
+  border-radius: 2px;
+}
+
+.about-section p {
+  font-size: 1.1em;
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 25px;
+  text-align: left; /* Metni sola hizala */
+}
+
+.learn-more-button {
+  display: inline-block;
+  background-color: #3498db; 
+  color: white;
+  padding: 12px 25px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1.1em;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.learn-more-button:hover {
+  background-color: #2980b9;
+}

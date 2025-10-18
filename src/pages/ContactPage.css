@@ -1,0 +1,70 @@
+/* Ana konteyner stilleri */
+.contact-page-section {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.contact-page-section h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 40px;
+}
+
+/* 1. ADIM: Masaüstü (İki Sütunlu) Görünüm */
+.contact-main-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr; /* Sol harita daha geniş */
+    gap: 30px;
+    min-height: 400px;
+}
+
+/* Harita ve Form Kısıtlamaları (Masaüstü) */
+.map-placeholder-container,
+.contact-form-wrapper {
+    min-height: 500px;
+    max-height: 500px; 
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    overflow: hidden; 
+}
+
+/* Harita Stili */
+.map-placeholder-container {
+    background-color: #eee;
+}
+
+/* Form Stili */
+.contact-form-wrapper {
+    display: flex;
+    flex-direction: column; 
+    gap: 20px;
+    padding: 20px 30px;
+    background-color: #fff;
+    overflow-y: auto; 
+}
+.contact-form-wrapper h2 {
+    color: #e74c3c; 
+    margin-top: 0;
+}
+
+/* 2. ADIM: Mobil Görünüm (Medya Sorgusu) */
+@media (max-width: 768px) {
+    .contact-main-grid {
+        /* KRİTİK DEĞİŞİKLİK: Mobil cihazlarda FORM önce gelir, sonra harita */
+        grid-template-columns: 1fr; /* Tek sütuna geçer */
+        grid-auto-flow: dense; /* Elemanların sırasını değiştirmek için */
+        gap: 40px; 
+    }
+
+    /* Mobilde haritanın ve formun dikey kısıtlamasını kaldırıyoruz */
+    .map-placeholder-container,
+    .contact-form-wrapper {
+        min-height: 300px; /* Mobilde haritaya biraz daha az alan ver */
+        max-height: none; /* Dikeyde serbest bırak */
+    }
+
+    /* KRİTİK DEĞİŞİKLİK: Formu haritanın üstüne al */
+    .contact-form-wrapper {
+        order: -1; /* Negatif değer vererek formu başa alıyoruz */
+    }
+}

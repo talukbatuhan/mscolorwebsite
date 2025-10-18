@@ -1,0 +1,52 @@
+.contact-info-section {
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    height: 100%; /* Harita ile yan yana hizalama için */
+}
+
+.contact-info-section h3 {
+    font-size: 2em;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    border-bottom: 3px solid #e74c3c;
+    padding-bottom: 10px;
+}
+
+.contact-info-section h4 {
+    font-size: 1.2em;
+    color: #e74c3c;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.contact-info-section p {
+    color: #555;
+    line-height: 1.6;
+}
+
+.contact-info-section a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.contact-info-section a:hover {
+    text-decoration: underline;
+}
+
+.contact-info-section .hours-item ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.contact-info-section .hours-item li {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 3px;
+}

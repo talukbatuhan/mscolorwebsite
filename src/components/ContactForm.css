@@ -1,0 +1,80 @@
+/* LÜKS FORM TASARIMI */
+.contact-form-luxury {
+    width: 100%;
+    margin-top: 0;
+}
+
+.contact-form-luxury .form-group {
+    margin-bottom: 20px; /* Boşluklar biraz artırıldı */
+}
+
+/* Giriş Alanları (Input ve Textarea) */
+.contact-form-luxury .luxury-input,
+.contact-form-luxury .luxury-textarea {
+    width: 100%;
+    padding: 14px 18px; /* İç boşluklar artırıldı */
+    border: 1px solid #ddd; /* Daha ince ve zarif kenarlık */
+    border-radius: 8px; /* Daha belirgin yuvarlaklık */
+    font-size: 1.05em; /* Yazı boyutu biraz büyütüldü */
+    color: #333;
+    background-color: #fcfcfc; /* Hafif kirli beyaz arka plan */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Zarif iç gölge */
+    transition: all 0.3s ease; /* Tüm geçişler pürüzsüzleştirildi */
+    box-sizing: border-box; 
+}
+
+/* Odaklanma Efekti */
+.contact-form-luxury .luxury-input:focus,
+.contact-form-luxury .luxury-textarea:focus {
+    border-color: #e74c3c; /* Ana renk ile belirgin kenarlık */
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.2); /* Hafif dış gölge vurgusu */
+    background-color: #fff;
+    outline: none;
+}
+
+.contact-form-luxury .luxury-textarea {
+    resize: vertical; 
+    min-height: 120px; /* Textarea yüksekliği artırıldı */
+}
+
+/* Placeholder Rengi */
+.contact-form-luxury ::placeholder {
+    color: #999;
+    opacity: 1; /* Bazı tarayıcılar için opacity ayarı */
+}
+
+/* LÜKS GÖNDER BUTONU */
+.contact-form-luxury .submit-button-luxury {
+    display: block;
+    width: 100%;
+    padding: 15px 0; /* İç boşluklar artırıldı */
+    background-color: #e74c3c; /* Ana renk */
+    color: white;
+    border: none;
+    border-radius: 8px; /* Yuvarlaklık artırıldı */
+    font-size: 1.1em; /* Yazı boyutu büyütüldü */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Geçiş efektleri */
+    font-weight: 700; /* Kalın yazı */
+    letter-spacing: 0.5px; /* Harf aralığı */
+    box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3); /* Butona gölge */
+}
+
+.contact-form-luxury .submit-button-luxury:hover {
+    background-color: #c0392b; /* Koyu ton */
+    transform: translateY(-2px); /* Hafif yukarı kayma */
+    box-shadow: 0 6px 15px rgba(231, 76, 60, 0.4); /* Gölge büyümesi */
+}
+
+/* Erişilebilirlik için gizli etiketler - Değişmedi */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}

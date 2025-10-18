@@ -1,0 +1,8 @@
+/* App.css dosyasını boş bırakabiliriz, çünkü tüm stiller artık bileşen dosyalarında */
+/* veya istersen buraya global olarak etki edecek az sayıda stil ekleyebilirsin. */
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
