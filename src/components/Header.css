@@ -19,8 +19,8 @@
 
 /* YENİ LOGO VE YAZI KAPSAYICISI STİLİ (Link) */
 .site-header .logo-link { 
-  display: flex; /* Logo ve yazıyı yan yana hizalar */
-  align-items: center; /* Dikeyde ortalar */
+  display: flex; 
+  align-items: center; 
   text-decoration: none;
   color: #fff;
   font-size: 1.8em;
@@ -29,19 +29,17 @@
 
 /* YENİ LOGO GÖRSEL STİLİ */
 .site-header .header-logo {
-    width: 35px; /* Logoya uygun boyut */
+    width: 35px; 
     height: 35px; 
-    margin-right: 8px; /* Logo ile yazı arasında boşluk */
+    margin-right: 8px; 
     object-fit: contain;
 }
 
-/* LOGO YAZISI STİLİ (Eski .logo'dan taşındı) */
+/* LOGO YAZISI STİLİ */
 .site-header .logo-text span {
-  color: #e74c3c; /* Vurgu rengi */
+  color: #e74c3c; 
   font-weight: 800;
 }
-
-/* Eski .site-header .logo sınıfı artık kullanılmayacak, yerine .logo-link kullanılıyor */
 
 
 .site-header .main-nav ul {
