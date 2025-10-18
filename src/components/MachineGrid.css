@@ -1,0 +1,165 @@
+/* GENEL VE BAŞLIK STİLLERİ - Değişmedi */
+.machine-grid-section {
+  background-color: #f8f8f8;
+  padding: 80px 20px;
+  text-align: center;
+}
+.machine-grid-section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.machine-grid-section h2 {
+  font-size: 2.5em;
+  color: #2c3e50;
+  margin-bottom: 50px;
+  position: relative;
+  display: inline-block;
+}
+.machine-grid-section h2::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background-color: #e74c3c;
+  border-radius: 2px;
+}
+
+/* DUYARLI GRID YAPISI - Değişmedi */
+.machine-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+  gap: 30px; 
+  justify-content: center; 
+}
+
+/* MAKİNE KARTI STİLİ - Değişmedi */
+.machine-card {
+  background-color: #fff;
+  border-radius: 8px; 
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
+  overflow: hidden; 
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%; 
+  display: flex;
+  flex-direction: column;
+  padding: 0; 
+  border: 1px solid #eee;
+}
+.machine-card:hover {
+  transform: translateY(-5px); 
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
+}
+
+/* RESİM KAPSAYICI DİV STİLİ - Değişmedi */
+.machine-image-wrapper {
+  width: 100%;
+  height: 320px; 
+  background-size: contain; 
+  background-color: #f0f0f0; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+  border-bottom: 1px solid #ddd;
+  flex-shrink: 0; 
+}
+
+/* YENİ BAŞLIK KAPSAYICISI (card-content-auto) */
+/* Eski card-content'i kullanmaya devam edebiliriz, ancak kafa karışıklığını önlemek için yeni bir sınıf tanımladım. */
+.machine-card .card-content-auto {
+    /* Eski card-content'in padding ve h3'ü hizalama görevini üstlenir */
+    padding: 15px 15px; 
+    display: flex;
+    flex-direction: column;
+    flex-grow: 0; /* Detaylar alanına yer açar */
+}
+
+.machine-card h3 {
+  font-size: 1.4em; 
+  font-weight: 700; 
+  color: #2c3e50;
+  margin-top: 0; 
+  margin-bottom: 0; /* Artık buton yok, alt boşluğu sıfırlayalım */
+  white-space: normal; /* Uzun isimler iki satıra yayılabilir */
+  overflow: visible; 
+  text-overflow: unset; 
+  height: auto;
+  text-align: center;
+}
+
+/* ARTIK BU STİLLERE GEREK YOKTUR, ÇÜNKÜ BUTONLAR KALDIRILDI:
+.machine-card .details-button {}
+.machine-card .close-details-button {} 
+*/
+
+
+/* YENİ: AKORDİYON TARZI DETAY STİLİ - Değişmedi */
+.machine-details-accordion {
+    padding: 0;
+    background-color: #fff; 
+    /* Başlığın altındaki ayrımı sağlamak için üstten çizgi ekleyebiliriz: */
+    border-top: 1px solid #f0f0f0;
+}
+
+.accordion-item {
+    border-bottom: 1px solid #f0f0f0; 
+    background-color: #fff;
+    padding: 0 15px; 
+}
+/* Son item'daki çizgiyi kaldır */
+.machine-details-accordion .accordion-item:last-child {
+    border-bottom: none;
+}
+
+.accordion-item.is-open {
+    background-color: #fcfcfc; 
+}
+
+.accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    cursor: pointer; 
+    user-select: none;
+}
+
+.accordion-title {
+    font-size: 1em;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0;
+}
+
+.accordion-icon {
+    font-size: 1.5em;
+    font-weight: 300;
+    color: #e74c3c;
+    width: 20px; 
+    text-align: center;
+}
+
+/* Başlık renkleri */
+.accordion-item.is-open .accordion-title {
+    color: #e74c3c; 
+}
+
+.accordion-content {
+    padding-bottom: 15px;
+    font-size: 0.9em;
+    color: #555;
+    line-height: 1.5;
+}
+
+.accordion-content p {
+    margin: 0;
+}
+
+/* EK DUYARLILIK KURALI - Değişmedi */
+@media (max-width: 650px) {
+  .machine-grid {
+    grid-template-columns: 1fr; 
+  }
+}

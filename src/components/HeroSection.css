@@ -1,0 +1,67 @@
+.hero-section {
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/hero-bg.jpg') no-repeat center center/cover; 
+  color: #fff;
+  text-align: center;
+  padding: 150px 20px;
+  min-height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.hero-section h1 {
+  font-size: 3.5em;
+  margin-bottom: 20px;
+  max-width: 900px;
+  line-height: 1.2;
+}
+
+.hero-section p {
+  font-size: 1.4em;
+  margin-bottom: 40px;
+  max-width: 700px;
+}
+
+.cta-button {
+  background-color: #e74c3c; 
+  color: white;
+  padding: 18px 40px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cta-button:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+}
+
+/* Responsive Düzenleme */
+@media (max-width: 992px) {
+  .hero-section {
+    padding: 100px 20px;
+    min-height: 400px;
+  }
+  .hero-section h1 {
+    font-size: 3em;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-section h1 {
+    font-size: 2em;
+  }
+  .hero-section p {
+    font-size: 1em;
+  }
+  .cta-button {
+    padding: 15px 30px;
+    font-size: 1em;
+  }
+}
