@@ -14,7 +14,7 @@ const machines = [
         name: 'SHAKER',
         mainFeature: 'Yüksek Hacimli Otomasyon', 
         subFeature: '4 Kat Daha Hızlı, Tam Entegre Boyama Çözümü.',
-        image: '/src/public/Shaker950.png',
+        image: '/Shaker950.png',
         keyFeatures: [
             'KROM KAPLI VE İNDÜKSİYONLU VİDALI MİL SAYESİNDE UZUN',
             'ELEKTRONİK KAPI KİLİDİ VE DOKUNMATİK SENSÖR SAYESİNDE TAM GÜVENLİK',
@@ -42,7 +42,7 @@ const machines = [
         name: 'GyroMix',
         mainFeature: '6 Eksenli Milimetrik Hassasiyet', 
         subFeature: 'Kompleks Yüzeylerde Kusursuz Uygulama Garantisi.',
-        image: '/src/public/GyroMixMachine.png',
+        image: '/GyroMixMachine.png',
         keyFeatures: [
             'KOVA BOYUTUNA GÖRE OTOMATİK AYARLANAN DÖNÜŞ HIZI',
             'KROM KAPLI VE İNDÜKSİYONLU VİDALI MİL SAYESİNDE UZUN ÖMÜRLÜ KULLANIM',
