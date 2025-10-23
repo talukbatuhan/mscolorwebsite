@@ -13,7 +13,7 @@ function HomePage() {
           
           {/* LOGO VE BAŞLIK KAPSAYICISI */}
           <div className="brand-title">
-            <img src="/src/public/ms-color-logo.png" alt="Ms Color Logo" className="brand-logo" /> 
+            <img src="/ms-color-logo.png" alt="Ms Color Logo" className="brand-logo" /> 
             <h1>Ms Color</h1>
           </div>
           

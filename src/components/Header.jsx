@@ -21,7 +21,7 @@ function Header() {
                 
                 {/* LOGO ALANI - Sol Üst */}
                 <Link to="/" className="logo-link" onClick={closeMenu}> 
-                    <img src={'/src/public/ms-color-logo.png'}
+                    <img src={'/ms-color-logo.png'}
                     alt='Ms Color Logo'
                     className='header-logo'></img>
                     <span className="color-span">MS COLOR</span>
