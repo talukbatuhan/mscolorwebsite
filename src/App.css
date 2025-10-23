@@ -17,6 +17,9 @@ body {
     -moz-osx-font-smoothing: grayscale;
     background-color: #f4f7f6;
     color: #333;
+    
+    /* KRİTİK: Body'ye de yumuşak kaydırmayı zorluyoruz */
+    scroll-behavior: smooth !important;
 }
 
 /* app-container'ın min-height'i doğru, ancak overflow:hidden kullanıyorsunuz. 
@@ -27,4 +30,15 @@ body {
     min-height: 100vh;
     overflow-x: hidden; /* Yatay kaydırmayı engelle */
     /* DİKEY KAYDIRMAYI BURADA ASLA TANIMLAMAYIN (overflow-y: scroll vb.) */
+}
+
+html {
+    /* KRİTİK: HTML'e yumuşak kaydırmayı zorluyoruz */
+    scroll-behavior: smooth !important;
+}
+
+/* Header'ınızın yüksekliği kadar (örneğin 80px) üstten boşluk bırakın */
+main {
+    padding-top: 80px; 
+    flex-grow: 1; 
 }

@@ -26,6 +26,7 @@
     border: none; /* Kartın dış çerçevesi kaldırıldı */
     position: relative; 
     z-index: 1; 
+    
 }
 
 /* Çevirme Kapsayıcısı */
@@ -61,6 +62,7 @@
     color: black;
     z-index: 2;
     transform: rotateY(0deg);
+    transition: transform 0.2s ease-in-out;
 }
 
 /* Arka Yüz Stili */
@@ -79,15 +81,11 @@
 .machine-card:not(.is-flipped):hover .card-front { 
     z-index: 10; 
     transform: scale(1.02); 
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); 
-    border-color: #BF092F; 
 }
 
 
 .machine-card.is-selected .card-front {
     z-index: 5; 
-    border-color: #e51636; 
-    box-shadow: 0 0 0 4px rgba(229, 22, 54, 0.3); 
     transform: translateY(-2px);
 }
 

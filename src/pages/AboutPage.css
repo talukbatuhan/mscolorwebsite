@@ -163,6 +163,9 @@
 
 /* --- MOBİL UYUMLULUK --- */
 @media (max-width: 768px) {
+    .about-story {
+        text-align: center;
+    }
     .about-page-section {
         padding: 60px 15px;
     }
@@ -177,6 +180,7 @@
 
     .about-vmd-section {
         flex-direction: column;
+ 
     }
 
     .founder-card {

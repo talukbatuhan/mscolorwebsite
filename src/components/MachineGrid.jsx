@@ -1,6 +1,6 @@
 // src/components/MachineGrid.jsx
 
-import React, { useState, useEffect, useRef } from 'react'; // useRef eklendi
+import React, { useState, useEffect, useRef } from 'react';
 import './MachineGrid.css';
 
 // ===================================
@@ -96,11 +96,7 @@ const machines = [
 // DETAY BİLEŞENİ (ARKA YÜZ SADELEŞTİRİLMİŞ)
 // ===================================
 
-// isCardBack prop'u eklendi
 function FeatureDetailsBox({ machine, isCardBack = false }) {
-    
-    // Mobil/Tablet için kısa özellikler gösterilmeyecek.
-
     return (
         <div className={`feature-details-box-wrapper ${isCardBack ? 'card-back-content' : ''}`}>
             
@@ -132,7 +128,6 @@ function FeatureDetailsBox({ machine, isCardBack = false }) {
             )}
             
             {/* TEKNİK ÖZELLİKLER TABLOSU (Hem Masaüstünde hem de Mobil Arka Yüzde) */}
-            {/* isCardBack true ise bu alan sağ sütun değil, tam genişlik alacak */}
             <div className={`technical-specs-container ${isCardBack ? 'mobile-back-specs-full-width' : 'detail-col-full-width desktop-only'}`}> 
                 <h3 className="technical-specs-title">{isCardBack ? machine.name + '' : 'TEKNİK ÖZELLİKLER'}</h3> 
                 <ul className="technical-specs-list">
@@ -152,20 +147,25 @@ function FeatureDetailsBox({ machine, isCardBack = false }) {
 // KART BİLEŞENİ (ÇEVİRME EFEKTİ EKLENDİ)
 // ===================================
 
-// detailsRef prop'u eklendi
 function MachineCard({ machine, isSelected, onClick, isFlipped, onFlipToggle, detailsRef }) {
     
-    // Masaüstünde kartı seçme ve kaydırma işlevi
+    // MASAÜSTÜ İŞLEVİ: window.scrollTo ile yumuşak kaydırmayı zorluyoruz
     const handleCardClickDesktop = (clickedMachine) => {
         onClick(clickedMachine); // Seçili makineyi değiştir
 
-        // Kaydırma işlemini tetikle
-        if (detailsRef && detailsRef.current) {
-            detailsRef.current.scrollIntoView({
-                behavior: 'smooth', // Yumuşak kaydırma
-                block: 'start'      // Kutu, viewport'un üstüne hizalanır
-            });
-        }
+        // Kaydırma işlemini gecikmeli olarak ve window.scrollTo ile tetikle
+        setTimeout(() => {
+            if (detailsRef && detailsRef.current) {
+                // Detay kutusunun sayfanın üstüne olan mesafesini hesapla
+                const offsetTop = detailsRef.current.getBoundingClientRect().top + window.scrollY;
+
+                window.scrollTo({
+                    // 80: Header yüksekliği (sabit header'ı telafi etmek için örnek değer)
+                    top: offsetTop - 80, 
+                    behavior: 'smooth'  // Yumuşak kaydırmayı zorla
+                });
+            }
+        }, 50); // 50ms gecikme, React'in render'ı bitirmesini bekler
     };
 
     // Mobil/Tablet cihazlarda çevirme işlevi
@@ -173,7 +173,7 @@ function MachineCard({ machine, isSelected, onClick, isFlipped, onFlipToggle, de
         onFlipToggle(machine.id);
     };
 
-    // Ekran boyutunu kontrol eden özel bir hook kullanalım (basit haliyle)
+    // Ekran boyutunu kontrol eden özel bir hook
     const [isMobile, setIsMobile] = useState(false);
     
     useEffect(() => {
@@ -186,6 +186,7 @@ function MachineCard({ machine, isSelected, onClick, isFlipped, onFlipToggle, de
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
+    // Eğer mobil değilse (masaüstüyse) yeni kaydırma işlevini kullan
     const clickHandler = isMobile ? handleCardClickMobile : () => handleCardClickDesktop(machine);
     const flippedClass = isMobile && isFlipped ? 'is-flipped' : '';
     const selectedClass = !isMobile && isSelected ? 'is-selected' : '';
@@ -228,17 +229,30 @@ function MachineCard({ machine, isSelected, onClick, isFlipped, onFlipToggle, de
 
 function MachineGrid({ isFullPage }) { 
     const [selectedMachine, setSelectedMachine] = useState(machines[0]); 
-    const [flippedCardId, setFlippedCardId] = useState(null); 
     
-    // YENİ: Detay kutusuna referans (Ref) oluşturuyoruz
+    // AÇIK KARTLAR (Mobil için Array tabanlı mantık)
+    const [flippedCardIds, setFlippedCardIds] = useState([]); 
+    
+    // Detay kutusuna referans (Ref)
     const detailsRef = useRef(null); 
 
-    // Mobil çevirme işlevi (Sadece mobil/tablet için)
+    // Mobil çevirme işlevi (Önceki gibi, yalnızca tıklanan kartı açar/kapatır, diğerlerini etkilemez)
     const handleFlipToggle = (machineId) => {
-        setFlippedCardId(flippedCardId === machineId ? null : machineId);
+        // ID dizide var mı kontrol et
+        const isFlipped = flippedCardIds.includes(machineId);
+
+        setFlippedCardIds(prevIds => {
+            if (isFlipped) {
+                // Eğer kart açıksa, diziden çıkar (Kapat)
+                return prevIds.filter(id => id !== machineId);
+            } else {
+                // Eğer kapalıysa, diziye ekle (Aç)
+                return [...prevIds, machineId];
+            }
+        });
     };
 
-    // Ekran boyutunu kontrol eden özel bir hook kullanalım
+    // Ekran boyutunu kontrol eden özel bir hook
     const [isMobile, setIsMobile] = useState(false);
     
     useEffect(() => {
@@ -263,9 +277,9 @@ function MachineGrid({ isFullPage }) {
                             isSelected={!isMobile && selectedMachine && selectedMachine.id === machine.id}
                             // Masaüstü detay gösterme ve kaydırma için gönderdik
                             onClick={setSelectedMachine} 
-                            detailsRef={detailsRef} // Ref'i gönderdik
-                            // Mobil çevirme durumu
-                            isFlipped={isMobile && flippedCardId === machine.id} 
+                            detailsRef={detailsRef} 
+                            // Mobil çevirme durumu (ID dizide var mı?)
+                            isFlipped={isMobile && flippedCardIds.includes(machine.id)} 
                             onFlipToggle={handleFlipToggle} // Mobil çevirme işlevi
                         /> 
                     ))}
@@ -275,7 +289,7 @@ function MachineGrid({ isFullPage }) {
                 {selectedMachine && !isMobile && (
                     <div 
                         className="master-details-box new-style"
-                        ref={detailsRef} // YENİ: Ref'i detay kutusuna atıyoruz
+                        ref={detailsRef} // Ref'i detay kutusuna atıyoruz
                     > 
                         <FeatureDetailsBox 
                             machine={selectedMachine} 
