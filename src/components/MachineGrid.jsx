@@ -1,11 +1,10 @@
 // src/components/MachineGrid.jsx
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react'; // useRef eklendi
 import './MachineGrid.css';
 
 // ===================================
 // VERİLER
-// Görseldeki kısa özellikler (keyFeatures) eklendi.
 // ===================================
 const machines = [
     { 
@@ -51,7 +50,7 @@ const machines = [
             '2.8" RENKLİ LCD EKRAN',
             '0.5 - 8 DK ESNEK ÇALIŞMA ARALIĞI',
             '%100 YERLİ ÜRETİM'
-          ],
+            ],
         details: [
             { feature: 'Hız', value: 'Otomatik / Max 170 rpm' },
             { feature: 'Zamanlayıcı', value: 'Ayarlanabilir' },
@@ -94,23 +93,20 @@ const machines = [
 ];
 
 // ===================================
-// YENİ İKİ SÜTUNLU DETAY BİLEŞENİ
-// NOT: Bu bileşen hem ana detay kutusu hem de kartın arka yüzü olarak kullanılacak.
+// DETAY BİLEŞENİ (ARKA YÜZ SADELEŞTİRİLMİŞ)
 // ===================================
 
 // isCardBack prop'u eklendi
 function FeatureDetailsBox({ machine, isCardBack = false }) {
     
-    // NOT: isCardBack true ise, mobil cihazda arka yüzü temsil eder.
-    // Mobil/Tablet için kısaltılmış özellikler artık gösterilmiyor. 
-    // Bunun yerine sadece teknik özellikler tablosu gösterilecek.
+    // Mobil/Tablet için kısa özellikler gösterilmeyecek.
 
     return (
         <div className={`feature-details-box-wrapper ${isCardBack ? 'card-back-content' : ''}`}>
             
-            {/* SOL SÜTUN: ÜRÜN GÖRSELİ (Sadece isCardBack false ise göster) */}
+            {/* SOL SÜTUN: ÜRÜN GÖRSELİ (Sadece Masaüstü Detay Kutusunda Göster) */}
             {!isCardBack && (
-                <div className={`detail-col-left ${isCardBack ? 'mobile-back-left' : ''}`}>
+                <div className={`detail-col-left`}>
                     <div className="detail-image-main">
                         <img 
                             src={`${import.meta.env.BASE_URL}${machine.image.substring(1)}`} 
@@ -120,16 +116,14 @@ function FeatureDetailsBox({ machine, isCardBack = false }) {
                 </div>
             )}
 
-            {/* SAĞ SÜTUN: METİN ÖZELLİKLERİ VE AYIRICILAR (Sadece Masaüstünde Görünür) */}
-            {/* Kartın arka yüzünde gösterilmeyecek */}
+            {/* SAĞ SÜTUN: KISA ÖZELLİKLER (Sadece Masaüstü Detay Kutusunda Göster) */}
             {!isCardBack && (
                 <div className="detail-col-right desktop-only"> 
                     <div className="key-features-list">
                         {machine.keyFeatures.map((text, index) => (
                             <div key={index} className="key-feature-item">
-                                {/* Dikey Çizgiyi oluşturacak ayırıcı (CSS ile yatay çizgi görünümü verilecek) */}
+                                {/* Dikey Çizgiyi oluşturacak ayırıcı */}
                                 {index !== 0 && <div className="feature-separator-line"></div>}
-                                
                                 <p className="feature-text">{text}</p>
                             </div>
                         ))}
@@ -137,10 +131,10 @@ function FeatureDetailsBox({ machine, isCardBack = false }) {
                 </div>
             )}
             
-            {/* TEKNİK ÖZELLİKLER TABLOSU (Masaüstünde Aşağıda Geniş, Kart Arka Yüzünde Sağda) */}
-            {/* isCardBack true ise bu alan sağ sütun olarak görev yapacak, tam genişlik alması için sadece technical-specs-container sınıfı kalacak */}
+            {/* TEKNİK ÖZELLİKLER TABLOSU (Hem Masaüstünde hem de Mobil Arka Yüzde) */}
+            {/* isCardBack true ise bu alan sağ sütun değil, tam genişlik alacak */}
             <div className={`technical-specs-container ${isCardBack ? 'mobile-back-specs-full-width' : 'detail-col-full-width desktop-only'}`}> 
-                <h3 className="technical-specs-title">{isCardBack ? machine.name + '' : 'TEKNİK ÖZELLİKLER'}</h3> {/* Başlık güncellendi */}
+                <h3 className="technical-specs-title">{isCardBack ? machine.name + ' - TEKNİK' : 'TEKNİK ÖZELLİKLER'}</h3> 
                 <ul className="technical-specs-list">
                     {machine.details.map((item, index) => (
                         <li key={index} className="spec-item">
@@ -150,10 +144,6 @@ function FeatureDetailsBox({ machine, isCardBack = false }) {
                     ))}
                 </ul>
             </div>
-
-            {/* Eski KARTIN ARKA YÜZÜ İÇİN KISA ÖZELLİKLER kaldırıldı. */}
-            {/* Mobil kısaltılmış özellikler artık kullanılmayacak. */}
-
         </div>
     );
 }
@@ -162,11 +152,20 @@ function FeatureDetailsBox({ machine, isCardBack = false }) {
 // KART BİLEŞENİ (ÇEVİRME EFEKTİ EKLENDİ)
 // ===================================
 
-function MachineCard({ machine, isSelected, onClick, isFlipped, onFlipToggle }) {
+// detailsRef prop'u eklendi
+function MachineCard({ machine, isSelected, onClick, isFlipped, onFlipToggle, detailsRef }) {
     
-    // Masaüstünde kartı seçme işlevi
-    const handleCardClickDesktop = () => {
-        onClick(machine);
+    // Masaüstünde kartı seçme ve kaydırma işlevi
+    const handleCardClickDesktop = (clickedMachine) => {
+        onClick(clickedMachine); // Seçili makineyi değiştir
+
+        // Kaydırma işlemini tetikle
+        if (detailsRef && detailsRef.current) {
+            detailsRef.current.scrollIntoView({
+                behavior: 'smooth', // Yumuşak kaydırma
+                block: 'start'      // Kutu, viewport'un üstüne hizalanır
+            });
+        }
     };
 
     // Mobil/Tablet cihazlarda çevirme işlevi
@@ -187,7 +186,7 @@ function MachineCard({ machine, isSelected, onClick, isFlipped, onFlipToggle }) 
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
-    const clickHandler = isMobile ? handleCardClickMobile : handleCardClickDesktop;
+    const clickHandler = isMobile ? handleCardClickMobile : () => handleCardClickDesktop(machine);
     const flippedClass = isMobile && isFlipped ? 'is-flipped' : '';
     const selectedClass = !isMobile && isSelected ? 'is-selected' : '';
 
@@ -216,7 +215,6 @@ function MachineCard({ machine, isSelected, onClick, isFlipped, onFlipToggle }) 
 
                 {/* ARKA YÜZ: TEKNİK DETAYLAR (Sadece mobil/tablet cihazlarda görünecek) */}
                 <div className="card-back">
-                    {/* isCardBack prop'u eklendi */}
                     <FeatureDetailsBox machine={machine} isCardBack={true} />
                 </div>
             </div>
@@ -230,10 +228,12 @@ function MachineCard({ machine, isSelected, onClick, isFlipped, onFlipToggle }) 
 
 function MachineGrid({ isFullPage }) { 
     const [selectedMachine, setSelectedMachine] = useState(machines[0]); 
-    // Mobil çevirme durumunu yönetmek için yeni state
     const [flippedCardId, setFlippedCardId] = useState(null); 
+    
+    // YENİ: Detay kutusuna referans (Ref) oluşturuyoruz
+    const detailsRef = useRef(null); 
 
-    // Kart çevirme işlevi (Sadece mobil/tablet için)
+    // Mobil çevirme işlevi (Sadece mobil/tablet için)
     const handleFlipToggle = (machineId) => {
         setFlippedCardId(flippedCardId === machineId ? null : machineId);
     };
@@ -261,7 +261,9 @@ function MachineGrid({ isFullPage }) {
                             machine={machine} 
                             // Masaüstü seçili durumu
                             isSelected={!isMobile && selectedMachine && selectedMachine.id === machine.id}
-                            onClick={setSelectedMachine} // Masaüstü detay gösterme
+                            // Masaüstü detay gösterme ve kaydırma için gönderdik
+                            onClick={setSelectedMachine} 
+                            detailsRef={detailsRef} // Ref'i gönderdik
                             // Mobil çevirme durumu
                             isFlipped={isMobile && flippedCardId === machine.id} 
                             onFlipToggle={handleFlipToggle} // Mobil çevirme işlevi
@@ -271,7 +273,10 @@ function MachineGrid({ isFullPage }) {
 
                 {/* YENİ MASTER DETAY KUTUSU (Sadece Masaüstünde Gösterilir) */}
                 {selectedMachine && !isMobile && (
-                    <div className="master-details-box new-style"> 
+                    <div 
+                        className="master-details-box new-style"
+                        ref={detailsRef} // YENİ: Ref'i detay kutusuna atıyoruz
+                    > 
                         <FeatureDetailsBox 
                             machine={selectedMachine} 
                             isCardBack={false} // Masaüstü detay kutusu

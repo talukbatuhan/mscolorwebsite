@@ -31,7 +31,7 @@ function Header() {
                 <div className="desktop-nav-utility">
                     <nav className="desktop-main-nav">
                         <ul>
-                            <li><Link to="/" onClick={closeMenu}>ANASAYFA</Link></li>
+                            <li><Link to="/" onClick={closeMenu}>Anasayfa</Link></li>
                             <li><Link to="/products" onClick={closeMenu}>ÜRÜNLER</Link></li>
                             <li><Link to="/about" onClick={closeMenu}>HAKKIMIZDA</Link></li>
                             <li><Link to="/contact" onClick={closeMenu}>İLETİŞİM</Link></li>
