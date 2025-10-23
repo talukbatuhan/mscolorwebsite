@@ -1,126 +1,246 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+body {
+    font-family: "Oswald", sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
 .site-header {
-  background-color: #2c3e50; 
-  color: #ecf0f1; 
-  padding: 15px 0;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  position: sticky; 
-  top: 0;
-  z-index: 999;
+    font-family: "Oswald", sans-serif; 
+    background-color: #182d51;
+    position: sticky; 
+    top: 0;
+    z-index: 999;
 }
 
-.site-header .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+.super-navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 15px 20px;
 }
 
-/* YENİ LOGO VE YAZI KAPSAYICISI STİLİ (Link) */
-.site-header .logo-link { 
-  display: flex; 
-  align-items: center; 
-  text-decoration: none;
-  color: #fff;
-  font-size: 1.8em;
-  font-weight: bold;
+/* --- Logo Stilleri --- */
+.logo-link {
+    display: flex;
+    align-items: center;
+    font-size: 1.8em;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: white; /* Logo linkine renk ekledim */
 }
 
-/* YENİ LOGO GÖRSEL STİLİ */
-.site-header .header-logo {
-    width: 35px; 
-    height: 35px; 
-    margin-right: 8px; 
+/* Logo Görseli Stili */
+.header-logo {
+    width: 50px;
+    height: 50px;
     object-fit: contain;
 }
 
-/* LOGO YAZISI STİLİ */
-.site-header .logo-text span {
-  color: #e74c3c; 
-  font-weight: 800;
+.color-span {
+    font-weight: 500;
+    color: white;
+}
+
+/* --- Masaüstü Navigasyon ve Butonlar --- */
+.desktop-nav-utility {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.desktop-main-nav ul {
+    letter-spacing: 1.5px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 35px;
+    padding-top: 10px;
+}
+
+.desktop-main-nav li {
+    /* Çizgi efekti için referans noktası 'a' etiketi olduğu için bu kısma gerek yok. */
+}
+
+.desktop-main-nav a {
+    font-size: 1.2em;
+    font-weight: bold; 
+    color: white;
+    text-transform: uppercase;
+    
+    /* Efekt için gerekli: '::after' öğesinin konumunu bu bağlantıya göre ayarlar */
+    position: relative; 
+    display: block; /* Vurgulama alanını genişletmek için */
+    padding-bottom: 5px; /* Çizgi ile yazı arasına boşluk */
 }
 
 
-.site-header .main-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
+/* NAVİGASYON BAĞLANTISI EFEKTİ (Sola-Sağa Kayan Çizgi) */
+.desktop-main-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0; /* Bağlantı metninin altına konumlandır */
+    left: 0; /* Soldan başla */
+    width: 0; /* Başlangıçta genişlik sıfır */
+    height: 3px; /* Çizginin kalınlığı */
+    background-color: white; 
+    transition: width 0.3s ease-out; /* Genişlik değişimine yumuşak geçiş */
 }
 
-.site-header .main-nav li {
-  margin-left: 30px;
+.desktop-main-nav a:hover::after {
+    width: 100%; /* Üzerine gelindiğinde genişliği %100 yap */
 }
 
-.site-header .main-nav a {
-  color: #ecf0f1;
-  text-decoration: none;
-  font-size: 1.1em;
-  transition: color 0.3s ease;
+/* NOT: Mevcut kodunuzdaki .desktop-main-nav::after kuralı hatalıydı, bu yüzden yukarıdaki kurallarla değiştirdim. */
+
+
+/* SUPERHEROES Tarzı Buton */
+.super-action-button {
+    color: white;
+    background-color: transparent;
+    border: 3px solid white;
+    padding: 10px 20px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 900;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.site-header .main-nav a:hover {
-  color: #e74c3c;
+.super-action-button:hover {
+    background-color: white;
+    color: #182d51;
 }
 
-/* Hamburger Butonu Stili */
+/* =================================== */
+/* HAMBURGER BUTON SİSTEMİ */
+/* =================================EDEBİLECEK KODLAR */
 .menu-toggle {
-  display: none; 
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1.8em;
-  cursor: pointer;
-  z-index: 1001; 
-  line-height: 1;
+    display: none;
+    background: none;
+    border: 3px solid white;
+    cursor: pointer;
+    z-index: 1001; 
+    width: 40px; 
+    height: 35px; 
+    position: relative;
+    padding: 0;
 }
 
-/* Responsive Kural */
-@media (max-width: 768px) {
-  /* Logo Mobil Boyut Ayarı */
-  .site-header .header-logo {
-      width: 30px; 
-      height: 30px; 
-  }
-  
-  .site-header .main-nav {
-    display: none;
+.menu-toggle span {
+    display: block;
+    width: 60%;
+    height: 3px;
+    background-color: white; 
+    border-radius: 0;
+    position: absolute;
+    left: 20%;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Çizgi Konumları */
+.menu-toggle span:nth-child(1) { top: 7px; }
+.menu-toggle span:nth-child(2) { top: 50%; transform: translate(-50%, -50%); left: 50%; }
+.menu-toggle span:nth-child(3) { bottom: 7px; }
+
+/* HAMBURGER AÇIKKEN (X İKONU) */
+.menu-toggle.open span:nth-child(1) {
+    transform: translateY(11px) rotate(45deg); 
+}
+
+.menu-toggle.open span:nth-child(2) {
+    opacity: 0; 
+}
+
+.menu-toggle.open span:nth-child(3) {
+    transform: translateY(-11px) rotate(-45deg); 
+}
+
+
+/* =================================== */
+/* TAM EKRAN MOBİL/OVERLAY NAVİGASYON */
+/* =================================== */
+.fullscreen-nav {
+    display: flex;
     position: fixed; 
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
-    background-color: rgba(44, 62, 80, 0.95); 
+    background-color: #182d51;
     z-index: 1000;
-    transform: translateX(100%); 
-    transition: transform 0.3s ease-in-out;
+    color: white;
+    
+    transform: translateY(-100%); 
+    transition: transform 0.5s ease-in-out;
+    
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+    padding-top: 80px;
+}
 
-  .site-header .main-nav.open {
+/* Menü Açık Durum */
+.fullscreen-nav.open {
+    transform: translateY(0); 
+}
+
+.menu-list-wrapper {
+    width: 100%;
+    height: 100%;
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+.fullscreen-menu-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
     display: flex;
-    transform: translateX(0); 
-  }
-  
-  .site-header .main-nav ul {
     flex-direction: column;
-    text-align: center;
-  }
+    justify-content: flex-start;
+    border-top: 3px solid white;
+}
 
-  .site-header .main-nav li {
-    margin: 20px 0;
-  }
+.menu-item-wrapper {
+    width: 100%;
+    border-bottom: 3px solid white;
+}
 
-  .site-header .main-nav a {
-    font-size: 1.5em;
-    padding: 10px 20px;
+.menu-item-wrapper a {
     display: block;
-  }
+    padding: 25px 0;
+    font-size: 2.5em; 
+    font-weight: 900; 
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s;
+}
 
-  .menu-toggle {
-    display: block; 
-  }
+.menu-item-wrapper a:hover {
+    background-color: white;
+    color: #182d51;
+}
+
+
+/* =================================== */
+/* MOBİL GÖRÜNÜM (max-width: 900px) */
+/* =================================== */
+
+@media (max-width: 900px) {
+    /* Masaüstü Navigasyon ve Butonları Gizle */
+    .desktop-main-nav, .super-action-button {
+        display: none;
+    }
+
+    /* Hamburger butonunu görünür yap */
+    .menu-toggle {
+        display: block; 
+    }
 }

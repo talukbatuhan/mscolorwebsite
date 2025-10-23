@@ -1,165 +1,391 @@
-/* GENEL VE BAŞLIK STİLLERİ - Değişmedi */
-.machine-grid-section {
-  background-color: #f8f8f8;
-  padding: 80px 20px;
-  text-align: center;
-}
-.machine-grid-section .container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.machine-grid-section h2 {
-  font-size: 2.5em;
-  color: #2c3e50;
-  margin-bottom: 50px;
-  position: relative;
-  display: inline-block;
-}
-.machine-grid-section h2::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  bottom: -10px;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 4px;
-  background-color: #e74c3c;
-  border-radius: 2px;
-}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900;1,400..900&family=Oswald:wght@200..700;1,200..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
-/* DUYARLI GRID YAPISI - Değişmedi */
-.machine-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-  gap: 30px; 
-  justify-content: center; 
-}
 
-/* MAKİNE KARTI STİLİ - Değişmedi */
-.machine-card {
-  background-color: #fff;
-  border-radius: 8px; 
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
-  overflow: hidden; 
-  text-align: left;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  height: 100%; 
-  display: flex;
-  flex-direction: column;
-  padding: 0; 
-  border: 1px solid #eee;
-}
-.machine-card:hover {
-  transform: translateY(-5px); 
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
-}
-
-/* RESİM KAPSAYICI DİV STİLİ - Değişmedi */
-.machine-image-wrapper {
-  width: 100%;
-  height: 320px; 
-  background-size: contain; 
-  background-color: #f0f0f0; 
-  background-position: center; 
-  background-repeat: no-repeat; 
-  border-bottom: 1px solid #ddd;
-  flex-shrink: 0; 
-}
-
-/* YENİ BAŞLIK KAPSAYICISI (card-content-auto) */
-/* Eski card-content'i kullanmaya devam edebiliriz, ancak kafa karışıklığını önlemek için yeni bir sınıf tanımladım. */
-.machine-card .card-content-auto {
-    /* Eski card-content'in padding ve h3'ü hizalama görevini üstlenir */
-    padding: 15px 15px; 
-    display: flex;
-    flex-direction: column;
-    flex-grow: 0; /* Detaylar alanına yer açar */
-}
-
-.machine-card h3 {
-  font-size: 1.4em; 
-  font-weight: 700; 
-  color: #2c3e50;
-  margin-top: 0; 
-  margin-bottom: 0; /* Artık buton yok, alt boşluğu sıfırlayalım */
-  white-space: normal; /* Uzun isimler iki satıra yayılabilir */
-  overflow: visible; 
-  text-overflow: unset; 
-  height: auto;
-  text-align: center;
-}
-
-/* ARTIK BU STİLLERE GEREK YOKTUR, ÇÜNKÜ BUTONLAR KALDIRILDI:
-.machine-card .details-button {}
-.machine-card .close-details-button {} 
+/* Tema Renkleri:
+    kırmızı: #BF092F
+    koyumavi: #132440
+    mavi : #16476A
+    açık mavi: #3B9797
 */
 
-
-/* YENİ: AKORDİYON TARZI DETAY STİLİ - Değişmedi */
-.machine-details-accordion {
-    padding: 0;
-    background-color: #fff; 
-    /* Başlığın altındaki ayrımı sağlamak için üstten çizgi ekleyebiliriz: */
-    border-top: 1px solid #f0f0f0;
+.machine-grid-section {
+    background-color: #193770;
+    padding: 80px 20px;
 }
 
-.accordion-item {
-    border-bottom: 1px solid #f0f0f0; 
-    background-color: #fff;
-    padding: 0 15px; 
-}
-/* Son item'daki çizgiyi kaldır */
-.machine-details-accordion .accordion-item:last-child {
-    border-bottom: none;
-}
-
-.accordion-item.is-open {
-    background-color: #fcfcfc; 
+/* DUYARLI GRID YAPISI (KARTLARI YAN Yana HİZALAR) */
+.machine-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 30px; 
+    justify-content: center; 
+    margin-bottom: 50px; 
+    margin-top: -40px;
 }
 
-.accordion-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 0;
+/* MAKİNE KARTI (ÇEVİRME YAPISI İÇİN YENİ STİLLER) */
+.machine-card {
+    background-color: transparent; /* İçerik için şeffaf */
+    height: 450px; /* Kart Yüksekliğini sabitleyelim, mobil çevirme için önemli */
+    overflow: visible; 
+    text-align: center; 
+    transition: all 0.3s ease;
     cursor: pointer; 
-    user-select: none;
+    border: none; /* Kartın dış çerçevesi kaldırıldı */
+    position: relative; 
+    z-index: 1; 
 }
 
-.accordion-title {
-    font-size: 1em;
-    font-weight: 600;
-    color: #2c3e50;
-    margin: 0;
+/* Çevirme Kapsayıcısı */
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s; /* Çevirme süresi */
+    transform-style: preserve-3d; /* 3D efektini koru */
 }
 
-.accordion-icon {
-    font-size: 1.5em;
-    font-weight: 300;
-    color: #e74c3c;
-    width: 20px; 
+/* Tıklandığında Çevirme */
+.machine-card.is-flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Kartın Ön ve Arka Yüzü için Ortak Stil */
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Kartın arka yüzünü gizle */
+    -webkit-backface-visibility: hidden; /* Safari uyumluluğu */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border: 2px solid #eee; 
+    overflow: hidden; 
+}
+
+/* Ön Yüz Stili */
+.card-front {
+    background-color: white; 
+    color: black;
+    z-index: 2;
+    transform: rotateY(0deg);
+}
+
+/* Arka Yüz Stili */
+.card-back {
+    background-color: #182d51; 
+    color: white;
+    transform: rotateY(180deg);
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex; /* İçeriğin dikey hizalanması için */
+    align-items: center;
+    justify-content: center;
+}
+
+/* Masaüstü Seçili Durum (Mobil Çevirmeden Bağımsız) */
+.machine-card:not(.is-flipped):hover .card-front { 
+    z-index: 10; 
+    transform: scale(1.02); 
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); 
+    border-color: #BF092F; 
+}
+
+
+.machine-card.is-selected .card-front {
+    z-index: 5; 
+    border-color: #e51636; 
+    box-shadow: 0 0 0 4px rgba(229, 22, 54, 0.3); 
+    transform: translateY(-2px);
+}
+
+/* MARKA ÖN EKİ STİLİ */
+.machine-brand-prefix {
+    display: block;
+    text-align: center;
+    font-family: "Oswald", sans-serif; 
+    color: black;
+    font-weight: 500;
+    font-size: 0.9em;
+    padding-top: 15px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+/* MAKİNE ADI STİLİ */
+.machine-card h3 { 
+    font-size: 1.6em; 
+    font-weight: 900; 
+    color: black; 
+    font-family: "Oswald", serif; 
+    margin: 5px 0 15px 0;
+}
+
+.machine-image-wrapper {
+    width: 100%; 
+    height: 350px; /* Kart yüksekliğine göre ayarlandı */
+    background-size: contain; 
+    background-color: #fff; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+}
+
+/* =================================== */
+/* MASTER DETAY KUTUSU STİLLERİ (İki Sütunlu Yapı) */
+/* =================================== */
+
+.master-details-box.new-style {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 8px;
+    padding: 0;
+}
+
+.feature-details-box-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    grid-template-areas: 
+        "left right"
+        "full full"; 
+    gap: 30px;
+    padding: 40px 0;
+    background-color: #ffffff;
+    /* Kartın arka yüzünde de kullanıldığı için transform'u sıfırla */
+    transform: rotateY(0deg); 
+}
+
+/* Kartın arka yüzü için özel stil */
+.feature-details-box-wrapper.card-back-content {
+    background-color: transparent; /* Kartın arka yüz rengini alsın */
+    height: 100%;
+    width: 100%;
+    display: block; /* Tek sütun olduğu için grid'i kaldır */
+    padding: 10px;
+    gap: 0;
+}
+
+
+/* --- SÜTUN ALANLARI --- */
+.detail-col-left {
+    grid-area: left;
+    padding: 0 40px 0 60px;
     text-align: center;
 }
 
-/* Başlık renkleri */
-.accordion-item.is-open .accordion-title {
-    color: #e74c3c; 
+.detail-col-right {
+    grid-area: right;
+    padding: 0 60px 0 40px;
+    border-left: 1px solid #ddd; /* İKİ SÜTUN ARASINDAKİ DİKEY AYIRICI */
 }
 
-.accordion-content {
-    padding-bottom: 15px;
-    font-size: 0.9em;
-    color: #555;
-    line-height: 1.5;
+.detail-col-full-width {
+    grid-area: full;
+    padding: 0 60px 
 }
 
-.accordion-content p {
+/* --- SOL SÜTUN GÖRSEL & BİLGİ STİLİ --- */
+.detail-image-main {
+    max-width: 450px;
+    margin: 0 auto 30px;
+    padding: 20px 0; 
+}
+.detail-image-main img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+/* --- SAĞ SÜTUN (KISA ÖZELLİKLER) STİLİ --- */
+.key-features-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-height: 500px;
+}
+.key-feature-item {
+    position: relative;
+    padding: 20px 0;
+    text-align: right;
+}
+
+/* METİNLER ARASINDAKİ YATAY AYIRICI ÇİZGİ (CSS ile simüle edildi) */
+.feature-separator-line {
+    position: absolute;
+    top: 0;
+    left: 0; 
+    width: 100%;
+    height: 1px;
+    background-color: #ddd;
+}
+.key-feature-item:first-child .feature-separator-line {
+    display: none; 
+}
+
+.feature-text {
+    font-family: "Oswald", sans-serif; 
+    font-size: 1.1em;
+    font-weight: 700;
+    color: black; /* Koyu yerine black kullanıldı */
+    line-height: 1.3;
+    margin: 0;
+    text-align: left;
+}
+
+/* --- TEKNİK ÖZELLİKLER TABLOSU STİLİ --- */
+.technical-specs-container {
+    padding: 0 60px;
+}
+
+.technical-specs-title {
+    font-size: 1.7em;
+    font-weight: 500;
+    color: black; /* Koyu yerine black kullanıldı */
+    margin-top: 40px;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid black; 
+    font-family: "Oswald", sans-serif;
+    text-align: center;
+}
+
+.technical-specs-list {
+    font-family: "Oswald", sans-serif;
+    list-style: none;
+    padding: 0;
     margin: 0;
 }
 
-/* EK DUYARLILIK KURALI - Değişmedi */
-@media (max-width: 650px) {
-  .machine-grid {
-    grid-template-columns: 1fr; 
-  }
+.spec-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.spec-feature {
+    font-weight: 700;
+    color: black; /* Koyu yerine black kullanıldı */
+}
+
+.spec-value {
+    color: #000;
+    font-weight: 400;
+    text-align: right;
+}
+
+/* =================================== */
+/* MOBİL DÜZENLEME (900px altı) */
+/* =================================== */
+
+/* Masaüstüne özgü alanları gizle */
+.desktop-only {
+    display: block;
+}
+/* Mobil'e özgü alanları gizle (Artık kullanılmıyor, yerine teknik özellikler gelecek) */
+.mobile-only {
+    display: none; 
+}
+
+
+@media (max-width: 900px) {
+
+    /* Masaüstüne özgü alanları gizle */
+    .desktop-only {
+        display: none !important;
+    }
+    .mobile-only {
+        display: none !important; /* Bu kısım tamamen kaldırıldı */
+    }
+    
+    /* Kartın Arka Yüzü İçin Düzenleme */
+    .feature-details-box-wrapper.card-back-content {
+        /* Artık görsel yok, bu yüzden tek bir blok olarak davranacak */
+        display: block; 
+    }
+
+    /* Görselin kaldırılmasıyla sol sütun artık görünmez. */
+    /* .mobile-back-left gibi sınıflara ihtiyacımız kalmayacak. */
+
+    /* Teknik Özellikler Kapsayıcısı Tam Genişlikte olacak */
+    .technical-specs-container.mobile-back-specs-full-width {
+        grid-area: initial; /* Grid alanını sıfırla */
+        padding: 0; /* İç boşluğu sıfırla, card-back-content'ten gelecek */
+        text-align: left;
+        display: block; /* Flexbox'a gerek yok */
+        width: 100%; /* Tam genişlik */
+    }
+
+    /* Teknik Özellikler Başlığı */
+    .technical-specs-container.mobile-back-specs-full-width .technical-specs-title {
+        font-size: 1.5em;
+        font-weight: 700;
+        color: white; /* Kartın arka plan rengine uyumlu */
+        margin-top: -10px;
+        margin-bottom: 15px;
+        border-bottom: 3px solid #ffffff; /* Kırmızı çizgi */
+        text-align: center; /* Başlık ortaya hizalandı */
+        padding-bottom: 5px;
+        padding-left: 0;
+        
+    }
+
+    /* Teknik Özellikler Listesi */
+    .technical-specs-container.mobile-back-specs-full-width .spec-item {
+        padding: 5px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Açık renkli ayırıcı */
+    }
+    .technical-specs-container.mobile-back-specs-full-width .spec-feature {
+        font-weight: 500;
+        color: #f0f0f0; /* Açık renkli metin */
+        font-size: 1em;
+    }
+    .technical-specs-container.mobile-back-specs-full-width .spec-value {
+        color: white;
+        font-weight: 700;
+        font-size: 1em;
+    }
+    /* Son öğenin alt çizgisini kaldır */
+    .technical-specs-container.mobile-back-specs-full-width .spec-item:last-child {
+        border-bottom: none;
+    }
+
+    /* Ana Detay Kutusu (Normal Masaüstü Görünümü) */
+    /* Mobile'da görünmeyecekleri için bu stiller aktif olmayacak, ancak genel düzeni bozmaması için bırakılabilir. */
+    .feature-details-box-wrapper {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "left"
+            "right"
+            "full";
+        gap: 0;
+    }
+
+    .detail-col-left,
+    .detail-col-right,
+    .detail-col-full-width {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    
+    .detail-col-right {
+        border-left: none; 
+        border-top: 1px solid #ddd; 
+        padding-top: 40px;
+    }
+
+    .key-features-list {
+        min-height: auto; 
+    }
+
+    .key-feature-item {
+        text-align: left;
+    }
+    .feature-separator-line {
+        display: none; 
+    }
+    
+    .feature-text {
+        text-align: left;
+    }
 }

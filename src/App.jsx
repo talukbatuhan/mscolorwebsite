@@ -22,10 +22,10 @@ function App() {
           <Route path="/" element={<HomePage />} />
           
           {/* ÜRÜNLER Sayfası: Sadece MachineGrid'i büyük başlıkla gösterir */}
-          <Route path="/urunler" element={<ProductsPage />} /> 
+          <Route path="/products" element={<ProductsPage />} /> 
 
           {/* İletişim Sayfası */}
-          <Route path="/iletisim" element={<ContactPage />} />
+          <Route path="/contact" element={<ContactPage />} />
           
           {/* 404 Sayfası */}
           <Route path="*" element={<div className="container" style={{padding: '100px 0', textAlign: 'center'}}><h1>404 | Sayfa Bulunamadı</h1></div>} />
