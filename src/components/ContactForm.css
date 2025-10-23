@@ -1,16 +1,18 @@
-/* LÜKS FORM TASARIMI */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900;1,400..900&family=Oswald:wght@200..700;1,200..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
 .contact-form-luxury {
     width: 100%;
     margin-top: 0;
 }
 
 .contact-form-luxury .form-group {
-    margin-bottom: 20px; /* Boşluklar biraz artırıldı */
+    margin-bottom: 14px; 
 }
 
 /* Giriş Alanları (Input ve Textarea) */
 .contact-form-luxury .luxury-input,
 .contact-form-luxury .luxury-textarea {
+    font-family: "Oswald", serif; 
     width: 100%;
     padding: 14px 18px; /* İç boşluklar artırıldı */
     border: 1px solid #ddd; /* Daha ince ve zarif kenarlık */
@@ -26,8 +28,8 @@
 /* Odaklanma Efekti */
 .contact-form-luxury .luxury-input:focus,
 .contact-form-luxury .luxury-textarea:focus {
-    border-color: #e74c3c; /* Ana renk ile belirgin kenarlık */
-    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.2); /* Hafif dış gölge vurgusu */
+    border-color: #193770; /* Ana renk ile belirgin kenarlık */
+    box-shadow: 0 0 0 3px #193770;; /* Hafif dış gölge vurgusu */
     background-color: #fff;
     outline: none;
 }
@@ -48,7 +50,7 @@
     display: block;
     width: 100%;
     padding: 15px 0; /* İç boşluklar artırıldı */
-    background-color: #e74c3c; /* Ana renk */
+    background-color: #193770; /* Ana renk */
     color: white;
     border: none;
     border-radius: 8px; /* Yuvarlaklık artırıldı */
@@ -57,13 +59,13 @@
     transition: background-color 0.3s ease, transform 0.2s ease; /* Geçiş efektleri */
     font-weight: 700; /* Kalın yazı */
     letter-spacing: 0.5px; /* Harf aralığı */
-    box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3); /* Butona gölge */
+    box-shadow: 0 4px 10px #193770;; /* Butona gölge */
 }
 
 .contact-form-luxury .submit-button-luxury:hover {
-    background-color: #c0392b; /* Koyu ton */
+    background-color: #193770;; /* Koyu ton */
     transform: translateY(-2px); /* Hafif yukarı kayma */
-    box-shadow: 0 6px 15px rgba(231, 76, 60, 0.4); /* Gölge büyümesi */
+    box-shadow: 0 6px 15px #193770;; /* Gölge büyümesi */
 }
 
 /* Erişilebilirlik için gizli etiketler - Değişmedi */

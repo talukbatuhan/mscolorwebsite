@@ -51,7 +51,7 @@ function ContactForm() {
         <textarea 
           id="message" 
           name="message" 
-          rows="5" 
+          rows="4" 
           placeholder="Mesajınız..." 
           required 
           className="luxury-textarea" // Yeni sınıf

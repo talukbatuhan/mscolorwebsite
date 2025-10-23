@@ -1,15 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900;1,400..900&family=Oswald:wght@200..700;1,200..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
-
-/* Tema Renkleri:
-    kırmızı: #BF092F
-    koyumavi: #132440
-    mavi : #16476A
-    açık mavi: #3B9797
-*/
-
 .machine-grid-section {
-    background-color: #193770;
+    background-color: #182d51;
     padding: 80px 20px;
 }
 
@@ -73,7 +65,7 @@
 
 /* Arka Yüz Stili */
 .card-back {
-    background-color: #182d51; 
+    background-color: #182d51;
     color: white;
     transform: rotateY(180deg);
     padding: 20px;

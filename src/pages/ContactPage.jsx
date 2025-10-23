@@ -1,13 +1,13 @@
 import React from 'react';
 import ContactForm from '../components/ContactForm';
-import './ContactPage.css'; // 👈 Yeni CSS dosyasını içeri aktardık
+import './ContactPage.css';
 
 function ContactPage() {
   
   return (
     <section className="contact-page-section"> 
       <div className="container">
-        <h1>Bize Ulaşın</h1>
+
 
         {/* ANA İKİ SÜTUNLU YAPI - CSS ile yönetiliyor */}
         <div className="contact-main-grid">
