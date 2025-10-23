@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900;1,400..900&family=Oswald:wght@200..700;1,200..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+
+/* --- TEMA RENKLERİ --- */
+/*mavi: #193770 , koyu mavi: #182D51 */
+* {
+    font-family: "Oswald", sans-serif;
+}
+.about-page-section {
+    padding: 100px 20px;
+    background-color: #182D51; 
+    font-family: "Oswald", sans-serif; 
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- 1. BAŞLIK VE GİRİŞ --- */
+.about-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.about-header h1 {
+    font-size: 3em;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 10px;
+    font-family: 'Oswald', sans-serif;
+}
+
+.lead-text {
+    font-size: 1.15em;
+    color: white;
+    max-width: 1100px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* --- 2. HİKAYEMİZ --- */
+.about-story {
+    margin-bottom: 80px;
+    padding: 40px;
+    background-color: #fff;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.about-story h2 {
+    color: #193770;
+    font-size: 2em;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #193770;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.story-content p {
+    line-height: 1.8;
+    color: black;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* --- 3. VİZYON, MİSYON, DEĞERLER (VMD) --- */
+.about-vmd-section {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 80px;
+    flex-wrap: wrap; /* Mobil uyumluluk için */
+}
+
+.vmd-item {
+    flex: 1;
+    min-width: 250px;
+    padding: 30px;
+    background-color: white; /* Hafif arka plan */
+
+    border-top: 5px solid #193770;
+}
+
+.vmd-icon {
+    font-size: 2.5em;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.vmd-item h3 {
+    color: #193770;
+    font-family: 'Oswald', sans-serif;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+}
+
+.vmd-item ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.vmd-item li {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="%23BF092F" d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>') no-repeat left center;
+    background-size: 12px;
+    padding-left: 25px;
+    margin-bottom: 8px;
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+
+/* --- 4. KURUCU MESAJI --- */
+.founder-message-section {
+    background-color: white; /* Grid arkaplan rengini kullanıyoruz */
+    padding: 60px 40px;
+    color: black;
+}
+
+.founder-card {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.founder-photo { /* duruma göre radius eklenebilinir! border-radius: 50%; */
+    width: 150px;
+    height: 150px;
+    
+    object-fit: cover;
+    border: 5px solid white;
+    flex-shrink: 0;
+}
+
+.founder-text-content h2 {
+    color: #193770;
+    font-family: 'Oswald', sans-serif;
+    margin-top: 0;
+    font-size: 2em;
+}
+
+.founder-text-content p {
+    font-style: italic;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    
+
+}
+
+.founder-signature {
+    font-style: normal !important;
+    font-weight: 700;
+    font-size: 1.1em;
+    color: #193770; /* Kırmızı imza */
+    margin-top: 20px;
+}
+.founder-signature span {
+    display: block;
+    font-weight: 400;
+    font-size: 0.9em;
+    color: #ccc;
+}
+
+
+/* --- MOBİL UYUMLULUK --- */
+@media (max-width: 768px) {
+    .about-page-section {
+        padding: 60px 15px;
+    }
+    
+    .about-header h1 {
+        font-size: 2.2em;
+    }
+    
+    .lead-text {
+        font-size: 1em;
+    }
+
+    .about-vmd-section {
+        flex-direction: column;
+    }
+
+    .founder-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .founder-photo {
+        margin-bottom: 10px;
+    }
+    
+    .founder-text-content {
+        text-align: center;
+    }
+    
+    .founder-text-content h2 {
+        font-size: 1.8em;
+    }
+}

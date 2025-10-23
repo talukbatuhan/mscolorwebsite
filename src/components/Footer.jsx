@@ -22,10 +22,10 @@ function Footer() {
         <div className="footer-column quick-links">
           <h4>Hızlı Bağlantılar</h4>
           <ul>
-            <li><a href="#home">Anasayfa</a></li>
-            <li><a href="#products">Ürünler</a></li>
-            <li><a href="#about">Hakkımızda</a></li>
-            <li><a href="#contact">İletişim</a></li>
+            <li><a href="/">Anasayfa</a></li>
+            <li><a href="/products">Ürünler</a></li>
+            <li><a href="/about">Hakkımızda</a></li>
+            <li><a href="/contact">İletişim</a></li>
           </ul>
         </div>
 
