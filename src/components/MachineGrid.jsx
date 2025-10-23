@@ -9,8 +9,8 @@ import './MachineGrid.css';
 const machines = [
     { 
         id: 1,
-        brandPrefix: 'MasterMix',
-        name: 'SHAKER',
+        brandPrefix: 'SHAKER',
+        name: 'MasterMix',
         mainFeature: 'Yüksek Hacimli Otomasyon', 
         subFeature: '4 Kat Daha Hızlı, Tam Entegre Boyama Çözümü.',
         image: '/Shaker950.png',
@@ -66,7 +66,7 @@ const machines = [
     { 
         id: 3,
         brandPrefix: 'Dispenser',
-        name: 'Dispenser',
+        name: 'MasterTint',
         mainFeature: 'Anında Kuruma, Maksimum Verimlilik', 
         subFeature: 'Yeni Nesil LED UV Teknolojisi ile Enerji Tasarrufu.',
         image: '/Dispenser950v2.png', 
@@ -134,7 +134,7 @@ function FeatureDetailsBox({ machine, isCardBack = false }) {
             {/* TEKNİK ÖZELLİKLER TABLOSU (Hem Masaüstünde hem de Mobil Arka Yüzde) */}
             {/* isCardBack true ise bu alan sağ sütun değil, tam genişlik alacak */}
             <div className={`technical-specs-container ${isCardBack ? 'mobile-back-specs-full-width' : 'detail-col-full-width desktop-only'}`}> 
-                <h3 className="technical-specs-title">{isCardBack ? machine.name + ' - TEKNİK' : 'TEKNİK ÖZELLİKLER'}</h3> 
+                <h3 className="technical-specs-title">{isCardBack ? machine.name + '' : 'TEKNİK ÖZELLİKLER'}</h3> 
                 <ul className="technical-specs-list">
                     {machine.details.map((item, index) => (
                         <li key={index} className="spec-item">

@@ -9,7 +9,9 @@ import Footer from './components/Footer';
 // Yeni Sayfalar
 import HomePage from './pages/HomePage';       
 import ContactPage from './pages/ContactPage'; 
-import ProductsPage from './pages/ProductsPage'; // 👈 Yeni sayfa
+import AboutPage from './pages/AboutPage'; 
+import ProductsPage from './pages/ProductsPage'; 
+
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
           
           {/* ÜRÜNLER Sayfası: Sadece MachineGrid'i büyük başlıkla gösterir */}
           <Route path="/products" element={<ProductsPage />} /> 
+
+          <Route path="/about" element={<AboutPage />} />
 
           {/* İletişim Sayfası */}
           <Route path="/contact" element={<ContactPage />} />
