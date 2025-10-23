@@ -19,7 +19,7 @@ function App() {
       <main>
         <Routes>
           {/* Anasayfa: MachineGrid burada da görünür (küçük versiyon) */}
-          <Route path="/mscolorwebsite" element={<HomePage />} />
+          <Route path="/" element={<HomePage />} />
           
           {/* ÜRÜNLER Sayfası: Sadece MachineGrid'i büyük başlıkla gösterir */}
           <Route path="/products" element={<ProductsPage />} /> 
