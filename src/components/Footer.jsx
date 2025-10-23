@@ -33,13 +33,13 @@ function Footer() {
         <div className="footer-column contact-info">
           <h4>Bize Ulaşın</h4>
           <p>
-            <i className="fas fa-map-marker-alt"></i> Organize Sanayi Bölgesi, Ankara/Türkiye
+            <i className="fas fa-map-marker-alt"></i> Bozburun Mahallesi Ahmet Nazif Zorlu Sanayi Sitesi 7153 Sokak No: 15 Merkezefendi/DENİZLİ
           </p>
           <p>
-            <i className="fas fa-phone"></i> +90 555 123 45 67
+            <i className="fas fa-phone"></i> +90 546 437 62 18
           </p>
           <p>
-            <i className="fas fa-envelope"></i> info@mscolor.com
+            <i className="fas fa-envelope"></i> malik@orendaarge.com
           </p>
         </div>
       </div>
