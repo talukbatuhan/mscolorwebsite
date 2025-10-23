@@ -70,7 +70,7 @@ const machines = [
         name: 'Dispenser',
         mainFeature: 'Anında Kuruma, Maksimum Verimlilik', 
         subFeature: 'Yeni Nesil LED UV Teknolojisi ile Enerji Tasarrufu.',
-        image: 'src/public/Dispenser950v2.png.png', 
+        image: '/Dispenser950v2.png', 
         keyFeatures: [
             'ÖZELLİKLER EKLENCEK',
             'ÖZELLİKLER EKLENCEK',
