@@ -11,6 +11,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop'
 
+import SplashCursor from './components/SplashCursor';
+
 function App() {
 
 
@@ -18,6 +20,7 @@ function App() {
   return (
     <div className="app-container">
       <ScrollToTop />
+      <SplashCursor />
       <Header />
       
 
