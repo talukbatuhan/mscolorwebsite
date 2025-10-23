@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   
-  "homepage": "https://talukbatuhan.github.io/mscolorweb", 
+  "homepage": "https://github.com/talukbatuhan/mscolorwebsite.git", 
   
   "scripts": {
     "dev": "vite",
