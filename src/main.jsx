@@ -7,7 +7,7 @@ import { BrowserRouter } from 'react-router-dom'; // 👈 BrowserRouter'ı içer
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     {/* Uygulamayı yönlendirme özelliği ile sarmalıyoruz */}
-    <BrowserRouter>
+    <BrowserRouter basename="/mscolorwebsite">
       <App />
     </BrowserRouter>
   </React.StrictMode>,
