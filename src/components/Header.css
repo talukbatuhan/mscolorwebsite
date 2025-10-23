@@ -9,11 +9,17 @@ a {
     color: inherit;
 }
 
+main {
+    padding-top: 80px;
+}
+
 .site-header {
     font-family: "Oswald", sans-serif; 
     background-color: #193770;
-    position: sticky; 
+    position: fixed; 
     top: 0;
+    left: 0;
+    width: 100%;
     z-index: 999;
 }
 

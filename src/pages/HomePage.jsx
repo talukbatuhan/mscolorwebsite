@@ -4,6 +4,7 @@ import React from 'react';
 import MachineGrid from '../components/MachineGrid'; 
 import './HomePage.css'; 
 
+
 function HomePage() {
   return (
     <div className="homepage-container">
