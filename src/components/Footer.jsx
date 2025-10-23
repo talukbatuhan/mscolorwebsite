@@ -12,7 +12,7 @@ function Footer() {
         <div className="footer-column brand-info">
           <div className="brand-title-footer">
             <img src="/src/public/ms-color-logo.png" alt="Ms Color Logo" className="brand-logo-footer" />
-            <h3>Ms Color</h3>
+            <h3>MS COLOR</h3>
           </div>
           <p className="slogan">Endüstriyel Boyama Sistemlerinde Güven ve Teknoloji.</p>
           <p className="copyright">&copy; {currentYear} Ms Color. Tüm hakları saklıdır.</p>

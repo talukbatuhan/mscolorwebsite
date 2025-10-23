@@ -1,9 +1,13 @@
-/* FOOTER GENEL STİLLERİ */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+* {
+  font-family: "Oswald", sans-serif;
+}
+
 .site-footer {
-  background-color: #2c3e50; /* Koyu Mavi/Gri Arka Plan */
-  color: #ecf0f1; /* Açık Renk Yazı */
-  padding: 50px 20px;
-  border-top: 5px solid #e74c3c; /* Kırmızı Çizgi */
+  background-color: #182d51; 
+  color: #ecf0f1; 
+  padding: 50px;
 }
 
 .footer-container {
@@ -28,46 +32,48 @@
 }
 
 .brand-logo-footer {
-  width: 40px; /* Footer'da daha küçük logo */
-  height: 40px;
-  margin-right: 10px;
+  width: 45px; /* Footer'da daha küçük logo */
+  height: 45px;
   object-fit: contain;
-  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3));
 }
 
 .brand-title-footer h3 {
   margin: 0;
-  font-size: 1.8em;
+  font-size: 1.5em;
   font-weight: 700;
   color: #ecf0f1;
+  font-family: "Oswald", sans-serif;
 }
 
 .slogan {
   font-size: 0.9em;
-  color: #bdc3c7;
+  color: white;
 }
 
 .copyright {
   font-size: 0.8em;
-  color: #7f8c8d;
+  color: white;
   margin-top: 15px;
 }
 
 /* HIZLI BAĞLANTILAR STİLLERİ */
 .quick-links h4, .contact-info h4 {
   font-size: 1.2em;
-  color: #e74c3c; /* Kırmızı Başlıklar */
-  margin-bottom: 20px;
-  font-weight: 600;
+  color: white; /* Kırmızı Başlıklar */
+  margin-bottom: 15px;
+  font-weight: 800;
+  font-family: "Oswald", sans-serif;
 }
 
 .quick-links ul {
   list-style: none;
-  padding: 0;
+  padding-left: 5px;
+  font-weight: 400;
   margin: 0;
 }
 
 .quick-links li {
+
   margin-bottom: 8px;
 }
 
@@ -75,10 +81,7 @@
   color: #ecf0f1;
   text-decoration: none;
   transition: color 0.3s;
-}
-
-.quick-links a:hover {
-  color: #e74c3c;
+  font-family: "Oswald", sans-serif;
 }
 
 /* İLETİŞİM BİLGİLERİ STİLLERİ */
@@ -86,11 +89,12 @@
   font-size: 0.9em;
   margin-bottom: 10px;
   color: #ecf0f1;
+
 }
 
 .contact-info i {
   margin-right: 10px;
-  color: #e74c3c;
+  color: white;
 }
 
 /* DUYARLILIK AYARLARI */
