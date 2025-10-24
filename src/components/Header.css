@@ -39,7 +39,7 @@ main {
     font-size: 1.8em;
     font-weight: 900;
     text-transform: uppercase;
-    color: white; /* Logo linkine renk ekledim */
+    color: white; 
 }
 
 /* Logo Görseli Stili */
@@ -58,11 +58,11 @@ main {
 .desktop-nav-utility {
     display: flex;
     align-items: center;
-    gap: 45px;
+    /* Navigasyon ve dil butonu arasına boşluk */
+    gap: 45px; 
 }
 
 .desktop-main-nav ul {
-
     list-style: none;
     margin: 0;
     padding: 0;
@@ -80,12 +80,9 @@ main {
     font-size: 1.2em;
     font-weight: bold; 
     color: white;
-    
-    
-    
     position: relative; 
-    display: block; /* Vurgulama alanını genişletmek için */
-    padding-bottom: 5px; /* Çizgi ile yazı arasına boşluk */
+    display: block; 
+    padding-bottom: 5px; 
 }
 
 
@@ -93,43 +90,64 @@ main {
 .desktop-main-nav a::after {
     content: '';
     position: absolute;
-    bottom: 0; /* Bağlantı metninin altına konumlandır */
-    left: 0; /* Soldan başla */
-    width: 0; /* Başlangıçta genişlik sıfır */
-    height: 3px; /* Çizginin kalınlığı */
+    bottom: 0; 
+    left: 0; 
+    width: 0; 
+    height: 3px; 
     background-color: white; 
-    transition: width 0.3s ease-out; /* Genişlik değişimine yumuşak geçiş */
+    transition: width 0.3s ease-out; 
 }
 
 .desktop-main-nav a:hover::after {
-    width: 100%; /* Üzerine gelindiğinde genişliği %100 yap */
-}
-
-/* NOT: Mevcut kodunuzdaki .desktop-main-nav::after kuralı hatalıydı, bu yüzden yukarıdaki kurallarla değiştirdim. */
-
-
-/* SUPERHEROES Tarzı Buton */
-.super-action-button {
-    color: white;
-    background-color: transparent;
-    border: 3px solid white;
-    padding: 10px 20px;
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: 900;
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.super-action-button:hover {
-    background-color: white;
-    color: #182d51;
+    width: 100%; 
 }
 
 /* =================================== */
+/* YENİ DİL DEĞİŞTİRME BUTONLARI STİLLERİ */
+/* =================================== */
+
+.language-switcher {
+    display: flex;
+    align-items: center;
+    /* Düğmeler ve ayırıcı için flex ayarı */
+}
+
+.lang-button {
+    background: transparent;
+    border: none;
+    color: white;
+    font-family: inherit;
+    font-size: 1.1em; /* Navigasyon linklerine yakın bir boyut */
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    padding: 5px 8px;
+    transition: color 0.2s ease-in-out;
+}
+
+.lang-button:hover {
+    color: #fdbb2d; /* Parlak bir vurgu rengi kullanın */
+}
+
+.lang-button.active-lang {
+    color: #fdbb2d; 
+    /* Ekstra vurgu için bir alt çizgi eklenebilir */
+    border-bottom: 3px solid #fdbb2d;
+}
+
+.lang-separator {
+    color: white;
+    opacity: 0.7;
+    margin: 0 -5px; /* Butonların üzerine gelindiğinde boşluğu düzenler */
+    font-size: 1.1em;
+}
+
+/* ESKİ SUPERHEROES Butonu stili KALDIRILDI */
+
+
+/* =================================== */
 /* HAMBURGER BUTON SİSTEMİ */
-/* =================================EDEBİLECEK KODLAR */
+/* =================================== */
 .menu-toggle {
     display: none;
     background: none;
@@ -241,13 +259,34 @@ main {
 /* =================================== */
 
 @media (max-width: 900px) {
-    /* Masaüstü Navigasyon ve Butonları Gizle */
-    .desktop-main-nav, .super-action-button {
+    
+    /* Masaüstü Navigasyonu Gizle */
+    .desktop-main-nav {
         display: none;
     }
-
+    
+    /* Dil butonlarını ve hamburgeri yan yana tut, navigasyonun yerini doldur */
+    .desktop-nav-utility {
+        gap: 20px; /* Mobil görünümde boşluğu azalt */
+    }
+    
     /* Hamburger butonunu görünür yap */
     .menu-toggle {
         display: block; 
+    }
+    
+    /* Mobil Menü İçine Dil Butonlarını Taşıyabiliriz */
+    .fullscreen-nav .language-switcher {
+        /* Mobil menü içinde yerleşim ayarı */
+        margin-top: 20px;
+        justify-content: center;
+        width: 100%;
+        order: -1; /* Menüde üste çıkmasını sağla */
+    }
+    
+    /* Mobil menüdeki dil butonlarını büyüt */
+    .fullscreen-nav .lang-button {
+        font-size: 1.5em;
+        padding: 10px 15px;
     }
 }

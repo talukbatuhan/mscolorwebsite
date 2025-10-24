@@ -1,94 +1,90 @@
 // src/components/MachineGrid.jsx
 
 import React, { useState, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next'; // *** Yeni: Çeviri hook'u eklendi ***
 import './MachineGrid.css';
 
 // ===================================
-// VERİLER
+// VERİLER (Metinler Yerine Çeviri Anahtarları Kullanıldı)
 // ===================================
 const machines = [
     { 
         id: 1,
         brandPrefix: 'SHAKER',
         name: 'MasterMix',
-        mainFeature: 'Yüksek Hacimli Otomasyon', 
-        subFeature: '4 Kat Daha Hızlı, Tam Entegre Boyama Çözümü.',
         image: '/Shaker950.png',
-        keyFeatures: [
-            'KROM KAPLI VE İNDÜKSİYONLU VİDALI MİL SAYESİNDE UZUN',
-            'ELEKTRONİK KAPI KİLİDİ VE DOKUNMATİK SENSÖR SAYESİNDE TAM GÜVENLİK',
-            'ÇİFT DOĞRULAMALI ALGORİTMA İLE HER KOŞULDA DOĞRU SIKIŞTIRMA',
-            'YALNIZCA 8 CİVATA İLE TÜM KAPAKLAR AÇILIR',
-            '2.8" RENKLİ LCD EKRAN',
-            '30 - 300 SANİYE ESNEK ÇALIŞMA ARALIĞI',
-            '%100 YERLİ ÜRETİM'
+        keyFeaturesKeys: [ // Veri yapısı 'keyFeaturesKeys' olarak güncellendi
+            'm1_key_f_1',
+            'm1_key_f_2',
+            'm1_key_f_3',
+            'm1_key_f_4',
+            'm1_key_f_5',
+            'm1_key_f_6',
+            'm1_key_f_7',
         ],
         details: [
-            { feature: 'Hız', value: '700 rpm' },
-            { feature: 'Eksantrik Mesafesi', value: '44 mm' }, 
-            { feature: 'Ekran', value: '2.8" LCD' },
-            { feature: 'Sıkıştırma', value: 'Otomatik' },
-            { feature: 'Motor', value: '0.75 KW' },
-            { feature: 'Max Kova Yüksekliği', value: '410 mm' },
-            { feature: 'Max Kova Çapı', value: '432 mm' },
-            { feature: 'Max Kova Ağırlığı', value: '35 KG' },
-            { feature: 'Güç/Besleme', value: '220V AC/50Hz' },
-            { feature: 'Boyutlar (WXDXH)', value: '700X720X1290' }
+            // Özellik isimleri için çeviri anahtarları kullanılıyor
+            { featureKey: 'spec_speed', value: '700 rpm' },
+            { featureKey: 'spec_eccentric', value: '44 mm' }, 
+            { featureKey: 'spec_screen', value: '2.8" LCD' },
+            { featureKey: 'spec_compression', value: 'Otomatik' },
+            { featureKey: 'spec_engine', value: '0.75 KW' },
+            { featureKey: 'spec_max_bucket_height', value: '410 mm' },
+            { featureKey: 'spec_max_bucket_diameter', value: '432 mm' },
+            { featureKey: 'spec_mac_bucket_weight', value: '35 KG' },
+            { featureKey: 'spec_power', value: '220V AC/50Hz' },
+            { featureKey: 'spec_dimensions', value: '700X720X1290' }
         ]},
     { 
         id: 2,
         brandPrefix: 'GYROSCOPIC MIXER', 
         name: 'GyroMix',
-        mainFeature: '6 Eksenli Milimetrik Hassasiyet', 
-        subFeature: 'Kompleks Yüzeylerde Kusursuz Uygulama Garantisi.',
         image: '/GyroMixMachine.png',
-        keyFeatures: [
-            'KOVA BOYUTUNA GÖRE OTOMATİK AYARLANAN DÖNÜŞ HIZI',
-            'KROM KAPLI VE İNDÜKSİYONLU VİDALI MİL SAYESİNDE UZUN ÖMÜRLÜ KULLANIM',
-            'ÇİFT DOĞRULAMALI ALGORİTMA İLE HER KOŞULDA DOĞRU SIKIŞTIRMA',
-            'HER İKİ EKSENDE HER İKİ YÖNE DÖNÜŞ',
-            '2.8" RENKLİ LCD EKRAN',
-            '0.5 - 8 DK ESNEK ÇALIŞMA ARALIĞI',
-            '%100 YERLİ ÜRETİM'
-            ],
+        keyFeaturesKeys: [
+            'm2_key_f_1', 
+            'm2_key_f_2',
+            'm2_key_f_3',
+            'm2_key_f_4',
+            'm2_key_f_5',
+            'm2_key_f_6',
+            'm2_key_f_7',
+        ],
         details: [
-            { feature: 'Hız', value: 'Otomatik / Max 170 rpm' },
-            { feature: 'Zamanlayıcı', value: 'Ayarlanabilir' },
-            { feature: 'Ekran', value: '2.8" LCD' },
-            { feature: 'Sıkıştırma', value: 'Tam Otomatik'},
-            { feature: 'Motor', value: '1.1 KW AC Motor'},
-            { feature: 'Max Kova Yüksekliği', value: '410 mm'},
-            { feature: 'Max Kova Çapı', value: '400 mm'},
-            { feature: 'Max Kova Ağırlığı', value: '35 KG'},
-            { feature: 'Güç', value: '220V AC/50Hz'},
-            { feature: 'Boyutlar (WxDxH)', value: '800x850x1010 mm'}
+            { featureKey: 'spec_speed', value: 'Otomatik / Max 170 rpm' },
+            { featureKey: 'spec_timer', value: 'Ayarlanabilir' }, // Yeni anahtar varsayılır
+            { featureKey: 'spec_screen', value: '2.8" LCD' },
+            { featureKey: 'spec_compression', value: 'Tam Otomatik'},
+            { featureKey: 'spec_engine', value: '1.1 KW AC Motor'},
+            { featureKey: 'spec_max_bucket_height', value: '410 mm'},
+            { featureKey: 'spec_max_bucket_diameter', value: '400 mm'},
+            { featureKey: 'spec_mac_bucket_weight', value: '35 KG'},
+            { featureKey: 'spec_power', value: '220V AC/50Hz'},
+            { featureKey: 'spec_dimensions', value: '800x850x1010 mm'}
         ]},
     { 
         id: 3,
         brandPrefix: 'Dispenser',
         name: 'MasterTint',
-        mainFeature: 'Anında Kuruma, Maksimum Verimlilik', 
-        subFeature: 'Yeni Nesil LED UV Teknolojisi ile Enerji Tasarrufu.',
         image: '/dispenser950v5.png', 
-        keyFeatures: [
-            'ÖZELLİKLER EKLENCEK',
-            'ÖZELLİKLER EKLENCEK',
-            'ÖZELLİKLER EKLENCEK',
-            
-            '2.8" RENKLİ LCD EKRAN',
-            '0.5 - 8 DK ESNEK ÇALIŞMA ARALIĞI',
-            '%100 YERLİ ÜRETİM'
+        keyFeaturesKeys: [
+            'm3_key_f_1',
+            'm3_key_f_2',
+            'm3_key_f_3',
+            'm3_key_f_4',
+            'm3_key_f_5',
+            'm3_key_f_6',
+            'm3_key_f_7',
         ],
         details: [
-            { feature: 'Kutu / Hazne Sayısı', value: '24 adet' },
-            { feature: 'Hassasiyet', value: '0.03 ml' },
-            { feature: 'Ekran', value: 'Opsiyonel' },
-            { feature: 'Kutu / Hazne Malzemesi', value: 'Polimer'},
-            { feature: 'Karıştırma Hızı', value: 'Ayarlanabilir'},
-            { feature: 'Kutu / Hazne Hacmi', value: 'Opsiyonel'},
-            { feature: 'Pompa Hacmi', value: 'Opsiyonel'},
-            { feature: 'Asansör', value: 'Otomatik'},
-            { feature: 'Güç Kaynağı', value: '220V/50Hz'},
+            { featureKey: 'spec_canister_count', value: '24 adet' }, // Yeni anahtar varsayılır
+            { featureKey: 'spec_precision', value: '0.03 ml' },
+            { featureKey: 'spec_screen', value: 'Opsiyonel' },
+            { featureKey: 'spec_canister_material', value: 'Polimer'},
+            { featureKey: 'spec_mixing_speed', value: 'Ayarlanabilir'},
+            { featureKey: 'spec_canister_volume', value: 'Opsiyonel'},
+            { featureKey: 'spec_pump_volume', value: 'Opsiyonel'},
+            { featureKey: 'spec_elevator', value: 'Otomatik'},
+            { featureKey: 'spec_power', value: '220V/50Hz'},
         ]},
 ];
 
@@ -97,6 +93,11 @@ const machines = [
 // ===================================
 
 function FeatureDetailsBox({ machine, isCardBack = false }) {
+    const { t } = useTranslation(); // *** Çeviri hook'u eklendi ***
+
+    // Başlık metnini çeviri anahtarı kullanarak alıyoruz
+    const title = t('tech_specs_title'); 
+
     return (
         <div className={`feature-details-box-wrapper ${isCardBack ? 'card-back-content' : ''}`}>
             
@@ -116,11 +117,12 @@ function FeatureDetailsBox({ machine, isCardBack = false }) {
             {!isCardBack && (
                 <div className="detail-col-right desktop-only"> 
                     <div className="key-features-list">
-                        {machine.keyFeatures.map((text, index) => (
+                        {/* Çeviri anahtarlarını kullanarak özellik metinlerini alıyoruz */}
+                        {machine.keyFeaturesKeys.map((key, index) => ( 
                             <div key={index} className="key-feature-item">
                                 {/* Dikey Çizgiyi oluşturacak ayırıcı */}
                                 {index !== 0 && <div className="feature-separator-line"></div>}
-                                <p className="feature-text">{text}</p>
+                                <p className="feature-text">{t(key)}</p> {/* *** Çeviri Uygulandı *** */}
                             </div>
                         ))}
                     </div>
@@ -129,11 +131,13 @@ function FeatureDetailsBox({ machine, isCardBack = false }) {
             
             {/* TEKNİK ÖZELLİKLER TABLOSU (Hem Masaüstünde hem de Mobil Arka Yüzde) */}
             <div className={`technical-specs-container ${isCardBack ? 'mobile-back-specs-full-width' : 'detail-col-full-width desktop-only'}`}> 
-                <h3 className="technical-specs-title">{isCardBack ? machine.name + '' : 'TEKNİK ÖZELLİKLER'}</h3> 
+                {/* Mobil arka yüzde sadece makine adı, masaüstünde sabit başlık */}
+                <h3 className="technical-specs-title">{isCardBack ? machine.name + ' '  : title}</h3> 
                 <ul className="technical-specs-list">
                     {machine.details.map((item, index) => (
                         <li key={index} className="spec-item">
-                            <span className="spec-feature">{item.feature}</span>
+                            {/* item.feature (anahtar) çevriliyor, item.value (değer) sabit kalıyor */}
+                            <span className="spec-feature">{t(item.featureKey)}</span> {/* *** Çeviri Uygulandı *** */}
                             <span className="spec-value">{item.value}</span>
                         </li>
                     ))}
@@ -148,7 +152,8 @@ function FeatureDetailsBox({ machine, isCardBack = false }) {
 // ===================================
 
 function MachineCard({ machine, isSelected, onClick, isFlipped, onFlipToggle, detailsRef }) {
-    
+    const { t } = useTranslation(); // *** Çeviri hook'u eklendi ***
+
     // MASAÜSTÜ İŞLEVİ: window.scrollTo ile yumuşak kaydırmayı zorluyoruz
     const handleCardClickDesktop = (clickedMachine) => {
         onClick(clickedMachine); // Seçili makineyi değiştir
@@ -162,7 +167,7 @@ function MachineCard({ machine, isSelected, onClick, isFlipped, onFlipToggle, de
                 window.scrollTo({
                     // 80: Header yüksekliği (sabit header'ı telafi etmek için örnek değer)
                     top: offsetTop - 80, 
-                    behavior: 'smooth'  // Yumuşak kaydırmayı zorla
+                    behavior: 'smooth'  // Yumuşak kaydırmayı zorla
                 });
             }
         }, 50); // 50ms gecikme, React'in render'ı bitirmesini bekler
@@ -207,6 +212,11 @@ function MachineCard({ machine, isSelected, onClick, isFlipped, onFlipToggle, de
                             </span>
                         )}
                         <h3>{machine.name}</h3>
+                        
+                        {/* Ana Özellik ve Alt Özelliği Çeviriyoruz */}
+                        <p className="main-feature-text">{t(machine.mainFeatureKey)}</p>
+                        <p className="sub-feature-text">{t(machine.subFeatureKey)}</p>
+
                         <div className="machine-image-wrapper"
                             style={{ backgroundImage: `url(${import.meta.env.BASE_URL}${machine.image.substring(1)})` }} 
                             aria-label={machine.name}
@@ -228,31 +238,22 @@ function MachineCard({ machine, isSelected, onClick, isFlipped, onFlipToggle, de
 // ===================================
 
 function MachineGrid({ isFullPage }) { 
+    // ... (Mevcut mantık kodunda çeviriye gerek yok) ...
     const [selectedMachine, setSelectedMachine] = useState(machines[0]); 
-    
-    // AÇIK KARTLAR (Mobil için Array tabanlı mantık)
     const [flippedCardIds, setFlippedCardIds] = useState([]); 
-    
-    // Detay kutusuna referans (Ref)
     const detailsRef = useRef(null); 
 
-    // Mobil çevirme işlevi (Önceki gibi, yalnızca tıklanan kartı açar/kapatır, diğerlerini etkilemez)
     const handleFlipToggle = (machineId) => {
-        // ID dizide var mı kontrol et
         const isFlipped = flippedCardIds.includes(machineId);
-
         setFlippedCardIds(prevIds => {
             if (isFlipped) {
-                // Eğer kart açıksa, diziden çıkar (Kapat)
                 return prevIds.filter(id => id !== machineId);
             } else {
-                // Eğer kapalıysa, diziye ekle (Aç)
                 return [...prevIds, machineId];
             }
         });
     };
 
-    // Ekran boyutunu kontrol eden özel bir hook
     const [isMobile, setIsMobile] = useState(false);
     
     useEffect(() => {
@@ -273,14 +274,11 @@ function MachineGrid({ isFullPage }) {
                         <MachineCard 
                             key={machine.id} 
                             machine={machine} 
-                            // Masaüstü seçili durumu
                             isSelected={!isMobile && selectedMachine && selectedMachine.id === machine.id}
-                            // Masaüstü detay gösterme ve kaydırma için gönderdik
                             onClick={setSelectedMachine} 
                             detailsRef={detailsRef} 
-                            // Mobil çevirme durumu (ID dizide var mı?)
                             isFlipped={isMobile && flippedCardIds.includes(machine.id)} 
-                            onFlipToggle={handleFlipToggle} // Mobil çevirme işlevi
+                            onFlipToggle={handleFlipToggle} 
                         /> 
                     ))}
                 </div>

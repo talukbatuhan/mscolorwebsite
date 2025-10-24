@@ -1,8 +1,10 @@
 import React from 'react';
 import ContactForm from '../components/ContactForm';
+import { useTranslation } from 'react-i18next';
 import './ContactPage.css';
 
 function ContactPage() {
+  const { t } = useTranslation(); 
   
   return (
     <section className="contact-page-section"> 
@@ -30,7 +32,7 @@ function ContactPage() {
             {/* SAĞ SÜTUN: İLETİŞİM FORMU */}
             <div className="contact-form-wrapper">
                 
-                <h2>İletişim Formu</h2> 
+                <h2>{t('contact_us_title')}</h2> 
                 <ContactForm />
             </div>
 

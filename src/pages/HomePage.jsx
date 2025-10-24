@@ -1,19 +1,22 @@
-// src/pages/HomePage.jsx
-
 import React from 'react';
-
 import SplashCursor from '../components/SplashCursor';
 import MachineGrid from '../components/MachineGrid'; 
+import { useTranslation } from 'react-i18next'; 
 import './HomePage.css'; 
 
-
 function HomePage() {
-  const backgroundVideoSrc = '/video1.mp4'; // Ana video yolunuz
+  const backgroundVideoSrc = '/video1.mp4'; 
+
+  const { t, i18n } = useTranslation();
+      const changeLanguage = (lng) => { 
+        i18n.changeLanguage(lng);
+    };
   
   return (
     
     <div className="homepage-container">
-      <SplashCursor/>
+      <SplashCursor />
+
       {/* HEADER BÖLÜMÜ - DİNAMİK VİDEO ARKA PLANI */}
       <header className="hero-section video-hero">
         
@@ -38,22 +41,18 @@ function HomePage() {
           <p className="brand-name-text">Ms Color</p> {/* Yeni, daha küçük marka adı alanı */}
           
           {/* YENİ VE DAHA ÇARPICI BAŞLIK */}
-          <h1>Geleceğin Boya Teknolojilerini Bugün Keşfedin</h1> 
+          <h1>{t('homepage_title')}</h1> 
           
           {/* GÜÇLÜ SLOGAN (Eski 'hero-subtitle' yerine) */}
-          <p className="hero-punchline">Sanayide En Yüksek Verimlilik, Kusursuz Renk Kalitesi.</p>
+          <p className="hero-punchline">{t('homepage_punchline')}</p>
           
           {/* DAHA NET BUTON METNİ */}
       
         </div>
       </header>
-      {/* ------------------------------------------------------------- */}
-
-
+  
       {/* Makine Kartları Bölümü */}
       <MachineGrid />
-      
-      {/* Footer bileşeni buraya import edilmelidir */}
 
     </div>
   );
