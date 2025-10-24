@@ -1,34 +1,44 @@
 // src/components/AboutPage.jsx
 
 import React from 'react';
+import { useTranslation } from 'react-i18next'; // *** Yeni: Çeviri hook'u eklendi ***
 import './AboutPage.css';
 
-// Varsayılan İçerikler
+// Varsayılan İçerikler (Şirket adları ve yıllar sabit kalabilir, metinler çevrilecek)
 const companyName = "MS COLOR";
 const foundingYear = 2020;
 const founderName = "Snorlax";
 
 function AboutPage() {
+    const { t } = useTranslation(); // *** Çeviri hook'u çağrıldı ***
+
     return (
         <div className="about-page-section">
             <div className="container">
                 
                 {/* 1. Üst Başlık ve Giriş */}
                 <header className="about-header">
-                    <h1>{companyName} Hakkında</h1>
+                    {/* companyName değişkenini çeviri anahtarı içinde kullanıyoruz */}
+                    <h1>{t('about_title', { companyName: companyName })}</h1>
                     <p className="lead-text">
-                        {foundingYear} yılından bu yana boya ve otomasyon sektöründe ezber bozan çözümler sunarak endüstriye taze bir bakış açısı getiriyoruz. <br /> Temel misyonumuz, ileri teknolojiyi kusursuz güvenilirlikle birleştirmek ve bu sayede müşterilerimizin üretim hatlarında maksimum verimlilik sağlamaktır. <br /> Yerli mühendislik gücümüzle geliştirdiğimiz her makine, hassasiyet ve dayanıklılık taahhüdümüzün somut bir kanıtıdır. <br /> Biz, sadece makine üretmekle kalmıyor; müşterilerimizin gelecekteki rekabet gücüne yatırım yapıyoruz.
+                        {/* foundingYear değişkenini çeviri anahtarı içinde kullanıyoruz */}
+                        {t('about_lead_text_1', { foundingYear: foundingYear })}
+                        <br /> {t('about_lead_text_2')} 
+                        <br /> {t('about_lead_text_3')} 
+                        <br /> {t('about_lead_text_4')}
                     </p>
                 </header>
 
                 {/* 2. Hikayemiz ve Tarihçe */}
                 <section className="about-story">
-                    <h2>Biz Kimiz?</h2>
+                    <h2>{t('about_section_who_are_we_h2')}</h2>
                     <div className="story-content">
                         <p>
-                            {companyName} olarak, yerli üretim anlayışıyla geliştirdiğimiz makinelerimizi Türkiye ve dünyadaki boya üreticilerinin hizmetine sunuyoruz. Amacımız, profesyonel hizmet anlayışımız ve kaliteli ürünler ile müşterilerimize değer katan çözümler sunmaktır. <br />
-                  
-                       Ar-Ge'ye verdiğimiz önemle güncel teknolojiyi takip ediyor, yenilikçi çözümler sunuyor ve ürünlerimizi sürekli olarak daha iyiye ulaştırmak için çalışıyoruz.</p>
+                            {/* companyName değişkenini çeviri anahtarı içinde kullanıyoruz */}
+                            {t('about_story_p1', { companyName: companyName })}
+                            <br />
+                        
+                        {t('about_story_p2')}</p>
                     </div>
                 </section>
 
@@ -36,28 +46,28 @@ function AboutPage() {
                 <section className="about-vmd-section">
                     <div className="vmd-item">
                         <i className="vmd-icon">🎯</i>
-                        <h3>Vizyonumuz</h3>
-                        <p>Boyama ve kimya otomasyonu alanında global ölçekte lider bir çözüm ortağı olmaktır. Sektördeki yenilikleri sadece takip etmekle kalmayıp, bu yeniliklere yön veren, güvenilir ve öncü bir marka olmayı hedefliyoruz. Geliştirdiğimiz her ürün ve sunduğumuz her hizmet ile müşterilerimizin üretim süreçlerinde verimliliği ve hassasiyeti en üst düzeye çıkarmayı amaçlıyoruz</p>
+                        <h3>{t('about_vision_h3')}</h3>
+                        <p>{t('about_vision_p')}</p>
 
                     </div>
                     
                     <div className="vmd-item">
                         <i className="vmd-icon">🛠️</i>
-                        <h3>Misyonumuz</h3>
-                        <p>Yerli üretime katkı sağlayarak dünya standartlarında yüksek kaliteli makine üretimini sağlamaktır. Enerji ve gayretimizi, ürettiğimiz yerli makinelerle ülkemizi dünyada en güzel şekilde temsil etmek</p>
+                        <h3>{t('about_mission_h3')}</h3>
+                        <p>{t('about_mission_p')}</p>
                     </div>
 
                     <div className="vmd-item">
                         <i className="vmd-icon">🛡️</i>
-                        <h3>Değerlerimiz</h3>
+                        <h3>{t('about_values_h3')}</h3>
                         <ul>
-                            <li>Hassasiyet ve Mükemmeliyet</li>
-                            <li>Sürekli İyileştirme ve Geliştirme (Kaizen)</li>
-                            <li>Çözüm Ortaklığı ve Güven</li>
-                            <li>Sürdürülebilir Teknoloji</li>
-                            <li>Yerli Güç ve Global Etki</li>
-                            <li>İnovasyon Çevikliği</li>
-                            <li>Erişilebilirlik ve Destek</li>
+                            <li>{t('value_precision')}</li>
+                            <li>{t('value_continuous_improvement')}</li>
+                            <li>{t('value_solution_partner')}</li>
+                            <li>{t('value_sustainable_tech')}</li>
+                            <li>{t('value_domestic_power')}</li>
+                            <li>{t('value_innovation_agility')}</li>
+                            <li>{t('value_accessibility')}</li>
                         </ul>
                     </div>
                 </section>
@@ -71,11 +81,12 @@ function AboutPage() {
                             className="founder-photo"
                         />
                         <div className="founder-text-content">
-                            <h2>Kurucu Mesajı</h2>
+                            <h2>{t('founder_message_h2')}</h2>
                             <p>
-                                "Başladığımız günden bu yana inancımız hiç değişmedi: Yüksek kalite ve yerli üretim birleştiğinde, sonuç her zaman uluslararası standartların ötesindedir. Gelecek, otomasyon ve hassasiyetle şekillenecek. Biz, {companyName} olarak bu geleceğe yön vermeye kararlıyız."
+                                {/* companyName değişkenini çeviri anahtarı içinde kullanıyoruz */}
+                                {t('founder_message_p', { companyName: companyName })}
                             </p>
-                            <p className="founder-signature">{founderName} <br/> <span>Kurucu & CEO</span></p>
+                            <p className="founder-signature">{founderName} <br/> <span>{t('founder_title')}</span></p>
                         </div>
                     </div>
                 </section>
