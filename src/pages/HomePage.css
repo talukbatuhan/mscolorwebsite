@@ -1,133 +1,171 @@
 /* GENEL VE RESET STİLLERİ */
 body {
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #f4f7f6;
-  color: #333;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #f4f7f6;
+    color: #333;
 }
 
 .homepage-container {
-  overflow-x: hidden; /* Yatay kaydırmayı engelle */
+    overflow-x: hidden; 
 }
 
-/* HERO SECTION (HEADER) STİLLERİ */
-.hero-section {
-  background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d); /* Dinamik ve modern gradient */
-  color: white;
-  text-align: center;
-  padding: 100px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 450px; /* Minimum yükseklik */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+/* HERO SECTION (DİNAMİK VİDEO ARKA PLAN) STİLLERİ */
+.hero-section.video-hero {
+    background: #000; /* Video yüklenene kadar siyah arka plan */
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 500px; /* Daha dolgun bir görünüm */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative; 
+    overflow: hidden; 
+    z-index: 1; /* İçerik altta kalmasın */
 }
 
+/* ARKA PLAN VİDEOSU */
+.hero-background-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* Konteyneri tam kaplaması için ayarlar */
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    z-index: -1; /* İçeriğin arkasına gitmesini sağlar */
+    object-fit: cover;
+}
+
+/* VİDEO ÜZERİNDEKİ ŞEFFAF SİYAH KATMAN (Okunurluk için kritik) */
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Opaklığı artırarak metni daha da öne çıkarıyoruz */
+    background-color: rgba(0, 0, 0, 0.55); 
+    z-index: 0;
+}
+
+/* Metin ve Buton İçeriği */
 .header-content {
-  max-width: 800px;
-  margin: 0 auto;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative; 
+    z-index: 10;
 }
 
-/* LOGO VE BAŞLIK KAPSAYICISI */
-.brand-title {
-  display: flex; /* Logo ve başlığı yan yana getir */
-  align-items: center; /* Dikeyde ortala */
-  justify-content: center; /* Yatayda ortala */
-  margin-bottom: 20px;
+/* MARKA ADI STİLİ (Ms Color) */
+.brand-name-text {
+    font-size: 1.8em;
+    font-weight: 300;
+    margin-bottom: 5px;
+    letter-spacing: 5px; 
+    text-transform: uppercase;
+    opacity: 0.8;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.9);
 }
 
-.brand-logo {
-  width: 60px; /* Logonun genişliği */
-  height: 60px; /* Logonun yüksekliği */
-  margin-right: 15px; /* Logo ile başlık arasına boşluk */
-  object-fit: contain; /* Resmin oranını koru */
-  filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3)); /* Logoya hafif gölge */
+/* GÜÇLÜ ANA BAŞLIK STİLİ (H1) */
+.hero-section.video-hero h1 {
+    font-size: 4.5em; /* Daha büyük ve çarpıcı */
+    margin: 0 0 15px 0;
+    font-weight: 800; /* Daha kalın */
+    letter-spacing: 3px;
+    line-height: 1.1;
+    /* Metin gölgesini daha keskin yaptık */
+    text-shadow: 2px 4px 10px rgba(0, 0, 0, 1); 
 }
 
-.brand-title h1 {
-  font-size: 3.5em; /* Başlık boyutu */
-  margin: 0;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4); /* Başlığa derinlik kat */
+/* GÜÇLÜ SLOGAN STİLİ */
+.hero-punchline {
+    font-size: 1.8em; /* Daha büyük ve net */
+    margin-bottom: 50px;
+    font-weight: 300;
+    opacity: 0.95;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.9);
 }
 
-.hero-subtitle {
-  font-size: 1.5em;
-  margin-bottom: 40px;
-  font-weight: 300;
-  opacity: 0.9;
-}
-
+/* HERO BUTON STİLİ */
 .hero-button {
-  background-color: #e74c3c; /* Canlı kırmızı */
-  color: white;
-  padding: 15px 35px;
-  border: none;
-  border-radius: 50px; /* Yuvarlak kenarlar */
-  font-size: 1.1em;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    background-color: #e74c3c; /* Canlı kırmızı */
+    color: white;
+    padding: 15px 40px; /* Biraz daha geniş */
+    border: none;
+    border-radius: 50px; /* Yuvarlak kenarlar */
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); 
 }
 
 .hero-button:hover {
-  background-color: #c0392b; /* Koyu kırmızı */
-  transform: translateY(-2px);
+    background-color: #c0392b; /* Koyu kırmızı */
+    transform: translateY(-2px);
 }
 
+
 /* DUYARLILIK (RESPONSIVE) AYARLARI */
+
 @media (max-width: 768px) {
-  .hero-section {
-    padding: 80px 15px;
-    min-height: 350px;
-  }
+    .hero-section.video-hero {
+        padding: 80px 15px;
+        min-height: 400px;
+    }
 
-  .brand-title h1 {
-    font-size: 2.5em;
-    letter-spacing: 1px;
-  }
+    .hero-section.video-hero h1 {
+        font-size: 3em;
+        letter-spacing: 2px;
+    }
+    
+    .hero-punchline {
+        font-size: 1.4em;
+        margin-bottom: 30px;
+    }
+    
+    .brand-name-text {
+        font-size: 1.4em;
+        letter-spacing: 3px;
+    }
 
-  .brand-logo {
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
-  }
-
-  .hero-subtitle {
-    font-size: 1.2em;
-    margin-bottom: 30px;
-  }
-
-  .hero-button {
-    padding: 12px 30px;
-    font-size: 1em;
-  }
+    .hero-button {
+        padding: 12px 30px;
+        font-size: 1em;
+    }
 }
 
 @media (max-width: 480px) {
-  .hero-section {
-    padding: 60px 10px;
-    min-height: 300px;
-  }
-  .brand-title h1 {
-    font-size: 2em;
-  }
-  .brand-logo {
-    width: 40px;
-    height: 40px;
-    margin-right: 8px;
-  }
-  .hero-subtitle {
-    font-size: 1em;
-    margin-bottom: 25px;
-  }
-  .hero-button {
-    padding: 10px 25px;
-    font-size: 0.9em;
-  }
+    .hero-section.video-hero {
+        padding: 60px 10px;
+        min-height: 350px;
+    }
+    .hero-section.video-hero h1 {
+        font-size: 2.2em;
+    }
+    .hero-punchline {
+        font-size: 1.1em;
+        margin-bottom: 25px;
+    }
+    .brand-name-text {
+        font-size: 1.2em;
+        letter-spacing: 2px;
+    }
+    .hero-button {
+        padding: 10px 25px;
+        font-size: 0.9em;
+    }
 }
+
+/* Eğer MachineGrid veya diğer bileşenler için özel responsive stiliniz varsa, */
+/* bu kısmın altına eklemeye devam edebilirsiniz. */
