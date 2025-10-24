@@ -66,7 +66,7 @@ function AboutPage() {
                 <section className="founder-message-section">
                     <div className="founder-card">
                         <img 
-                            src="snorlax.png" 
+                            src="" 
                             alt={founderName} 
                             className="founder-photo"
                         />
