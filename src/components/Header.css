@@ -86,6 +86,8 @@ main {
 }
 
 
+
+
 /* NAVİGASYON BAĞLANTISI EFEKTİ (Sola-Sağa Kayan Çizgi) */
 .desktop-main-nav a::after {
     content: '';
@@ -223,6 +225,12 @@ main {
     box-sizing: border-box;
 }
 
+.menu-list-wrapper a img {
+    width: 20px;
+    height: 30px;
+    display: inline-block;
+    justify-content: center;
+}
 .fullscreen-menu-list {
     list-style: none;
     margin: 0;

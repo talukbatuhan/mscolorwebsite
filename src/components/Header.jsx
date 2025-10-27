@@ -77,6 +77,7 @@ function Header() {
                         <span></span>
                         <span></span>
                     </button>
+                    
                 </div>
             </div>
 
@@ -90,6 +91,8 @@ function Header() {
                         <li className="menu-item-wrapper"><Link to="/about" onClick={closeMenu}>{t('nav_about')}</Link></li>
                         <li className="menu-item-wrapper"><Link to="/contact" onClick={closeMenu}>{t('nav_contact')}</Link></li>
                     </ul>
+                    <a href="#"><img src="/linkedin.png" alt="" /></a>
+                    
                 </div>
             </nav>
 

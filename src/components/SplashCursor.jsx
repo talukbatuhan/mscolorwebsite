@@ -2,13 +2,13 @@
 import { useEffect, useRef } from 'react';
 
 function SplashCursor({
-  SIM_RESOLUTION = 128,
-  DYE_RESOLUTION = 1440,
+  SIM_RESOLUTION = 64, // Reduced for better performance
+  DYE_RESOLUTION = 512, // Reduced for better performance
   CAPTURE_RESOLUTION = 512,
   DENSITY_DISSIPATION = 3.5,
   VELOCITY_DISSIPATION = 2,
   PRESSURE = 0.1,
-  PRESSURE_ITERATIONS = 20,
+  PRESSURE_ITERATIONS = 10, // Reduced iterations for better performance
   CURL = 3,
   SPLAT_RADIUS = 0.2,
   SPLAT_FORCE = 6000,
@@ -57,6 +57,10 @@ function SplashCursor({
     let pointers = [new pointerPrototype()];
 
     const { gl, ext } = getWebGLContext(canvas);
+    if (!gl) {
+      console.error('WebGL not supported');
+      return;
+    }
     if (!ext.supportLinearFiltering) {
       config.DYE_RESOLUTION = 256;
       config.SHADING = false;
@@ -138,6 +142,8 @@ function SplashCursor({
       gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
       gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, texture, 0);
       const status = gl.checkFramebufferStatus(gl.FRAMEBUFFER);
+      gl.deleteTexture(texture);
+      gl.deleteFramebuffer(fbo);
       return status === gl.FRAMEBUFFER_COMPLETE;
     }
 
@@ -202,7 +208,10 @@ function SplashCursor({
       const shader = gl.createShader(type);
       gl.shaderSource(shader, source);
       gl.compileShader(shader);
-      if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) console.trace(gl.getShaderInfoLog(shader));
+      if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+        console.error('Shader compilation failed:', gl.getShaderInfoLog(shader));
+        throw new Error('Shader compilation failed');
+      }
       return shader;
     }
 
@@ -276,9 +285,7 @@ function SplashCursor({
       varying vec2 vT;
       varying vec2 vB;
       uniform sampler2D uTexture;
-      uniform sampler2D uDithering;
-      uniform vec2 ditherScale;
-      uniform vec2 texelSize;
+     uniform vec2 texelSize;
 
       vec3 linearToGamma (vec3 color) {
           color = max(color, vec3(0));
@@ -510,10 +517,13 @@ function SplashCursor({
       `
     );
 
+    let positionBuffer, indexBuffer;
     const blit = (() => {
-      gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+      positionBuffer = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
       gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, -1, 1, 1, 1, 1, -1]), gl.STATIC_DRAW);
-      gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, gl.createBuffer());
+      indexBuffer = gl.createBuffer();
+      gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
       gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array([0, 1, 2, 0, 2, 3]), gl.STATIC_DRAW);
       gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
       gl.enableVertexAttribArray(0);
@@ -546,6 +556,13 @@ function SplashCursor({
     const gradienSubtractProgram = new Program(baseVertexShader, gradientSubtractShader);
     const displayMaterial = new Material(baseVertexShader, displayShaderSource);
 
+    function destroyFBO(fbo) {
+      if (fbo) {
+        gl.deleteTexture(fbo.texture);
+        gl.deleteFramebuffer(fbo.fbo);
+      }
+    }
+
     function initFramebuffers() {
       let simRes = getResolution(config.SIM_RESOLUTION);
       let dyeRes = getResolution(config.DYE_RESOLUTION);
@@ -556,26 +573,28 @@ function SplashCursor({
       const filtering = ext.supportLinearFiltering ? gl.LINEAR : gl.NEAREST;
       gl.disable(gl.BLEND);
 
-      if (!dye)
-        dye = createDoubleFBO(dyeRes.width, dyeRes.height, rgba.internalFormat, rgba.format, texType, filtering);
-      else
-        dye = resizeDoubleFBO(dye, dyeRes.width, dyeRes.height, rgba.internalFormat, rgba.format, texType, filtering);
+      if (dye) {
+        destroyFBO(dye.read);
+        destroyFBO(dye.write);
+      }
+      dye = createDoubleFBO(dyeRes.width, dyeRes.height, rgba.internalFormat, rgba.format, texType, filtering);
 
-      if (!velocity)
-        velocity = createDoubleFBO(simRes.width, simRes.height, rg.internalFormat, rg.format, texType, filtering);
-      else
-        velocity = resizeDoubleFBO(
-          velocity,
-          simRes.width,
-          simRes.height,
-          rg.internalFormat,
-          rg.format,
-          texType,
-          filtering
-        );
+      if (velocity) {
+        destroyFBO(velocity.read);
+        destroyFBO(velocity.write);
+      }
+      velocity = createDoubleFBO(simRes.width, simRes.height, rg.internalFormat, rg.format, texType, filtering);
 
+      if (divergence) destroyFBO(divergence);
       divergence = createFBO(simRes.width, simRes.height, r.internalFormat, r.format, texType, gl.NEAREST);
+
+      if (curl) destroyFBO(curl);
       curl = createFBO(simRes.width, simRes.height, r.internalFormat, r.format, texType, gl.NEAREST);
+
+      if (pressure) {
+        destroyFBO(pressure.read);
+        destroyFBO(pressure.write);
+      }
       pressure = createDoubleFBO(simRes.width, simRes.height, r.internalFormat, r.format, texType, gl.NEAREST);
     }
 
@@ -645,13 +664,16 @@ function SplashCursor({
       copyProgram.bind();
       gl.uniform1i(copyProgram.uniforms.uTexture, target.attach(0));
       blit(newFBO);
+      destroyFBO(target);
       return newFBO;
     }
 
     function resizeDoubleFBO(target, w, h, internalFormat, format, type, param) {
       if (target.width === w && target.height === h) return target;
       target.read = resizeFBO(target.read, w, h, internalFormat, format, type, param);
+      const oldWrite = target.write;
       target.write = createFBO(w, h, internalFormat, format, type, param);
+      destroyFBO(oldWrite);
       target.width = w;
       target.height = h;
       target.texelSizeX = 1.0 / w;
@@ -669,21 +691,38 @@ function SplashCursor({
     initFramebuffers();
     let lastUpdateTime = Date.now();
     let colorUpdateTimer = 0.0;
+    let frameId;
+    let isPaused = false;
+    let lastInputTime = Date.now();
+    const INACTIVITY_TIMEOUT = 5000; // 5 seconds inactivity to pause
+
+    const visibilityChangeHandler = () => {
+      isPaused = document.hidden;
+    };
+    document.addEventListener('visibilitychange', visibilityChangeHandler);
 
     function updateFrame() {
+      frameId = requestAnimationFrame(updateFrame);
+
+      if (isPaused) return;
+
+      const now = Date.now();
+      if (now - lastInputTime > INACTIVITY_TIMEOUT) {
+        return; // Pause simulation if no input for a while
+      }
+
       const dt = calcDeltaTime();
       if (resizeCanvas()) initFramebuffers();
       updateColors(dt);
       applyInputs();
       step(dt);
       render(null);
-      requestAnimationFrame(updateFrame);
-    }
+   }
 
     function calcDeltaTime() {
       let now = Date.now();
       let dt = (now - lastUpdateTime) / 1000;
-      dt = Math.min(dt, 0.016666);
+      dt = Math.min(dt, 0.033); // Cap at ~30 FPS
       lastUpdateTime = now;
       return dt;
     }
@@ -702,7 +741,7 @@ function SplashCursor({
     function updateColors(dt) {
       colorUpdateTimer += dt * config.COLOR_UPDATE_SPEED;
       if (colorUpdateTimer >= 1) {
-        colorUpdateTimer = wrap(colorUpdateTimer, 0, 1);
+        colorUpdateTimer = colorUpdateTimer % 1;
         pointers.forEach(p => {
           p.color = generateColor();
         });
@@ -846,6 +885,7 @@ function SplashCursor({
       pointer.deltaX = 0;
       pointer.deltaY = 0;
       pointer.color = generateColor();
+      lastInputTime = Date.now();
     }
 
     function updatePointerMoveData(pointer, posX, posY, color) {
@@ -856,11 +896,13 @@ function SplashCursor({
       pointer.deltaX = correctDeltaX(pointer.texcoordX - pointer.prevTexcoordX);
       pointer.deltaY = correctDeltaY(pointer.texcoordY - pointer.prevTexcoordY);
       pointer.moved = Math.abs(pointer.deltaX) > 0 || Math.abs(pointer.deltaY) > 0;
-      pointer.color = color;
+      pointer.color = color || pointer.color;
+      lastInputTime = Date.now();
     }
 
     function updatePointerUpData(pointer) {
       pointer.down = false;
+      lastInputTime = Date.now();
     }
 
     function correctDeltaX(delta) {
@@ -925,13 +967,7 @@ function SplashCursor({
           break;
       }
       return { r, g, b };
-    }
-
-    function wrap(value, min, max) {
-      const range = max - min;
-      if (range === 0) return min;
-      return ((value - min) % range) + min;
-    }
+  }
 
     function getResolution(resolution) {
       let aspectRatio = gl.drawingBufferWidth / gl.drawingBufferHeight;
@@ -957,45 +993,43 @@ function SplashCursor({
       return hash;
     }
 
-    window.addEventListener('mousedown', e => {
+    const handleMouseDown = e => {
       let pointer = pointers[0];
       let posX = scaleByPixelRatio(e.clientX);
       let posY = scaleByPixelRatio(e.clientY);
       updatePointerDownData(pointer, -1, posX, posY);
       clickSplat(pointer);
-    });
+    };
 
-    document.body.addEventListener('mousemove', function handleFirstMouseMove(e) {
+    const handleFirstMouseMove = e => {
       let pointer = pointers[0];
       let posX = scaleByPixelRatio(e.clientX);
       let posY = scaleByPixelRatio(e.clientY);
-      let color = generateColor();
-      updateFrame();
+     let color = generateColor();
       updatePointerMoveData(pointer, posX, posY, color);
       document.body.removeEventListener('mousemove', handleFirstMouseMove);
-    });
+    };
 
-    window.addEventListener('mousemove', e => {
+    const handleMouseMove = e => {
       let pointer = pointers[0];
       let posX = scaleByPixelRatio(e.clientX);
       let posY = scaleByPixelRatio(e.clientY);
       let color = pointer.color;
       updatePointerMoveData(pointer, posX, posY, color);
-    });
+    };
 
-    document.body.addEventListener('touchstart', function handleFirstTouchStart(e) {
+    const handleFirstTouchStart = e => {
       const touches = e.targetTouches;
       let pointer = pointers[0];
       for (let i = 0; i < touches.length; i++) {
-        let posX = scaleByPixelRatio(touches[i].clientX);
-        let posY = scaleByPixelRatio(touches[i].clientY);
-        updateFrame();
+       let posX = scaleByPixelRatio(touches[i].clientX);
+       let posY = scaleByPixelRatio(touches[i].clientY);
         updatePointerDownData(pointer, touches[i].identifier, posX, posY);
       }
       document.body.removeEventListener('touchstart', handleFirstTouchStart);
-    });
+    };
 
-    window.addEventListener('touchstart', e => {
+    const handleTouchStart = e => {
       const touches = e.targetTouches;
       let pointer = pointers[0];
       for (let i = 0; i < touches.length; i++) {
@@ -1003,31 +1037,59 @@ function SplashCursor({
         let posY = scaleByPixelRatio(touches[i].clientY);
         updatePointerDownData(pointer, touches[i].identifier, posX, posY);
       }
-    });
+    };
 
-    window.addEventListener(
-      'touchmove',
-      e => {
-        const touches = e.targetTouches;
-        let pointer = pointers[0];
-        for (let i = 0; i < touches.length; i++) {
-          let posX = scaleByPixelRatio(touches[i].clientX);
-          let posY = scaleByPixelRatio(touches[i].clientY);
-          updatePointerMoveData(pointer, posX, posY, pointer.color);
-        }
-      },
-      false
-    );
+    const handleTouchMove = e => {
+      const touches = e.targetTouches;
+      let pointer = pointers[0];
+      for (let i = 0; i < touches.length; i++) {
+        let posX = scaleByPixelRatio(touches[i].clientX);
+        let posY = scaleByPixelRatio(touches[i].clientY);
+        updatePointerMoveData(pointer, posX, posY, pointer.color);
+      }
+    };
 
-    window.addEventListener('touchend', e => {
+    const handleTouchEnd = e => {
       const touches = e.changedTouches;
       let pointer = pointers[0];
       for (let i = 0; i < touches.length; i++) {
         updatePointerUpData(pointer);
       }
-    });
+    };
+
+    window.addEventListener('mousedown', handleMouseDown);
+    document.body.addEventListener('mousemove', handleFirstMouseMove);
+    window.addEventListener('mousemove', handleMouseMove);
+    document.body.addEventListener('touchstart', handleFirstTouchStart);
+    window.addEventListener('touchstart', handleTouchStart);
+    window.addEventListener('touchmove', handleTouchMove, false);
+    window.addEventListener('touchend', handleTouchEnd);
 
     updateFrame();
+
+    return () => {
+      cancelAnimationFrame(frameId);
+      document.removeEventListener('visibilitychange', visibilityChangeHandler);
+      window.removeEventListener('mousedown', handleMouseDown);
+      window.removeEventListener('mousemove', handleMouseMove);
+      document.body.removeEventListener('mousemove', handleFirstMouseMove);
+      window.removeEventListener('touchstart', handleTouchStart);
+      document.body.removeEventListener('touchstart', handleFirstTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('touchend', handleTouchEnd);
+
+      // Cleanup WebGL resources
+      destroyFBO(dye.read);
+      destroyFBO(dye.write);
+      destroyFBO(velocity.read);
+      destroyFBO(velocity.write);
+      destroyFBO(divergence);
+      destroyFBO(curl);
+      destroyFBO(pressure.read);
+      destroyFBO(pressure.write);
+      gl.deleteBuffer(positionBuffer);
+      gl.deleteBuffer(indexBuffer);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     SIM_RESOLUTION,
@@ -1070,5 +1132,6 @@ function SplashCursor({
     </div>
   );
 }
+
 
 export default SplashCursor;
