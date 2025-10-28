@@ -32,12 +32,6 @@ const styles = {
 export default function ProductsPage() {
     const { t } = useTranslation();
     const pageTitle = t('our_products_h1');
-    const pageDescription = "Yüksek kaliteli endüstriyel makinelerimizi keşfedin. Geniş ürün yelpazemiz ve uzman çözümlerimizle işinizi geliştirin.";
-    const pageKeywords = "endüstriyel makineler, ürünler, ekipmanlar, sanayi makineleri";
-    useEffect(() => {
-        document.title ="Ms Color " + pageTitle;
-    }, []);
-
     return (
         <>
             
