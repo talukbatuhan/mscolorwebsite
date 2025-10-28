@@ -1,8 +1,11 @@
-// src/components/ContactForm.jsx (Updated Code)
+// src/components/ContactForm.jsx (NEXT.JS UYUMLU GÜNCELLEME)
+// Bu bileşen Next.js'te sorunsuz çalışır, ancak yine de bir Client Component'tir.
 
-import React, { useState } from 'react'; // <-- useState eklendi
+"use client"; // NEXT.JS: State ve event handler kullandığı için zorunlu Client Component bildirimi
+
+import React, { useState } from 'react'; 
 import { useTranslation } from 'react-i18next';
-import './ContactForm.css';
+import './ContactForm.css'; // Stil dosyasının yolu değişmedi
 
 function ContactForm() {
     const { t } = useTranslation();
@@ -11,11 +14,11 @@ function ContactForm() {
     const [formData, setFormData] = useState({ 
         name: '', 
         email: '', 
-        phone: '', // Yeni alan
+        phone: '', 
         message: '' 
     });
-    const [status, setStatus] = useState(null); // API yanıtını göstermek için
-    const [isSubmitting, setIsSubmitting] = useState(false); // Gönderim durumunu yönetmek için
+    const [status, setStatus] = useState(null); 
+    const [isSubmitting, setIsSubmitting] = useState(false); 
 
     // --- 2. INPUT CHANGE HANDLER ---
     const handleChange = (e) => {
@@ -26,11 +29,12 @@ function ContactForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
-        setStatus(null); // Önceki durumu temizle
+        setStatus(null); 
 
         try {
-            // Backend sunucusuna POST isteği gönder
-            const response = await fetch('http://localhost:5000/api/contact', {
+            // BACKEND ADRESİ GÜNCELLENDİ: 
+            // Vercel'de yayınlanacak Next.js'in dahili API rotasını işaret ediyor.
+            const response = await fetch('/api/contact', { 
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -49,11 +53,11 @@ function ContactForm() {
                 setStatus({ type: 'error', message: result.message || t('form_error_generic') });
             }
         } catch (error) {
-            // Ağ veya bağlantı hatası
+            // Ağ veya bağlantı hatası (Vercel'de bu hata nadiren görülür)
             setStatus({ type: 'error', message: t('form_error_network') });
             console.error('Submission error:', error);
         } finally {
-            setIsSubmitting(false); // Gönderim bitti
+            setIsSubmitting(false); 
         }
     };
 
@@ -73,7 +77,7 @@ function ContactForm() {
                 </p>
             )}
 
-            {/* İsim Alanı */}
+            {/* İsim Alanı (Değerler ve olay yöneticileri bağlandı) */}
             <div className="form-group">
                 <label htmlFor="name" className="visually-hidden">{t('form_label_name')}</label>
                 <input 
@@ -81,8 +85,8 @@ function ContactForm() {
                     id="name" 
                     name="name" 
                     placeholder={t('form_placeholder_name')} 
-                    value={formData.name} // <-- Değer bağlandı
-                    onChange={handleChange} // <-- Değişiklik yakalandı
+                    value={formData.name} 
+                    onChange={handleChange} 
                     required 
                     className="luxury-input"
                 />
@@ -96,8 +100,8 @@ function ContactForm() {
                     id="email" 
                     name="email" 
                     placeholder={t('form_placeholder_email')} 
-                    value={formData.email} // <-- Değer bağlandı
-                    onChange={handleChange} // <-- Değişiklik yakalandı
+                    value={formData.email} 
+                    onChange={handleChange} 
                     required 
                     className="luxury-input" 
                 />
@@ -111,8 +115,8 @@ function ContactForm() {
                     id="phone" 
                     name="phone" 
                     placeholder={t('form_placeholder_phone')} 
-                    value={formData.phone} // <-- Değer bağlandı
-                    onChange={handleChange} // <-- Değişiklik yakalandı
+                    value={formData.phone} 
+                    onChange={handleChange} 
                     className="luxury-input" 
                 />
             </div>
@@ -125,8 +129,8 @@ function ContactForm() {
                     name="message" 
                     rows="4" 
                     placeholder={t('form_placeholder_message')} 
-                    value={formData.message} // <-- Değer bağlandı
-                    onChange={handleChange} // <-- Değişiklik yakalandı
+                    value={formData.message} 
+                    onChange={handleChange} 
                     required 
                     className="luxury-textarea" 
                 ></textarea>
