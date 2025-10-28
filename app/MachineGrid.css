@@ -1,8 +1,180 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900;1,400..900&family=Oswald:wght@200..700;1,200..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+/* =================================== */
+/* 1. HOMEPAGE & RESET STİLLERİ */
+/* =================================== */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #f4f7f6;
+    color: #333;
+}
+
+.homepage-container {
+    overflow-x: hidden; 
+}
+
+
+/* HERO SECTION (DİNAMİK VİDEO ARKA PLAN) STİLLERİ */
+.hero-section.video-hero {
+    background: #000; /* Video yüklenene kadar siyah arka plan */
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 500px; /* Daha dolgun bir görünüm */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative; 
+    overflow: hidden; 
+    z-index: 1; /* İçerik altta kalmasın */
+}
+
+/* ARKA PLAN VİDEOSU */
+.hero-background-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* Konteyneri tam kaplaması için ayarlar */
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    z-index: -1; /* İçeriğin arkasına gitmesini sağlar */
+    object-fit: cover;
+}
+
+/* VİDEO ÜZERİNDEKİ ŞEFFAF SİYAH KATMAN (Okunurluk için kritik) */
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Opaklığı artırarak metni daha da öne çıkarıyoruz */
+    background-color: rgba(0, 0, 0, 0.55); 
+    z-index: 0;
+}
+
+/* Metin ve Buton İçeriği */
+.header-content {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative; 
+    z-index: 10;
+}
+
+/* MARKA ADI STİLİ (Ms Color) */
+.brand-name-text {
+    font-size: 1.8em;
+    font-weight: 300;
+    margin-bottom: 5px;
+    letter-spacing: 5px; 
+    text-transform: uppercase;
+    opacity: 0.8;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.9);
+}
+
+/* GÜÇLÜ ANA BAŞLIK STİLİ (H1) */
+.hero-section.video-hero h1 {
+    font-size: 4.5em; /* Daha büyük ve çarpıcı */
+    margin: 0 0 15px 0;
+    font-weight: 800; /* Daha kalın */
+    letter-spacing: 3px;
+    line-height: 1.1;
+    /* Metin gölgesini daha keskin yaptık */
+    text-shadow: 2px 4px 10px rgba(0, 0, 0, 1); 
+}
+
+/* GÜÇLÜ SLOGAN STİLİ */
+.hero-punchline {
+    font-size: 1.8em; /* Daha büyük ve net */
+    margin-bottom: 50px;
+    font-weight: 300;
+    opacity: 0.95;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.9);
+}
+
+/* HERO BUTON STİLİ (Kodda kullanılmasa da stilleri korundu) */
+.hero-button {
+    background-color: #e74c3c; /* Canlı kırmızı */
+    color: white;
+    padding: 15px 40px; /* Biraz daha geniş */
+    border: none;
+    border-radius: 50px; /* Yuvarlak kenarlar */
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); 
+}
+
+.hero-button:hover {
+    background-color: #c0392b; /* Koyu kırmızı */
+    transform: translateY(-2px);
+}
+
+/* DUYARLILIK (RESPONSIVE) AYARLARI - HOMEPAGE */
+@media (max-width: 768px) {
+    .hero-section.video-hero {
+        padding: 80px 15px;
+        min-height: 400px;
+    }
+
+    .hero-section.video-hero h1 {
+        font-size: 3em;
+        letter-spacing: 2px;
+    }
+    
+    .hero-punchline {
+        font-size: 1.4em;
+        margin-bottom: 30px;
+    }
+    
+    .brand-name-text {
+        font-size: 1.4em;
+        letter-spacing: 3px;
+    }
+
+    .hero-button {
+        padding: 12px 30px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section.video-hero {
+        padding: 60px 10px;
+        min-height: 350px;
+    }
+    .hero-section.video-hero h1 {
+        font-size: 2.2em;
+    }
+    .hero-punchline {
+        font-size: 1.1em;
+        margin-bottom: 25px;
+    }
+    .brand-name-text {
+        font-size: 1.2em;
+        letter-spacing: 2px;
+    }
+    .hero-button {
+        padding: 10px 25px;
+        font-size: 0.9em;
+    }
+}
+
+/* =================================== */
+/* 2. MACHINEGRID STİLLERİ */
+/* =================================== */
 
 .machine-grid-section {
     background-color: #182d51;
     padding: 80px 20px;
+    /* Hero bölümü ile birleşmesi için negatif margin eklendi */
 }
 
 /* DUYARLI GRID YAPISI (KARTLARI YAN Yana HİZALAR) */
@@ -17,16 +189,15 @@
 
 /* MAKİNE KARTI (ÇEVİRME YAPISI İÇİN YENİ STİLLER) */
 .machine-card {
-    background-color: transparent; /* İçerik için şeffaf */
-    height: 450px; /* Kart Yüksekliğini sabitleyelim, mobil çevirme için önemli */
+    background-color: transparent; 
+    height: 450px; 
     overflow: visible; 
     text-align: center; 
     transition: all 0.3s ease;
     cursor: pointer; 
-    border: none; /* Kartın dış çerçevesi kaldırıldı */
+    border: none; 
     position: relative; 
     z-index: 1; 
-    
 }
 
 /* Çevirme Kapsayıcısı */
@@ -35,8 +206,8 @@
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: transform 0.6s; /* Çevirme süresi */
-    transform-style: preserve-3d; /* 3D efektini koru */
+    transition: transform 0.6s; 
+    transform-style: preserve-3d; 
 }
 
 /* Tıklandığında Çevirme */
@@ -49,8 +220,8 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    backface-visibility: hidden; /* Kartın arka yüzünü gizle */
-    -webkit-backface-visibility: hidden; /* Safari uyumluluğu */
+    backface-visibility: hidden; 
+    -webkit-backface-visibility: hidden; 
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     border: 2px solid #eee; 
     overflow: hidden; 
@@ -72,17 +243,16 @@
     transform: rotateY(180deg);
     padding: 20px;
     box-sizing: border-box;
-    display: flex; /* İçeriğin dikey hizalanması için */
+    display: flex; 
     align-items: center;
     justify-content: center;
 }
 
-/* Masaüstü Seçili Durum (Mobil Çevirmeden Bağımsız) */
+/* Masaüstü Seçili Durum */
 .machine-card:not(.is-flipped):hover .card-front { 
     z-index: 10; 
     transform: scale(1.02); 
 }
-
 
 .machine-card.is-selected .card-front {
     z-index: 5; 
@@ -113,15 +283,32 @@
 
 .machine-image-wrapper {
     width: 100%; 
-    height: 350px; /* Kart yüksekliğine göre ayarlandı */
+    height: 350px; 
     background-size: contain; 
     background-color: #fff; 
     background-position: center; 
     background-repeat: no-repeat; 
 }
 
+/* MAIN FEATURE & SUB FEATURE STYLES (Kart Ön Yüz) */
+.main-feature-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.1em;
+    color: #e74c3c; /* Canlı kırmızı */
+    margin: 5px 0;
+}
+
+.sub-feature-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 10px;
+}
+
 /* =================================== */
-/* MASTER DETAY KUTUSU STİLLERİ (İki Sütunlu Yapı) */
+/* MASTER DETAY KUTUSU STİLLERİ        */
 /* =================================== */
 
 .master-details-box.new-style {
@@ -140,16 +327,15 @@
     gap: 30px;
     padding: 40px 0;
     background-color: #ffffff;
-    /* Kartın arka yüzünde de kullanıldığı için transform'u sıfırla */
     transform: rotateY(0deg); 
 }
 
 /* Kartın arka yüzü için özel stil */
 .feature-details-box-wrapper.card-back-content {
-    background-color: transparent; /* Kartın arka yüz rengini alsın */
+    background-color: transparent; 
     height: 100%;
     width: 100%;
-    display: block; /* Tek sütun olduğu için grid'i kaldır */
+    display: block; 
     padding: 10px;
     gap: 0;
 }
@@ -165,7 +351,7 @@
 .detail-col-right {
     grid-area: right;
     padding: 0 60px 0 40px;
-    border-left: 1px solid #ddd; /* İKİ SÜTUN ARASINDAKİ DİKEY AYIRICI */
+    border-left: 1px solid #ddd; 
 }
 
 .detail-col-full-width {
@@ -199,7 +385,7 @@
     text-align: right;
 }
 
-/* METİNLER ARASINDAKİ YATAY AYIRICI ÇİZGİ (CSS ile simüle edildi) */
+/* METİNLER ARASINDAKİ YATAY AYIRICI ÇİZGİ */
 .feature-separator-line {
     position: absolute;
     top: 0;
@@ -216,7 +402,7 @@
     font-family: "Oswald", sans-serif; 
     font-size: 1.1em;
     font-weight: 700;
-    color: black; /* Koyu yerine black kullanıldı */
+    color: black; 
     line-height: 1.3;
     margin: 0;
     text-align: left;
@@ -230,7 +416,7 @@
 .technical-specs-title {
     font-size: 1.7em;
     font-weight: 500;
-    color: black; /* Koyu yerine black kullanıldı */
+    color: black; 
     margin-top: 40px;
     margin-bottom: 25px;
     padding-bottom: 10px;
@@ -255,7 +441,7 @@
 
 .spec-feature {
     font-weight: 700;
-    color: black; /* Koyu yerine black kullanıldı */
+    color: black; 
 }
 
 .spec-value {
@@ -272,11 +458,6 @@
 .desktop-only {
     display: block;
 }
-/* Mobil'e özgü alanları gizle (Artık kullanılmıyor, yerine teknik özellikler gelecek) */
-.mobile-only {
-    display: none; 
-}
-
 
 @media (max-width: 900px) {
 
@@ -284,37 +465,30 @@
     .desktop-only {
         display: none !important;
     }
-    .mobile-only {
-        display: none !important; /* Bu kısım tamamen kaldırıldı */
-    }
     
     /* Kartın Arka Yüzü İçin Düzenleme */
     .feature-details-box-wrapper.card-back-content {
-        /* Artık görsel yok, bu yüzden tek bir blok olarak davranacak */
         display: block; 
     }
 
-    /* Görselin kaldırılmasıyla sol sütun artık görünmez. */
-    /* .mobile-back-left gibi sınıflara ihtiyacımız kalmayacak. */
-
     /* Teknik Özellikler Kapsayıcısı Tam Genişlikte olacak */
     .technical-specs-container.mobile-back-specs-full-width {
-        grid-area: initial; /* Grid alanını sıfırla */
-        padding: 0; /* İç boşluğu sıfırla, card-back-content'ten gelecek */
+        grid-area: initial; 
+        padding: 0; 
         text-align: left;
-        display: block; /* Flexbox'a gerek yok */
-        width: 100%; /* Tam genişlik */
+        display: block; 
+        width: 100%; 
     }
 
     /* Teknik Özellikler Başlığı */
     .technical-specs-container.mobile-back-specs-full-width .technical-specs-title {
         font-size: 1.5em;
         font-weight: 700;
-        color: white; /* Kartın arka plan rengine uyumlu */
+        color: white; 
         margin-top: -10px;
         margin-bottom: 15px;
-        border-bottom: 3px solid #ffffff; /* Kırmızı çizgi */
-        text-align: center; /* Başlık ortaya hizalandı */
+        border-bottom: 3px solid #ffffff; 
+        text-align: center; 
         padding-bottom: 5px;
         padding-left: 0;
         
@@ -323,11 +497,11 @@
     /* Teknik Özellikler Listesi */
     .technical-specs-container.mobile-back-specs-full-width .spec-item {
         padding: 5px 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Açık renkli ayırıcı */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2); 
     }
     .technical-specs-container.mobile-back-specs-full-width .spec-feature {
         font-weight: 500;
-        color: #f0f0f0; /* Açık renkli metin */
+        color: #f0f0f0; 
         font-size: 1em;
     }
     .technical-specs-container.mobile-back-specs-full-width .spec-value {
@@ -340,8 +514,7 @@
         border-bottom: none;
     }
 
-    /* Ana Detay Kutusu (Normal Masaüstü Görünümü) */
-    /* Mobile'da görünmeyecekleri için bu stiller aktif olmayacak, ancak genel düzeni bozmaması için bırakılabilir. */
+    /* Ana Detay Kutusu (Mobil görünümde gizli) */
     .feature-details-box-wrapper {
         grid-template-columns: 1fr;
         grid-template-areas: 
@@ -350,31 +523,24 @@
             "full";
         gap: 0;
     }
-
-    .detail-col-left,
-    .detail-col-right,
-    .detail-col-full-width {
+    .detail-col-left, .detail-col-right, .detail-col-full-width {
         padding-left: 20px;
         padding-right: 20px;
     }
-    
     .detail-col-right {
         border-left: none; 
         border-top: 1px solid #ddd; 
         padding-top: 40px;
     }
-
     .key-features-list {
         min-height: auto; 
     }
-
     .key-feature-item {
         text-align: left;
     }
     .feature-separator-line {
         display: none; 
     }
-    
     .feature-text {
         text-align: left;
     }

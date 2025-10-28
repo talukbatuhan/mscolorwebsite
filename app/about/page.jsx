@@ -1,16 +1,17 @@
 // src/components/AboutPage.jsx
 
+"use client"; 
 import React from 'react';
-import { useTranslation } from 'react-i18next'; // *** Yeni: Çeviri hook'u eklendi ***
+import { useTranslation } from 'react-i18next'; 
 import './AboutPage.css';
 
-// Varsayılan İçerikler (Şirket adları ve yıllar sabit kalabilir, metinler çevrilecek)
+
 const companyName = "MS COLOR";
 const foundingYear = 2020;
 const founderName = "Snorlax";
 
 function AboutPage() {
-    const { t } = useTranslation(); // *** Çeviri hook'u çağrıldı ***
+    const { t } = useTranslation(); 
 
     return (
         <div className="about-page-section">

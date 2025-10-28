@@ -1,6 +1,6 @@
-// src/components/Footer.jsx
-
+"use client";
 import React from 'react';
+import Link from 'next/link'; // next/link eklendi
 import { useTranslation } from 'react-i18next'; // *** Yeni: Çeviri hook'u eklendi ***
 import './Footer.css'; // Footer için CSS dosyasını import ediyoruz
 
@@ -31,10 +31,10 @@ function Footer() {
                     {/* Başlık */}
                     <h4>{t('footer_links_h4')}</h4>
                     <ul>
-                        <li><a href="/">{t('nav_home')}</a></li>
-                        <li><a href="/products">{t('nav_products')}</a></li>
-                        <li><a href="/about">{t('nav_about')}</a></li>
-                        <li><a href="/contact">{t('nav_contact')}</a></li>
+                        <li><Link href="/">{t('nav_home')}</Link></li>
+                        <li><Link href="/products">{t('nav_products')}</Link></li>
+                        <li><Link href="/about">{t('nav_about')}</Link></li>
+                        <li><Link href="/contact">{t('nav_contact')}</Link></li>
                     </ul>
                 </div>
 

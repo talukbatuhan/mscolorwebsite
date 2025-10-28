@@ -1,15 +1,17 @@
-// src/components/Header.jsx
+"use client"; // CRITICAL: Must be marked as a Client Component
 
 import React, { useState } from 'react'; 
-import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next'; 
+// NEXT.JS FIX: Use Link from 'next/link' for client-side navigation
+import Link from 'next/link'; 
+
+import { useTranslation } from 'react-i18next';
 import './Header.css'; 
 
 function Header() {
     const [isOpen, setIsOpen] = useState(false); 
     
-    // i18n hook'unu burada çağırıyoruz
-    const { t, i18n } = useTranslation(); // *** Yeni Eklendi ***
+    // i18n hook is called here
+    const { t, i18n } = useTranslation(); 
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -19,8 +21,8 @@ function Header() {
         setIsOpen(false);
     };
     
-    // Dil değiştirme işlevi
-    const changeLanguage = (lng) => { // *** Yeni Eklendi ***
+    // Function to change language
+    const changeLanguage = (lng) => { 
         i18n.changeLanguage(lng);
     };
 
@@ -28,28 +30,27 @@ function Header() {
         <header className="site-header">
             <div className="super-navbar-container">
                 
-                {/* LOGO ALANI - Sol Üst (Çeviriye gerek yok) */}
-                <Link to="/" className="logo-link" onClick={closeMenu}> 
+                {/* LOGO AREA - Top Left (Navigation link uses next/link) */}
+                <Link href="/" className="logo-link" onClick={closeMenu}> 
                     <img src={'/ms-color-logo.png'}
                     alt='Ms Color Logo'
                     className='header-logo'></img>
-                    {/* Marka adını çeviriye alsak daha iyi olur (i18n.js'deki 'ms_color_name' anahtarını kullanırız) */}
                     <span className="color-span">MS COLOR</span> 
                 </Link>
                 
-                {/* MASAÜSTÜ NAVİGASYON VE BUTONLAR */}
+                {/* DESKTOP NAVIGATION AND BUTTONS */}
                 <div className="desktop-nav-utility">
                     <nav className="desktop-main-nav">
                         <ul>
-                            {/* Menü öğeleri için çeviri anahtarları kullanıyoruz */}
-                            <li><Link to="/" onClick={closeMenu}>{t('nav_home')}</Link></li>
-                            <li><Link to="/products" onClick={closeMenu}>{t('nav_products')}</Link></li>
-                            <li><Link to="/about" onClick={closeMenu}>{t('nav_about')}</Link></li>
-                            <li><Link to="/contact" onClick={closeMenu}>{t('nav_contact')}</Link></li>
+                            {/* Menu items use Link from 'next/link' */}
+                            <li><Link href="/" onClick={closeMenu}>{t('nav_home')}</Link></li>
+                            <li><Link href="/products" onClick={closeMenu}>{t('nav_products')}</Link></li>
+                            <li><Link href="/about" onClick={closeMenu}>{t('nav_about')}</Link></li>
+                            <li><Link href="/contact" onClick={closeMenu}>{t('nav_contact')}</Link></li>
                         </ul>
                     </nav>
 
-                    {/* DİL DEĞİŞTİRME BUTONLARI (super-action-button yerine daha mantıklı bir yapı) */}
+                    {/* LANGUAGE SWITCHER BUTTONS */}
                     <div className="language-switcher">
                         <button 
                             onClick={() => changeLanguage('tr')}
@@ -66,7 +67,7 @@ function Header() {
                         </button>
                     </div>
                     
-                    {/* HAMBURGER BUTONU */}
+                    {/* HAMBURGER BUTTON */}
                     <button 
                         className={`menu-toggle ${isOpen ? 'open' : ''}`} 
                         onClick={toggleMenu}
@@ -81,15 +82,15 @@ function Header() {
                 </div>
             </div>
 
-            {/* TAM EKRAN NAVİGASYON MENÜSÜ */}
+            {/* FULLSCREEN NAVIGATION MENU */}
             <nav id="main-navigation" className={`fullscreen-nav ${isOpen ? 'open' : ''}`}>
                 <div className="menu-list-wrapper">
                     <ul className="fullscreen-menu-list">
-                        {/* Mobil menü öğeleri için çeviri anahtarları kullanıyoruz */}
-                        <li className="menu-item-wrapper"><Link to="/" onClick={closeMenu}>{t('nav_home')}</Link></li>
-                        <li className="menu-item-wrapper"><Link to="/products" onClick={closeMenu}>{t('nav_products')}</Link></li>
-                        <li className="menu-item-wrapper"><Link to="/about" onClick={closeMenu}>{t('nav_about')}</Link></li>
-                        <li className="menu-item-wrapper"><Link to="/contact" onClick={closeMenu}>{t('nav_contact')}</Link></li>
+                        {/* Mobile menu items use Link from 'next/link' */}
+                        <li className="menu-item-wrapper"><Link href="/" onClick={closeMenu}>{t('nav_home')}</Link></li>
+                        <li className="menu-item-wrapper"><Link href="/products" onClick={closeMenu}>{t('nav_products')}</Link></li>
+                        <li className="menu-item-wrapper"><Link href="/about" onClick={closeMenu}>{t('nav_about')}</Link></li>
+                        <li className="menu-item-wrapper"><Link href="/contact" onClick={closeMenu}>{t('nav_contact')}</Link></li>
                     </ul>
                     <a href="#"><img src="/linkedin.png" alt="" /></a>
                     

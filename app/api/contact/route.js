@@ -1,59 +1,64 @@
-// mscolorweb/app/api/contact/route.js - Server Side Logic for Vercel
-
-import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import { NextResponse } from 'next/server';
 
-// Nodemailer Transporter'ı Yapılandır
+// Ortam değişkenlerini al
+const SENDER_EMAIL = process.env.EMAIL_USER;
+const EMAIL_PASSWORD = process.env.EMAIL_PASS;
+const RECIPIENT_EMAIL = process.env.RECIPIENT_EMAIL;
+
+// Nodemailer Taşıyıcısını Oluşturma (Gmail SMTP örneği)
 const transporter = nodemailer.createTransport({
-    service: 'gmail', // Veya başka bir servis
+    service: 'gmail',
     auth: {
-        // NEXT.JS OTOMATİK OLARAK .env DEĞİŞKENLERİNİ YÜKLER
-        user: process.env.EMAIL_USER, 
-        pass: process.env.EMAIL_PASS,
+        user: SENDER_EMAIL,
+        pass: EMAIL_PASSWORD,
     },
 });
 
 export async function POST(request) {
     try {
+        // Gelen JSON verisini çöz
         const data = await request.json(); 
-        const { name, email, phone, message } = data; 
-        
-        // Basit Doğrulama
+        const { name, email, phone, message } = data;
+
+        // Basit doğrulama
         if (!name || !email || !message) {
             return NextResponse.json(
-                { message: 'Missing required fields.' }, 
-                { status: 400 }
+                { success: false, message: 'Lütfen zorunlu alanları doldurun.' },
+                { status: 400 } // Bad Request
             );
         }
 
+        // E-posta içeriğini hazırla
         const mailOptions = {
-            from: process.env.EMAIL_USER,
-            to: process.env.EMAIL_TO,
-            subject: `[Vercel Form] New Message from ${name} (${email})`,
+            from: SENDER_EMAIL, 
+            to: RECIPIENT_EMAIL, // Formun size geleceği adres
+            subject: `Yeni İletişim Formu Mesajı: ${name}`,
             html: `
-                <h2>Contact Form Submission</h2>
-                <p><strong>Name:</strong> ${name}</p>
-                <p><strong>Email:</strong> ${email}</p>
-                <p><strong>Phone:</strong> ${phone || 'N/A'}</p> 
-                <hr>
-                <p><strong>Message:</strong></p>
+                <h1>Web Sitenizden Yeni Mesaj</h1>
+                <p><strong>Gönderen Adı:</strong> ${name}</p>
+                <p><strong>E-posta:</strong> ${email}</p>
+                <p><strong>Telefon:</strong> ${phone || 'Belirtilmemiş'}</p>
+                <hr/>
+                <p><strong>Mesaj:</strong></p>
                 <p>${message}</p>
             `,
         };
 
-        // E-postayı Gönder
+        // E-postayı gönder
         await transporter.sendMail(mailOptions);
         
-        return NextResponse.json({ 
-            message: 'Email sent successfully!', 
-            success: true 
-        }, { status: 200 });
+        // Başarılı yanıtı döndür (bu yanıt ContactForm.jsx bileşeninizdeki "result.success" kısmını tetikler)
+        return NextResponse.json(
+            { success: true, message: 'Mesajınız başarıyla gönderildi.' },
+            { status: 200 }
+        );
 
     } catch (error) {
-        console.error('Email sending error:', error);
+        console.error('API İletişim Hatası:', error);
         return NextResponse.json(
-            { message: 'Failed to send email. Internal Server Error.' }, 
-            { status: 500 }
+            { success: false, message: 'Sunucu hatası veya e-posta gönderme başarısız.' },
+            { status: 500 } // Internal Server Error
         );
     }
 }
