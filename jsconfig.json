@@ -1,0 +1,11 @@
+// mscolorweb/jsconfig.json (DÜZELTİLMİŞ)
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      // Artık '@/' doğrudan kök dizinini (mscolorweb) işaret ediyor.
+      // Next.js'in 'src' klasörünü otomatik algılamasına izin verelim.
+      "@/*": ["./*"] 
+    }
+  }
+}

@@ -1,11 +1,10 @@
-// src/components/ContactForm.jsx (NEXT.JS UYUMLU GÜNCELLEME)
-// Bu bileşen Next.js'te sorunsuz çalışır, ancak yine de bir Client Component'tir.
+// src/components/ContactForm.jsx 
 
-"use client"; // NEXT.JS: State ve event handler kullandığı için zorunlu Client Component bildirimi
+"use client";
 
 import React, { useState } from 'react'; 
 import { useTranslation } from 'react-i18next';
-import './ContactForm.css'; // Stil dosyasının yolu değişmedi
+import './ContactForm.css'; 
 
 function ContactForm() {
     const { t } = useTranslation();
@@ -32,8 +31,7 @@ function ContactForm() {
         setStatus(null); 
 
         try {
-            // BACKEND ADRESİ GÜNCELLENDİ: 
-            // Vercel'de yayınlanacak Next.js'in dahili API rotasını işaret ediyor.
+
             const response = await fetch('/api/contact', { 
                 method: 'POST',
                 headers: {

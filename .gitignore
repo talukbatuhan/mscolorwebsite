@@ -1,4 +1,4 @@
-# Logs
+# LOGS & DEBUG FILES
 logs
 *.log
 npm-debug.log*
@@ -7,12 +7,19 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# DEPENDENCIES & BUILD OUTPUTS (Yeniden Üretilebilir Dosyalar)
 node_modules
 dist
 dist-ssr
 *.local
 
-# Editor directories and files
+# NEXT.JS & VERCEL SPECIFIC OUTPUTS (Next.js ve Vercel'e Özgü Çıktılar)
+# BU KLASÖRLER VERCEL TARAFINDAN OLUŞTURULDUĞU İÇİN GEREKSİZDİR
+.next/        
+.vercel/    
+out/        
+
+# EDITOR AND IDE FILES (Editör ve IDE Ayarları)
 .vscode/*
 !.vscode/extensions.json
 .idea
@@ -22,3 +29,4 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+temp

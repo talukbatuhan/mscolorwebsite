@@ -1,5 +1,6 @@
+"use client";
 import React from 'react';
-import ContactForm from '../components/ContactForm';
+import ContactForm from '@/src/components/ContactForm';
 import { useTranslation } from 'react-i18next';
 import './ContactPage.css';
 

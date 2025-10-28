@@ -27,8 +27,6 @@ const resources = {
       // ===================================
       
       "tech_specs_title": "TEKNİK ÖZELLİKLER",
-      "m1_main_feature": "Yüksek Hacimli Otomasyon", 
-      "m1_sub_feature": "4 Kat Daha Hızlı, Tam Entegre Boyama Çözümü.",
       "m1_key_f_1": "KROM KAPLI VE İNDÜKSİYONLU VİDALI MİL SAYESİNDE UZUN ÖMÜRLÜ KULLANIM",
       "m1_key_f_2": "ELEKTRONİK KAPI KİLİDİ VE DOKUNMATİK SENSÖR SAYESİNDE TAM GÜVENLİK",
       "m1_key_f_3": "ÇİFT DOĞRULAMALI ALGORİTMA İLE HER KOŞULDA DOĞRU SIKIŞTIRMA",
@@ -159,8 +157,6 @@ const resources = {
       
       "tech_specs_title": "TECHNICAL SPECIFICATIONS",
       "m1_main_feature": "High Volume Automation",
-      "m1_sub_feature": "4 Times Faster, Fully Integrated Painting Solution.",
-      "m1_key_f_1": "LONG LIFE THANKS TO CHROME-PLATED AND INDUCTION SCREW SHAFT",
       "m1_key_f_2": "FULL SAFETY THANKS TO ELECTRONIC DOOR LOCK AND TOUCH SENSOR",
       "m1_key_f_3": "ACCURATE COMPRESSION IN ALL CONDITIONS WITH DOUBLE-VERIFICATION ALGORITHM",
       "m1_key_f_4": "ALL COVERS OPEN WITH ONLY 8 BOLTS",
