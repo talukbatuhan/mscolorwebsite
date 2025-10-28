@@ -3,7 +3,7 @@
 /* =================================== */
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: #f4f7f6;
@@ -263,7 +263,7 @@ body {
 .machine-brand-prefix {
     display: block;
     text-align: center;
-    font-family: "Oswald", sans-serif; 
+
     color: black;
     font-weight: 500;
     font-size: 0.9em;
@@ -277,7 +277,7 @@ body {
     font-size: 1.6em; 
     font-weight: 900; 
     color: black; 
-    font-family: "Oswald", serif; 
+
     margin: 5px 0 15px 0;
 }
 
@@ -292,7 +292,7 @@ body {
 
 /* MAIN FEATURE & SUB FEATURE STYLES (Kart Ön Yüz) */
 .main-feature-text {
-    font-family: 'Montserrat', sans-serif;
+
     font-weight: 700;
     font-size: 1.1em;
     color: #e74c3c; /* Canlı kırmızı */
@@ -300,7 +300,7 @@ body {
 }
 
 .sub-feature-text {
-    font-family: 'Montserrat', sans-serif;
+
     font-weight: 400;
     font-size: 0.9em;
     color: #555;
@@ -399,7 +399,7 @@ body {
 }
 
 .feature-text {
-    font-family: "Oswald", sans-serif; 
+
     font-size: 1.1em;
     font-weight: 700;
     color: black; 
@@ -421,12 +421,12 @@ body {
     margin-bottom: 25px;
     padding-bottom: 10px;
     border-bottom: 3px solid black; 
-    font-family: "Oswald", sans-serif;
+
     text-align: center;
 }
 
 .technical-specs-list {
-    font-family: "Oswald", sans-serif;
+
     list-style: none;
     padding: 0;
     margin: 0;

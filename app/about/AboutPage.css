@@ -3,13 +3,10 @@
 
 /* --- TEMA RENKLERİ --- */
 /*mavi: #193770 , koyu mavi: #182D51 */
-* {
-    font-family: "Oswald", sans-serif;
-}
 .about-page-section {
     padding: 100px 20px;
     background-color: #182D51; 
-    font-family: "Oswald", sans-serif; 
+
 }
 
 .container {
@@ -28,7 +25,6 @@
     font-weight: 700;
     color: white;
     margin-bottom: 10px;
-    font-family: 'Oswald', sans-serif;
 }
 
 .lead-text {
@@ -89,7 +85,6 @@
 
 .vmd-item h3 {
     color: #193770;
-    font-family: 'Oswald', sans-serif;
     margin-bottom: 15px;
     font-size: 1.5em;
 }
@@ -133,7 +128,6 @@
 
 .founder-text-content h2 {
     color: #193770;
-    font-family: 'Oswald', sans-serif;
     margin-top: 0;
     font-size: 2em;
 }

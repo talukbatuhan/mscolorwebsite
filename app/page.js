@@ -1,6 +1,7 @@
 'use client'; 
 
 import React, { useState, useEffect, useRef } from 'react';
+import Head from 'next/head';
 import { useTranslation } from 'react-i18next';
 import SplashCursor from '@/src/components/SplashCursor'; 
 import './MachineGrid.css'; 
@@ -23,7 +24,6 @@ const machines = [
         keyFeaturesKeys: [ 
             'm1_key_f_1', 'm1_key_f_2', 'm1_key_f_3', 'm1_key_f_4', 'm1_key_f_5', 'm1_key_f_6', 'm1_key_f_7',
         ],
-
         details: [
             { featureKey: 'spec_speed', value: '700 rpm' },
             { featureKey: 'spec_eccentric', value: '44 mm' }, 
@@ -35,7 +35,8 @@ const machines = [
             { featureKey: 'spec_mac_bucket_weight', value: '35 KG' },
             { featureKey: 'spec_power', value: '220V AC/50Hz' },
             { featureKey: 'spec_dimensions', value: '700X720X1290' }
-        ]},
+        ]
+    },
     { 
         id: 2,
         brandPrefix: 'GYROSCOPIC MIXER', 
@@ -44,7 +45,6 @@ const machines = [
         keyFeaturesKeys: [
             'm2_key_f_1', 'm2_key_f_2', 'm2_key_f_3', 'm2_key_f_4', 'm2_key_f_5', 'm2_key_f_6', 'm2_key_f_7',
         ],
-
         details: [
             { featureKey: 'spec_speed', value: 'Otomatik / Max 170 rpm' },
             { featureKey: 'spec_timer', value: 'Ayarlanabilir' },
@@ -56,16 +56,16 @@ const machines = [
             { featureKey: 'spec_mac_bucket_weight', value: '35 KG'},
             { featureKey: 'spec_power', value: '220V AC/50Hz'},
             { featureKey: 'spec_dimensions', value: '800x850x1010 mm'}
-        ]},
+        ]
+    },
     { 
         id: 3,
-        brandPrefix: 'Dispenser',
+        brandPrefix: 'DISPENSER',
         name: 'MasterTint',
         image: '/dispenser950v5.png', 
         keyFeaturesKeys: [
             'm3_key_f_1', 'm3_key_f_2', 'm3_key_f_3', 'm3_key_f_4', 'm3_key_f_5', 'm3_key_f_6', 'm3_key_f_7',
         ],
-
         details: [
             { featureKey: 'spec_canister_count', value: '24 adet' },
             { featureKey: 'spec_precision', value: '0.03 ml' },
@@ -76,7 +76,8 @@ const machines = [
             { featureKey: 'spec_pump_volume', value: 'Opsiyonel'},
             { featureKey: 'spec_elevator', value: 'Otomatik'},
             { featureKey: 'spec_power', value: '220V/50Hz'},
-        ]},
+        ]
+    },
 ];
 
 // FeatureDetailsBox ve MachineCard bileşenleri
@@ -206,7 +207,6 @@ export default function MachineGrid({ showHero = true }) {
     const [selectedMachine, setSelectedMachine] = useState(machines[0]); 
     const [flippedCardIds, setFlippedCardIds] = useState([]); 
     const detailsRef = useRef(null); 
-
     // Taşı: Otomatik sayfa yenileme 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -241,75 +241,77 @@ export default function MachineGrid({ showHero = true }) {
     }, []);
 
     return (
-        <div className="homepage-container"> 
-            
-            <SplashCursor />
+        <>
+            <div className="homepage-container"> 
+                
+                <SplashCursor />
 
-            {/* VİDEO HERO BÖLÜMÜNÜ KOŞULLU OLARAK GÖSTER */}
-            {showHero && (
-                <header className="hero-section video-hero">
-                    
-                    {/* BACKGROUND VIDEO */}
-                    <video 
-                        className="hero-background-video"
-                        src={backgroundVideoSrc}
-                        autoPlay 
-                        loop     
-                        muted    
-                        playsInline 
-                    />
-                    
-                    {/* TRANSPARENT LAYER OVER VIDEO */}
-                    <div className="video-overlay"></div>
+                {/* VİDEO HERO BÖLÜMÜNÜ KOŞULLU OLARAK GÖSTER */}
+                {showHero && (
+                    <header className="hero-section video-hero">
+                        
+                        {/* BACKGROUND VIDEO */}
+                        <video 
+                            className="hero-background-video"
+                            src={backgroundVideoSrc}
+                            autoPlay 
+                            loop     
+                            muted    
+                            playsInline 
+                        />
+                        
+                        {/* TRANSPARENT LAYER OVER VIDEO */}
+                        <div className="video-overlay"></div>
 
-                    {/* FOREGROUND CONTENT (Text and Button) */}
-                    <div className="header-content">
-                        
-                        <p className="brand-name-text">Ms Color</p>
-                        
-                        <h1>{t('homepage_title')}</h1> 
-                        
-                        <p className="hero-punchline">{t('homepage_punchline')}</p>
-                        
-                    </div>
-                </header>
-            )}
-        
-            {/* Machine Cards Section (Bu kısım her zaman görünür) */}
-            <div className="machine-grid-section" 
-                // Eğer video yoksa, bu kısım sayfanın en üstüne oturmalıdır
-                style={!showHero ? { marginTop: '0px', paddingTop: '40px' } : {}} 
-            >
-                <div className="container">
-                    
-                    <div className="machine-grid">
-                        {machines.map((machine) => (
-                            <MachineCard 
-                                key={machine.id} 
-                                machine={machine} 
-                                isSelected={!isMobile && selectedMachine && selectedMachine.id === machine.id}
-                                onClick={setSelectedMachine} 
-                                detailsRef={detailsRef} 
-                                isFlipped={isMobile && flippedCardIds.includes(machine.id)} 
-                                onFlipToggle={handleFlipToggle} 
-                            /> 
-                        ))}
-                    </div>
-
-                    {/* NEW MASTER DETAIL BOX (Shown only on Desktop) */}
-                    {selectedMachine && !isMobile && (
-                        <div 
-                            className="master-details-box new-style"
-                            ref={detailsRef}
-                        > 
-                            <FeatureDetailsBox 
-                                machine={selectedMachine} 
-                                isCardBack={false}
-                            />
+                        {/* FOREGROUND CONTENT (Text and Button) */}
+                        <div className="header-content">
+                            
+                            <p className="brand-name-text">Ms Color</p>
+                            
+                            <h1>{t('homepage_title')}</h1> 
+                            
+                            <p className="hero-punchline">{t('homepage_punchline')}</p>
+                            
                         </div>
-                    )}
+                    </header>
+                )}
+            
+                {/* Machine Cards Section (Bu kısım her zaman görünür) */}
+                <div className="machine-grid-section" 
+                    // Eğer video yoksa, bu kısım sayfanın en üstüne oturmalıdır
+                    style={!showHero ? { marginTop: '0px', paddingTop: '40px' } : {}} 
+                >
+                    <div className="container">
+                        
+                        <div className="machine-grid">
+                            {machines.map((machine) => (
+                                <MachineCard 
+                                    key={machine.id} 
+                                    machine={machine} 
+                                    isSelected={!isMobile && selectedMachine && selectedMachine.id === machine.id}
+                                    onClick={setSelectedMachine} 
+                                    detailsRef={detailsRef} 
+                                    isFlipped={isMobile && flippedCardIds.includes(machine.id)} 
+                                    onFlipToggle={handleFlipToggle} 
+                                /> 
+                            ))}
+                        </div>
+
+                        {/* NEW MASTER DETAIL BOX (Shown only on Desktop) */}
+                        {selectedMachine && !isMobile && (
+                            <div 
+                                className="master-details-box new-style"
+                                ref={detailsRef}
+                            > 
+                                <FeatureDetailsBox 
+                                    machine={selectedMachine} 
+                                    isCardBack={false}
+                                />
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 }

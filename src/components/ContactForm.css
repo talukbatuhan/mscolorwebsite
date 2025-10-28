@@ -12,7 +12,6 @@
 /* Giriş Alanları (Input ve Textarea) */
 .contact-form-luxury .luxury-input,
 .contact-form-luxury .luxury-textarea {
-    font-family: "Oswald", serif; 
     width: 100%;
     padding: 14px 18px; /* İç boşluklar artırıldı */
     border: 1px solid #ddd; /* Daha ince ve zarif kenarlık */
