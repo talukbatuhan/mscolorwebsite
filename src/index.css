@@ -3,7 +3,6 @@
 
 :root {
   /* Temel font tanımları */
-  font-family: 'Oswald', sans-serif; 
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light;
@@ -13,7 +12,6 @@
 /* CSS Sıfırlamaları */
 body {
   margin: 0;
-  font-family: 'Open Sans', sans-serif; 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #f4f7f6; /* Açık arka plan rengi */
@@ -27,7 +25,6 @@ body {
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: 0.5em;
-  font-family: 'Oswald', sans-serif;
   line-height: 1.2;
   font-weight: 700;
 }

@@ -120,6 +120,7 @@ const resources = {
       "form_placeholder_message": "Mesajınız...",
       "form_button_submit": "Mesajı Gönder",
       "form_success_alert": "Mesajınız başarıyla iletildi!",
+      "form_button_sending": "Mesajınız Gönderiliyor...",
 
       // ===================================
       // FOOTER.JSX ÇEVİRİLERİ (Yeni Eklendi)
@@ -157,6 +158,7 @@ const resources = {
       
       "tech_specs_title": "TECHNICAL SPECIFICATIONS",
       "m1_main_feature": "High Volume Automation",
+      "m1_key_f_1": "LONG-LASTING USE THANKS TO THE CHROME-PLATED AND INDUCTION SCREW SHAFT",
       "m1_key_f_2": "FULL SAFETY THANKS TO ELECTRONIC DOOR LOCK AND TOUCH SENSOR",
       "m1_key_f_3": "ACCURATE COMPRESSION IN ALL CONDITIONS WITH DOUBLE-VERIFICATION ALGORITHM",
       "m1_key_f_4": "ALL COVERS OPEN WITH ONLY 8 BOLTS",
@@ -250,6 +252,7 @@ const resources = {
       "form_placeholder_message": "Your Message...",
       "form_button_submit": "Send Message",
       "form_success_alert": "Your message has been successfully sent!",
+      "form_button_sending":  "Your message is being sent...",
 
       // ===================================
       // FOOTER.JSX ÇEVİRİLERİ (Yeni Eklendi)

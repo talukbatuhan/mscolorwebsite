@@ -1,46 +1,44 @@
 "use client";
-import React from 'react';
-import ContactForm from '@/src/components/ContactForm';
-import { useTranslation } from 'react-i18next';
+
+import React from "react";
+import Head from 'next/head';
+import ContactForm from '@/src/components/ContactForm.jsx';
+import { useTranslation } from "react-i18next";
 import './ContactPage.css';
 
 function ContactPage() {
-  const { t } = useTranslation(); 
-  
+  const { t } = useTranslation();
+  const mapSrc = "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3747.4897484157104!2d29.079536349129796!3d37.83109651022775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1str!2str!4v1761656578019!5m2!1str!2str"; 
+
+
   return (
-    <section className="contact-page-section"> 
-      <div className="container">
-
-
-        {/* ANA İKİ SÜTUNLU YAPI - CSS ile yönetiliyor */}
-        <div className="contact-main-grid">
-            
-            {/* SOL SÜTUN: HARİTA */}
+    <>
+      <section className="contact-page-section">
+        <div className="container">
+          <div className="contact-main-grid">
             <div className="map-placeholder-container">
-                <iframe 
-                    title="Şirket Konumu Haritası"
-                    width="100%" 
-                    height="100%" 
-                    frameBorder="0" 
-                    style={{border:0}}
-                    src="https://www.google.com/maps/embed?pb=!4v1760727182043!6m8!1m7!1sK7_ic7RReCqDAxaAmQVFmw!2m2!1d37.83253279853004!2d29.07564207058428!3f261.4879942547236!4f-9.241529324499083!5f0.7820865974627469"
-                    allowFullScreen="" 
-                    aria-hidden="false" 
-                    tabIndex="0"
-                ></iframe>
+              <iframe
+                title={t('company_location_map') || "Şirket Konum Haritası"}
+                width="100%"
+                height="100%"
+                frameBorder="0"
+                style={{border:0}}
+                src={mapSrc}
+                allowFullScreen={true}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                aria-hidden="false"
+                tabIndex="0"
+              ></iframe>
             </div>
-
-            {/* SAĞ SÜTUN: İLETİŞİM FORMU */}
             <div className="contact-form-wrapper">
-                
-                <h2>{t('contact_us_title')}</h2> 
-                <ContactForm />
+              <h1 className="page-main-title">{t('contact_us_title') || "İletişim"}</h1>
+              <ContactForm />
             </div>
-
+          </div>
         </div>
-        
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
 

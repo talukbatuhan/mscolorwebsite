@@ -1,68 +1,79 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900;1,400..900&family=Oswald:wght@200..700;1,200..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
-
 .contact-page-section {
-    padding-top: 75px;
-    padding-bottom: 80px;
-    background-color: #182d51;
+    padding: 60px 0;
+    background-color: #f8f8f8;
 }
 
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 15px; 
+}
 
-/* 1. ADIM: Masaüstü (İki Sütunlu) Görünüm */
 .contact-main-grid {
     display: grid;
-    grid-template-columns: 1.5fr 1fr; /* Sol harita daha geniş */
-    gap: 30px;
-    min-height: 400px;
-}
-
-/* Harita ve Form Kısıtlamaları (Masaüstü) */
-.map-placeholder-container,
-.contact-form-wrapper {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px; 
+    align-items: stretch;
     min-height: 500px;
-    max-height: 500px; 
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    overflow: hidden; 
+    background-color: transparent; 
 }
 
-/* Harita Stili */
 .map-placeholder-container {
-    background-color: #eee;
+    position: relative;
+    border-radius: 8px; 
+    overflow: hidden; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+    background-color: #ffffff; 
 }
 
-/* Form Stili */
+.map-placeholder-container iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
 .contact-form-wrapper {
+    padding: 40px;
+    padding-right: 80px;
+    padding-left: 80px;
     display: flex;
-    flex-direction: column; 
-    padding: 23px 15px;
-    background-color: white;
-    overflow-y: auto; 
-}
-.contact-form-wrapper h2 {
-    text-align: center;
-    font-weight: 500;
-    font-size: 1.5em;
-    font-family: "Oswald", sans-serif;
-    
+    flex-direction: column;
+    justify-content: center;
+    background-color: #ffffff; 
+    border: 1px solid #e0e0e0; 
 }
 
-/* 2. ADIM: Mobil Görünüm (Medya Sorgusu) */
+.contact-form-wrapper h2 {
+    font-size: 2.2rem;
+    color: #193770;
+    margin-bottom: 25px;
+    font-weight: 700; 
+    border-bottom: 3px solid #193770;;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
 @media (max-width: 768px) {
     .contact-main-grid {
-        /* KRİTİK DEĞİŞİKLİK: Mobil cihazlarda FORM önce gelir, sonra harita */
-        grid-template-columns: 1fr; /* Tek sütuna geçer */
-        grid-auto-flow: dense; /* Elemanların sırasını değiştirmek için */
-        gap: 40px; 
+        grid-template-columns: 1fr;
+        gap: 20px;
+        min-height: auto;
     }
 
-    /* Mobilde haritanın ve formun dikey kısıtlamasını kaldırıyoruz */
-    .map-placeholder-container,
-    .contact-form-wrapper {
-        min-height: 300px; /* Mobilde haritaya biraz daha az alan ver */
-        max-height: none; /* Dikeyde serbest bırak */
+    .contact-page-section {
+        padding: 30px 0;
     }
 
-    /* KRİTİK DEĞİŞİKLİK: Formu haritanın üstüne al */
     .contact-form-wrapper {
-        order: -1; /* Negatif değer vererek formu başa alıyoruz */
+        padding: 25px;
+        padding-left: 15px;
+        padding-right: 15px;
+        order: -1; 
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+    }
+
+    .map-placeholder-container {
+        height: 300px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
     }
 }
