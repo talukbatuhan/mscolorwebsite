@@ -32,10 +32,10 @@ function Header() {
                 
                 {/* LOGO AREA - Top Left (Navigation link uses next/link) */}
                 <Link href="/" className="logo-link" onClick={closeMenu}> 
-                    <img src={'/ms-color-logo.png'}
+                    <img src={'/220x70mscolor.png'}
                     alt='Ms Color Logo'
                     className='header-logo'></img>
-                    <span className="color-span">MS COLOR</span> 
+                    {/*<span className="color-span">MS COLOR</span> */}
                 </Link>
                 
                 {/* DESKTOP NAVIGATION AND BUTTONS */}
