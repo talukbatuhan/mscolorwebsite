@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Head from 'next/head';
 import { useTranslation } from 'react-i18next';
 import SplashCursor from '@/src/components/SplashCursor'; 
-import './MachineGrid.css'; 
+import './globals.css'; 
 
 // ===================================
 // HOMEPAGE SABİTLERİ

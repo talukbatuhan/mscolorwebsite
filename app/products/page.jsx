@@ -1,49 +1,15 @@
-"use client"; 
-import { useTranslation } from 'react-i18next';
+// app/products/page.js
 
-import { useEffect } from 'react';
-import Head from 'next/head';
-import MachineGrid from '@/app/page'; 
+import ProductsPageClient from './ProductsPageClient';
 
-const styles = {
-    mainContainer: {
-        backgroundColor: '#182d51', 
-        minHeight: '100vh', 
-        width: '100%', 
-    },
-    contentContainer: {
-        maxWidth: '1200px',
-        margin: '0 auto',
-        paddingTop: '48px',
-        paddingBottom: '48px',
-        paddingLeft: '16px',
-        paddingRight: '16px',
-        width: '100%',
-    },
-    title: {
-        fontSize: '2.25rem',
-        fontWeight: '700',
-        color: '#ffffff',
-        marginBottom: '1.5rem',
-        textAlign: 'center',
-    }
+export const metadata = {
+  title: 'Tüm Ürünlerimiz - Yüksek Kaliteli Makine ve Çözümler',
+  description: 'MS Color Website\'ın sunduğu en yeni ve en kaliteli tüm ürünleri tek bir sayfada inceleyin. İhtiyacınız olan makine ve çözümleri keşfedin.',
+  keywords: ['ürünler', 'makine', 'çözümler', 'katalog', 'fiyatlar', 'endüstriyel ürünler'],
 };
 
-export default function ProductsPage() {
-    const { t } = useTranslation();
-    const pageTitle = t('our_products_h1');
-    return (
-        <>
-            
-
-            <div style={styles.mainContainer}>
-                <div style={styles.contentContainer}>
-                    <h1 style={styles.title}>
-                        {pageTitle}
-                    </h1>
-                    <MachineGrid showHero={false} /> 
-                </div>
-            </div>
-        </>
-    );
+export default function ProductsPageServerWrapper() {
+  return (
+      <ProductsPageClient />
+  );
 }

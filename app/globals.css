@@ -1,7 +1,7 @@
 /* =================================== */
 /* 1. HOMEPAGE & RESET STİLLERİ */
 /* =================================== */
-
+@import "tailwindcss";
 body {
 
     -webkit-font-smoothing: antialiased;
