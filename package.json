@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tailwindcss/postcss": "^4.1.16",
     "dotenv": "^17.2.3",
     "i18next": "^25.6.0",
     "i18next-browser-languagedetector": "^8.2.0",

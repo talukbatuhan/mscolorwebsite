@@ -1,8 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900;1,400..900&family=Oswald:wght@200..700;1,200..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
-
-/* --- TEMA RENKLERİ --- */
-/*mavi: #193770 , koyu mavi: #182D51 */
 .about-page-section {
     padding: 100px 20px;
     background-color: #182D51; 
@@ -14,7 +11,6 @@
     margin: 0 auto;
 }
 
-/* --- 1. BAŞLIK VE GİRİŞ --- */
 .about-header {
     text-align: center;
     margin-bottom: 60px;
@@ -35,7 +31,6 @@
     line-height: 1.6;
 }
 
-/* --- 2. HİKAYEMİZ --- */
 .about-story {
     margin-bottom: 80px;
     padding: 40px;
@@ -51,6 +46,7 @@
     border-bottom: 3px solid #193770;
     display: inline-block;
     padding-bottom: 5px;
+    
 }
 
 .story-content p {
@@ -60,20 +56,18 @@
     text-align: center;
 }
 
-/* --- 3. VİZYON, MİSYON, DEĞERLER (VMD) --- */
 .about-vmd-section {
     display: flex;
     gap: 30px;
     margin-bottom: 80px;
-    flex-wrap: wrap; /* Mobil uyumluluk için */
+    flex-wrap: wrap; 
 }
 
 .vmd-item {
     flex: 1;
     min-width: 250px;
     padding: 30px;
-    background-color: white; /* Hafif arka plan */
-
+    background-color: white; 
     border-top: 5px solid #193770;
 }
 
@@ -83,10 +77,18 @@
     margin-bottom: 10px;
 }
 
+.vmd-item .vmd-icon img {
+    height: 50px;
+    width: auto;
+    margin: auto;
+    display: flex;
+}
+
 .vmd-item h3 {
     color: #193770;
     margin-bottom: 15px;
-    font-size: 1.5em;
+    font-size: 1.7em;
+    text-align: center;
 }
 
 .vmd-item ul {
@@ -104,9 +106,8 @@
 }
 
 
-/* --- 4. KURUCU MESAJI --- */
 .founder-message-section {
-    background-color: white; /* Grid arkaplan rengini kullanıyoruz */
+    background-color: white; 
     padding: 60px 40px;
     color: black;
 }
@@ -117,10 +118,9 @@
     gap: 40px;
 }
 
-.founder-photo { /* duruma göre radius eklenebilinir! border-radius: 50%; */
+.founder-photo { 
     width: 150px;
     height: 150px;
-    
     object-fit: cover;
     border: 5px solid white;
     flex-shrink: 0;
@@ -144,7 +144,7 @@
     font-style: normal !important;
     font-weight: 700;
     font-size: 1.1em;
-    color: #193770; /* Kırmızı imza */
+    color: #193770;
     margin-top: 20px;
 }
 .founder-signature span {
@@ -155,7 +155,6 @@
 }
 
 
-/* --- MOBİL UYUMLULUK --- */
 @media (max-width: 768px) {
     .about-story {
         text-align: center;

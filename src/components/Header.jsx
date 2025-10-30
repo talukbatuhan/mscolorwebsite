@@ -92,7 +92,7 @@ function Header() {
                         <li className="menu-item-wrapper"><Link href="/about" onClick={closeMenu}>{t('nav_about')}</Link></li>
                         <li className="menu-item-wrapper"><Link href="/contact" onClick={closeMenu}>{t('nav_contact')}</Link></li>
                     </ul>
-                    <a href="#"><img src="/linkedin.png" alt="" /></a>
+                    <a target='_blank' href="https://www.linkedin.com/company/orenda-ar-ge-m%C3%BChendi%CC%87sli%CC%87k/"><img src="/linkedin.png" alt="" /></a>
                     
                 </div>
             </nav>
