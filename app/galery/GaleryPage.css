@@ -1,0 +1,163 @@
+/* app/gallery/GalleryPageClient.module.css */
+
+.mainContainer {
+    background-color: #182d51; 
+    min-height: 100vh; 
+    width: 100%; 
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* İçeriği yukarı hizala */
+    padding: 2rem 0; /* Üst ve alttan boşluk ekle */
+}
+
+.contentContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px; /* Yanlardan boşluk */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Bileşenler arası boşluk */
+}
+
+.title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.mainMediaContainer {
+    width: 90%;
+    aspect-ratio: 16 / 9; /* Geniş ekran formatı */
+    background-color: #000; /* Siyah arka plan */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.mainMedia {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* İçeriği çerçeveye sığdır, bozulmasın */
+}
+
+.thumbnailNavigation {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    width: 90%;
+}
+
+.scrollButton {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    flex-shrink: 0; /* Butonların küçülmesini engelle */
+}
+
+.scrollButton:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.thumbnailContainer {
+    display: flex;
+    overflow-x: auto; /* Yatay kaydırma */
+    gap: 10px;
+    padding-bottom: 5px; /* Kaydırma çubuğu için boşluk */
+    /* Kaydırma çubuğunu gizlemek için (isteğe bağlı) */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.thumbnailContainer::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+.thumbnailItem {
+    flex-shrink: 0; /* Öğelerin küçülmesini engelle */
+    width: 120px; /* Önizleme boyutu */
+    height: 70px; /* Önizleme boyutu */
+    border: 2px solid transparent;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    background-color: #000; /* Boş thumbnail arkası */
+    display: flex; /* İçeriği ortalamak için */
+    justify-content: center;
+    align-items: center;
+}
+
+.thumbnailItem:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.activeThumbnail {
+    border-color: #007bff; /* Aktif öğenin rengi */
+    box-shadow: 0 0 0 2px #007bff;
+}
+
+.thumbnailImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.playIcon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 2.5rem;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+    pointer-events: none; /* Tıklama olayını engellemesin */
+}
+
+/* Küçük ekranlar için responsive ayarlar */
+@media (max-width: 768px) {
+    .contentContainer {
+        padding: 0 10px;
+        gap: 15px;
+    }
+
+    .title {
+        font-size: 1.75rem;
+    }
+
+    .thumbnailItem {
+        width: 100px;
+        height: 60px;
+    }
+
+    .scrollButton {
+        padding: 8px 12px;
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .thumbnailItem {
+        width: 80px;
+        height: 50px;
+    }
+    .playIcon {
+        font-size: 2rem;
+    }
+}

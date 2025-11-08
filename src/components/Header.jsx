@@ -46,6 +46,7 @@ function Header() {
                             <li><Link href="/" onClick={closeMenu}>{t('nav_home')}</Link></li>
                             <li><Link href="/products" onClick={closeMenu}>{t('nav_products')}</Link></li>
                             <li><Link href="/about" onClick={closeMenu}>{t('nav_about')}</Link></li>
+                            <li><Link href="/galery" onClick={closeMenu}>{t('nav_galery')}</Link></li>
                             <li><Link href="/contact" onClick={closeMenu}>{t('nav_contact')}</Link></li>
                         </ul>
                     </nav>

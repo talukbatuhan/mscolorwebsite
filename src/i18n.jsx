@@ -20,6 +20,7 @@ const resources = {
       "nav_home": "ANASAYFA",
       "nav_products": "ÜRÜNLER",
       "nav_about": "HAKKIMIZDA",
+      "nav_gallery": "GALERİ",
       "nav_contact": "İLETİŞİM",
 
       // ===================================
@@ -75,6 +76,7 @@ const resources = {
       // PRODUCTSPAGE.JSX ÇEVİRİLERİ
       // ===================================
       "our_products_h1": "ÜRÜNLERİMİZ",
+      "our_gallery_h1": "GALERİMİZ",
       
       // ===================================
       // ABOUTPAGE.JSX ÇEVİRİLERİ 
@@ -150,6 +152,7 @@ const resources = {
       "nav_home": "HOME",
       "nav_products": "PRODUCTS",
       "nav_about": "ABOUT US",
+      "nav_gallery": "GALLERY",
       "nav_contact": "CONTACT",
 
       // ===================================
@@ -206,6 +209,7 @@ const resources = {
       // PRODUCTSPAGE.JSX ÇEVİRİLERİ
       // ===================================
       "our_products_h1": "OUR PRODUCTS",
+      "our_gallery_h1": "OUR GALLERY",
       
       // ===================================
       // ABOUTPAGE.JSX ÇEVİRİLERİ 
