@@ -25,10 +25,10 @@ const machines = [
             'm1_key_f_1', 'm1_key_f_2', 'm1_key_f_3', 'm1_key_f_4', 'm1_key_f_5', 'm1_key_f_6', 'm1_key_f_7',
         ],
         details: [
-            { featureKey: 'spec_speed', value: '700 rpm' },
+            { featureKey: 'spec_speed', value: '700 rpm' }, 
             { featureKey: 'spec_eccentric', value: '44 mm' }, 
             { featureKey: 'spec_screen', value: '2.8" LCD' },
-            { featureKey: 'spec_compression', value: 'Otomatik' },
+            { featureKey: 'spec_compression', value: 'spec_compressionv_value' },
             { featureKey: 'spec_engine', value: '0.75 KW' },
             { featureKey: 'spec_max_bucket_height', value: '410 mm' },
             { featureKey: 'spec_max_bucket_diameter', value: '432 mm' },
@@ -46,10 +46,10 @@ const machines = [
             'm2_key_f_1', 'm2_key_f_2', 'm2_key_f_3', 'm2_key_f_4', 'm2_key_f_5', 'm2_key_f_6', 'm2_key_f_7',
         ],
         details: [
-            { featureKey: 'spec_speed', value: 'Otomatik / Max 170 rpm' },
-            { featureKey: 'spec_timer', value: 'Ayarlanabilir' },
+            { featureKey: 'spec_speed', value: 'spec_speed_value' }, // otomatik / max 170 rpm, ayarlanabilir, tam otomatik
+            { featureKey: 'spec_timer', value: 'spec_timer_value' },
             { featureKey: 'spec_screen', value: '2.8" LCD' },
-            { featureKey: 'spec_compression', value: 'Tam Otomatik'},
+            { featureKey: 'spec_compression', value: 'spec_compression_value'},
             { featureKey: 'spec_engine', value: '1.1 KW AC Motor'},
             { featureKey: 'spec_max_bucket_height', value: '410 mm'},
             { featureKey: 'spec_max_bucket_diameter', value: '400 mm'},
@@ -67,14 +67,14 @@ const machines = [
             'm3_key_f_1', 'm3_key_f_2', 'm3_key_f_3', 'm3_key_f_4', 'm3_key_f_5', 'm3_key_f_6', 'm3_key_f_7',
         ],
         details: [
-            { featureKey: 'spec_canister_count', value: '24 adet' },
+            { featureKey: 'spec_canister_count', value: 'spec_canister_count_value' }, // 24 adet , opsiyonel , polimer, ayarlanabilir, opsiyonel*2, otomatikl
             { featureKey: 'spec_precision', value: '0.03 ml' },
-            { featureKey: 'spec_screen', value: 'Opsiyonel' },
-            { featureKey: 'spec_canister_material', value: 'Polimer'},
-            { featureKey: 'spec_mixing_speed', value: 'Ayarlanabilir'},
-            { featureKey: 'spec_canister_volume', value: 'Opsiyonel'},
-            { featureKey: 'spec_pump_volume', value: 'Opsiyonel'},
-            { featureKey: 'spec_elevator', value: 'Otomatik'},
+            { featureKey: 'spec_screen', value: 'spec_screen_value' },
+            { featureKey: 'spec_canister_material', value: 'spec_canister_material_value'},
+            { featureKey: 'spec_mixing_speed', value: 'spec_mixing_speed_value'},
+            { featureKey: 'spec_canister_volume', value: 'spec_canister_volume_value'},
+            { featureKey: 'spec_pump_volume', value: 'spec_pump_volume_value'},
+            { featureKey: 'spec_elevator', value: 'spec_elevator_value'},
             { featureKey: 'spec_power', value: '220V/50Hz'},
         ]
     },
@@ -121,7 +121,7 @@ function FeatureDetailsBox({ machine, isCardBack = false }) {
                     {machine.details.map((item, index) => (
                         <li key={index} className="spec-item">
                             <span className="spec-feature">{t(item.featureKey)}</span>
-                            <span className="spec-value">{item.value}</span>
+                            <span className="spec-value">{t(item.value)}</span>
                         </li>
                     ))}
                 </ul>

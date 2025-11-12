@@ -70,6 +70,18 @@ const resources = {
       "spec_pump_volume": "Pompa Hacmi",
       "spec_elevator": "Asansör",
 
+      "spec_compressionv_value" : "Otomatik",
+      "spec_speed_value": "Otomatik / Max 170 RPM",
+      "spec_timer_value": "Ayarlanabilinir",
+      "spec_compression_value": "Tam Otomatik",
+      "spec_canister_count_value": "24 Adet",
+      "spec_screen_value": "Opsiyonel",
+      "spec_canister_material_value": "Polimer",
+      "spec_mixing_speed_value": "Ayarlanabilinir",
+      "spec_canister_volume_value": "Opsiyonel",
+      "spec_pump_volume_value": "Opsiyonel",
+      "spec_elevator_value": "Otomatik",
+
       // ===================================
       // PRODUCTSPAGE.JSX ÇEVİRİLERİ
       // ===================================
@@ -209,6 +221,18 @@ const resources = {
       "spec_canister_volume": "Canister / Hopper Volume",
       "spec_pump_volume": "Pump Volume",
       "spec_elevator": "Elevator",
+
+      "spec_compressionv_value" : "Automatic",
+      "spec_speed_value": "Automatic / Max 170 RPM",
+      "spec_timer_value": "Adjustable",
+      "spec_compression_value": "Fully Automatic",
+      "spec_canister_count_value": "24 Piece",
+      "spec_screen_value": "Optional",
+      "spec_canister_material_value": "Polymer",
+      "spec_mixing_speed_value": "Adjustable",
+      "spec_canister_volume_value": "Optional",
+      "spec_pump_volume_value": "Optional",
+      "spec_elevator_value": "Automatic",
 
       // ===================================
       // PRODUCTSPAGE.JSX ÇEVİRİLERİ

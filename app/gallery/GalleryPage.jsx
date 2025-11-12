@@ -10,8 +10,8 @@ const galleryItems = [
     {
         id: 1,
         type: 'video',
-        src: 'https://www.youtube.com/embed/aQBjRCPEqmI?si=ZY8oWgtc9PqjaPMy',
-        thumb: 'https://img.youtube.com/vi/aQBjRCPEqmI/hqdefault.jpg',
+        src: 'https://www.youtube.com/embed/ZbAOkYlxW8s?si=Oj8hODuR_Yukn6rz',
+        thumb: 'https://img.youtube.com/vi/ZbAOkYlxW8s/hqdefault.jpg',
         alt: 'YouTube Video 1 - Project Introduction',
     },
     {
