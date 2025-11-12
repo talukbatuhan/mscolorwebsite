@@ -173,10 +173,13 @@ export default function GalleryApp() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
     const thumbnailRefs = useRef([]);
+    // [YENİ EKLEME] gallery-wrapper'a erişmek için useRef oluşturun
+    const galleryWrapperRef = useRef(null); 
     const currentItem = galleryItems[currentIndex];
 
     const { t, i18n } = useTranslation(); 
 
+    // [MEVCUT useEffect] Küçük resimlerin kaydırılması için
     useEffect(() => {
         if (viewMode === 'detail') {
             const activeThumb = thumbnailRefs.current[currentIndex];
@@ -189,11 +192,22 @@ export default function GalleryApp() {
         }
     }, [currentIndex, viewMode]);
 
+    // [YENİ EKLEME] viewMode 'detail' olduğunda sayfayı en üste kaydırmak için yeni useEffect
+    useEffect(() => {
+        if (viewMode === 'detail' && galleryWrapperRef.current) {
+            galleryWrapperRef.current.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start' // Öğeyi (wrapper'ı) pencerenin en üstüne hizalar
+            });
+        }
+    }, [viewMode]); // Sadece viewMode değiştiğinde çalışır
+
     // Handlers
     const handleThumbnailClick = useCallback((index) => {
         setCurrentIndex(index);
         setIsLoading(true);
         setViewMode('detail');
+        // NOT: Kaydırma işlemini yukarıdaki useEffect hallettiği için burada ekstra kod yazmaya gerek yok.
     }, []);
 
     const handleMediaLoad = useCallback(() => {
@@ -224,7 +238,8 @@ export default function GalleryApp() {
 
     return (
         <div className="gallery-container">
-            <div className="gallery-wrapper">
+            {/* [YENİ EKLEME] galleryWrapperRef'i buraya ekleyin */}
+            <div className="gallery-wrapper" ref={galleryWrapperRef}> 
                 {/* Header Section */}
                 <header className="gallery-header">
                     <h1 className={`gallery-title ${viewMode === 'detail' ? '' : 'gallery-title-centered'}`}>

@@ -21,6 +21,7 @@
 .gallery-wrapper {
   width: 100%;
   max-width: 80rem;
+  scroll-margin-top: 7rem;
 }
 
 /* Header Styles */
