@@ -1,19 +1,11 @@
 /* =================================== */
 /* 1. HOMEPAGE & RESET STİLLERİ */
 /* =================================== */
-@import "tailwindcss";
-body {
-
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background-color: #f4f7f6;
-    color: #333;
-}
+@import 'tailwindcss';
 
 .homepage-container {
     overflow-x: hidden; 
 }
-
 
 /* HERO SECTION (DİNAMİK VİDEO ARKA PLAN) STİLLERİ */
 .hero-section.video-hero {
@@ -26,7 +18,6 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 500px; /* Daha dolgun bir görünüm */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     position: relative; 
     overflow: hidden; 
     z-index: 1; /* İçerik altta kalmasın */
@@ -37,13 +28,12 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;
-    /* Konteyneri tam kaplaması için ayarlar */
     min-width: 100%;
     min-height: 100%;
     width: auto;
     height: auto;
     transform: translate(-50%, -50%);
-    z-index: -1; /* İçeriğin arkasına gitmesini sağlar */
+    z-index: -1; 
     object-fit: cover;
 }
 
@@ -54,9 +44,6 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    /* Opaklığı artırarak metni daha da öne çıkarıyoruz */
-    background-color: rgba(0, 0, 0, 0.55); 
-    z-index: 0;
 }
 
 /* Metin ve Buton İçeriği */
@@ -172,9 +159,9 @@ body {
 /* =================================== */
 
 .machine-grid-section {
+    border-sizing: border-box;
     background-color: #182d51;
     padding: 80px 20px;
-    /* Hero bölümü ile birleşmesi için negatif margin eklendi */
 }
 
 /* DUYARLI GRID YAPISI (KARTLARI YAN Yana HİZALAR) */
@@ -263,7 +250,6 @@ body {
 .machine-brand-prefix {
     display: block;
     text-align: center;
-
     color: black;
     font-weight: 500;
     font-size: 0.9em;
@@ -277,14 +263,14 @@ body {
     font-size: 1.6em; 
     font-weight: 900; 
     color: black; 
-
     margin: 5px 0 15px 0;
 }
 
 .machine-image-wrapper {
     width: 100%; 
-    height: 350px; 
-    background-size: contain; 
+    height: 350px;
+    margin-left: 17px; 
+    background-size: cover; 
     background-color: #fff; 
     background-position: center; 
     background-repeat: no-repeat; 
@@ -292,15 +278,22 @@ body {
 
 /* MAIN FEATURE & SUB FEATURE STYLES (Kart Ön Yüz) */
 .main-feature-text {
-
     font-weight: 700;
     font-size: 1.1em;
     color: #e74c3c; /* Canlı kırmızı */
     margin: 5px 0;
 }
 
-.sub-feature-text {
+.GalleryPage{
+    background:#000;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.sub-feature-text {
     font-weight: 400;
     font-size: 0.9em;
     color: #555;
@@ -308,15 +301,8 @@ body {
 }
 
 /* =================================== */
-/* MASTER DETAY KUTUSU STİLLERİ        */
+/* MASTER DETAY KUTUSU STİLLERİ       */
 /* =================================== */
-
-.master-details-box.new-style {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    border: none;
-    border-radius: 8px;
-    padding: 0;
-}
 
 .feature-details-box-wrapper {
     display: grid;
@@ -324,10 +310,11 @@ body {
     grid-template-areas: 
         "left right"
         "full full"; 
-    gap: 30px;
+    gap: 10px;
     padding: 40px 0;
     background-color: #ffffff;
     transform: rotateY(0deg); 
+    
 }
 
 /* Kartın arka yüzü için özel stil */
@@ -340,12 +327,13 @@ body {
     gap: 0;
 }
 
-
 /* --- SÜTUN ALANLARI --- */
 .detail-col-left {
     grid-area: left;
-    padding: 0 40px 0 60px;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .detail-col-right {
@@ -356,21 +344,26 @@ body {
 
 .detail-col-full-width {
     grid-area: full;
-    padding: 0 60px 
+    padding: 0 60px;
 }
 
 /* --- SOL SÜTUN GÖRSEL & BİLGİ STİLİ --- */
 .detail-image-main {
-    max-width: 450px;
-    margin: 0 auto 30px;
-    padding: 20px 0; 
-}
-.detail-image-main img {
     width: 100%;
-    height: auto;
-    display: block;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
 }
 
+.detail-image-main img {
+    width: 100%;
+    height: 500px;
+    object-fit:cover;
+    display: block;
+}
 
 /* --- SAĞ SÜTUN (KISA ÖZELLİKLER) STİLİ --- */
 .key-features-list {
@@ -379,6 +372,7 @@ body {
     justify-content: space-around;
     min-height: 500px;
 }
+
 .key-feature-item {
     position: relative;
     padding: 20px 0;
@@ -394,12 +388,12 @@ body {
     height: 1px;
     background-color: #ddd;
 }
+
 .key-feature-item:first-child .feature-separator-line {
     display: none; 
 }
 
 .feature-text {
-
     font-size: 1.1em;
     font-weight: 700;
     color: black; 
@@ -421,12 +415,10 @@ body {
     margin-bottom: 25px;
     padding-bottom: 10px;
     border-bottom: 3px solid black; 
-
     text-align: center;
 }
 
 .technical-specs-list {
-
     list-style: none;
     padding: 0;
     margin: 0;
@@ -460,7 +452,6 @@ body {
 }
 
 @media (max-width: 900px) {
-
     /* Masaüstüne özgü alanları gizle */
     .desktop-only {
         display: none !important;
@@ -491,7 +482,6 @@ body {
         text-align: center; 
         padding-bottom: 5px;
         padding-left: 0;
-        
     }
 
     /* Teknik Özellikler Listesi */
@@ -499,16 +489,19 @@ body {
         padding: 5px 0;
         border-bottom: 1px solid rgba(255, 255, 255, 0.2); 
     }
+    
     .technical-specs-container.mobile-back-specs-full-width .spec-feature {
         font-weight: 500;
         color: #f0f0f0; 
         font-size: 1em;
     }
+    
     .technical-specs-container.mobile-back-specs-full-width .spec-value {
         color: white;
         font-weight: 700;
         font-size: 1em;
     }
+    
     /* Son öğenin alt çizgisini kaldır */
     .technical-specs-container.mobile-back-specs-full-width .spec-item:last-child {
         border-bottom: none;
@@ -523,25 +516,41 @@ body {
             "full";
         gap: 0;
     }
+    
     .detail-col-left, .detail-col-right, .detail-col-full-width {
         padding-left: 20px;
         padding-right: 20px;
     }
+    
     .detail-col-right {
         border-left: none; 
         border-top: 1px solid #ddd; 
         padding-top: 40px;
     }
+    
     .key-features-list {
         min-height: auto; 
     }
+    
     .key-feature-item {
         text-align: left;
     }
+    
     .feature-separator-line {
         display: none; 
     }
+    
     .feature-text {
         text-align: left;
+    }
+
+    /* Mobilde resim boyutları */
+    .detail-image-main {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+    
+    .detail-image-main img {
+        max-height: 300px;
     }
 }

@@ -29,7 +29,7 @@ export const metadata = {
   icons: {
     icon: '/ms-color-logo.png',
     shortcut: '/ms-color-logo.png',
-    apple: '/ms-color-logo.png', // Apple cihazları için ikon
+    apple: '/ms-color-logo.png', 
   }
 };
 

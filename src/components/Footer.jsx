@@ -34,6 +34,7 @@ function Footer() {
                         <li><Link href="/">{t('nav_home')}</Link></li>
                         <li><Link href="/products">{t('nav_products')}</Link></li>
                         <li><Link href="/about">{t('nav_about')}</Link></li>
+                        <li><Link href="/gallery">{t('nav_gallery')}</Link></li>
                         <li><Link href="/contact">{t('nav_contact')}</Link></li>
                     </ul>
                 </div>

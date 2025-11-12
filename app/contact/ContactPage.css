@@ -1,6 +1,6 @@
 .contact-page-section {
     padding: 60px 0;
-    background-color: #f8f8f8;
+    background-color: #182D51;
 }
 
 .container {
@@ -19,8 +19,7 @@
 }
 
 .map-placeholder-container {
-    position: relative;
-    border-radius: 8px; 
+    position: relative; 
     overflow: hidden; 
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
     background-color: #ffffff; 

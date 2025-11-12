@@ -46,7 +46,7 @@ function Header() {
                             <li><Link href="/" onClick={closeMenu}>{t('nav_home')}</Link></li>
                             <li><Link href="/products" onClick={closeMenu}>{t('nav_products')}</Link></li>
                             <li><Link href="/about" onClick={closeMenu}>{t('nav_about')}</Link></li>
-                            <li><Link href="/galery" onClick={closeMenu}>{t('nav_galery')}</Link></li>
+                            <li><Link href="/gallery" onClick={closeMenu}>{t('nav_gallery')}</Link></li>
                             <li><Link href="/contact" onClick={closeMenu}>{t('nav_contact')}</Link></li>
                         </ul>
                     </nav>
@@ -91,6 +91,7 @@ function Header() {
                         <li className="menu-item-wrapper"><Link href="/" onClick={closeMenu}>{t('nav_home')}</Link></li>
                         <li className="menu-item-wrapper"><Link href="/products" onClick={closeMenu}>{t('nav_products')}</Link></li>
                         <li className="menu-item-wrapper"><Link href="/about" onClick={closeMenu}>{t('nav_about')}</Link></li>
+                        <li className="menu-item-wrapper"><Link href="/gallery" onClick={closeMenu}>{t('nav_gallery')}</Link></li>
                         <li className="menu-item-wrapper"><Link href="/contact" onClick={closeMenu}>{t('nav_contact')}</Link></li>
                     </ul>
                     {/*<a target='_blank' href="https://www.linkedin.com/company/orenda-ar-ge-m%C3%BChendi%CC%87sli%CC%87k/"><img src="/linkedin.png" alt="" /></a>*/}

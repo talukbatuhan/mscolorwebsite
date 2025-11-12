@@ -25,7 +25,7 @@ const styles = {
         fontSize: '2.25rem',
         fontWeight: '700',
         color: '#ffffff',
-        marginBottom: '1.5rem',
+        marginBottom: '1.5rem', 
         textAlign: 'center',
     }
 };

@@ -20,7 +20,7 @@ const machines = [
         id: 1,
         brandPrefix: 'SHAKER',
         name: 'MasterMix',
-        image: '/Shaker950.png',
+        image: '/machinesPNG/ShakerMasterMix.png',
         keyFeaturesKeys: [ 
             'm1_key_f_1', 'm1_key_f_2', 'm1_key_f_3', 'm1_key_f_4', 'm1_key_f_5', 'm1_key_f_6', 'm1_key_f_7',
         ],
@@ -41,7 +41,7 @@ const machines = [
         id: 2,
         brandPrefix: 'GYROSCOPIC MIXER', 
         name: 'GyroMix',
-        image: '/GyroMixMachine.png',
+        image: '/machinesPNG/GyroMix.png',
         keyFeaturesKeys: [
             'm2_key_f_1', 'm2_key_f_2', 'm2_key_f_3', 'm2_key_f_4', 'm2_key_f_5', 'm2_key_f_6', 'm2_key_f_7',
         ],
@@ -62,7 +62,7 @@ const machines = [
         id: 3,
         brandPrefix: 'DISPENSER',
         name: 'MasterTint',
-        image: '/dispenser950v5.png', 
+        image: '/machinesPNG/DispenserMasterTint.png', 
         keyFeaturesKeys: [
             'm3_key_f_1', 'm3_key_f_2', 'm3_key_f_3', 'm3_key_f_4', 'm3_key_f_5', 'm3_key_f_6', 'm3_key_f_7',
         ],

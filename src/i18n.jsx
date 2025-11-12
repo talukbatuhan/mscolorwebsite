@@ -1,8 +1,5 @@
-// src/i18n.js
-
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-// Kalıcı dil seçimi için gerekli yeni import'lar
 import LanguageDetector from 'i18next-browser-languagedetector'; 
 import Backend from 'i18next-localstorage-backend'; 
 
@@ -10,6 +7,7 @@ import Backend from 'i18next-localstorage-backend';
 const resources = {
   tr: {
     translation: {
+
       // ===================================
       // GENEL (HOMEPAGE/HEADER) ÇEVİRİLERİ
       // ===================================
@@ -76,7 +74,6 @@ const resources = {
       // PRODUCTSPAGE.JSX ÇEVİRİLERİ
       // ===================================
       "our_products_h1": "ÜRÜNLERİMİZ",
-      "our_gallery_h1": "GALERİMİZ",
       
       // ===================================
       // ABOUTPAGE.JSX ÇEVİRİLERİ 
@@ -106,6 +103,7 @@ const resources = {
       "value_innovation_agility": "İnovasyon Çevikliği",
       "value_accessibility": "Erişilebilirlik ve Destek",
 
+
       "founder_message_h2": "Kurucu Mesajı",
       "founder_message_p": "\"Başladığımız günden bu yana inancımız hiç değişmedi: Yüksek kalite ve yerli üretim birleştiğinde, sonuç her zaman uluslararası standartların ötesindedir. Gelecek, otomasyon ve hassasiyetle şekillenecek. Biz, {{companyName}} olarak bu geleceğe yön vermeye kararlıyız.\"",
       "founder_title": "Kurucu & CEO",
@@ -125,7 +123,14 @@ const resources = {
       "form_button_sending": "Mesajınız Gönderiliyor...",
 
       // ===================================
-      // FOOTER.JSX ÇEVİRİLERİ (Yeni Eklendi)
+      // GALLERY.JSX ÇEVİRİLERİ 
+      // ===================================
+      "gallery_back_button": "Geri Dön",
+      "gallery_title_h1": "Galeri",
+
+
+      // ===================================
+      // FOOTER.JSX ÇEVİRİLERİ 
       // ===================================
       "footer_logo_alt": "Ms Color Logo",
       "footer_slogan": "Endüstriyel Boyama Sistemlerinde Güven ve Teknoloji.",
@@ -259,6 +264,14 @@ const resources = {
       "form_button_sending":  "Your message is being sent...",
 
       // ===================================
+      // GALLERY.JSX ÇEVİRİLERİ 
+      // ===================================
+
+      "gallery_title_h1": "Gallery",
+      "gallery_back_button": "Go Back",
+
+
+      // ===================================
       // FOOTER.JSX ÇEVİRİLERİ (Yeni Eklendi)
       // ===================================
       "footer_logo_alt": "Ms Color Logo",
@@ -277,25 +290,19 @@ const resources = {
 };
 
 i18n
-  // 1. Local Storage ve diğer tarayıcı mekanizmalarından dili otomatik algılar.
   .use(Backend) 
   .use(LanguageDetector) 
   .use(initReactI18next)
   .init({
     resources,
-    
-    // Dil algılama ayarları eklendi
     detection: {
-      // Dilin Local Storage'dan okunmasını ve Local Storage'a yazılmasını sağlar
       order: ['localStorage', 'navigator'], 
-      lookupLocalStorage: 'i18nextLng', // Local Storage'da kullanılacak anahtar adı
-      caches: ['localStorage'], // Dili değiştirdikten sonra nereye kaydedileceği
+      lookupLocalStorage: 'i18nextLng', 
+      caches: ['localStorage'],
     },
 
-    lng: 'tr', // Eğer Local Storage'da dil yoksa varsayılan dil
+    lng: 'tr', 
     fallbackLng: 'tr',
-    
-    // Dil dosyalarını sunucudan/dosyadan yüklemediğimiz için backend ayarlarını temizledik
 
     interpolation: {
       escapeValue: false

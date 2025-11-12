@@ -2,6 +2,46 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900;1,400..900&family=Oswald:wght@200..700;1,200..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 @import "tailwindcss";
 
+/* * Custom Scrollbar Styling (Only works on WebKit browsers: Chrome, Safari, Edge) 
+         * For Firefox, we rely on the subtle 'scrollbar-color' and 'scrollbar-width' 
+         */
+aside {
+  /* * Custom Scrollbar Styling (Only works on WebKit browsers: Chrome, Safari, Edge) 
+         * For Firefox, we rely on the subtle 'scrollbar-color' and 'scrollbar-width' 
+         */
+        .custom-scrollbar-container {
+            /* Fallback for Firefox/Edge to show a thin, dark scrollbar */
+            scrollbar-color: #4B5563 #1F2937; /* thumb-color track-color */
+            scrollbar-width: thin;
+        }
+
+        /* WebKit specific styling (Chrome, Safari, Edge) */
+        .custom-scrollbar-container::-webkit-scrollbar {
+            width: 8px; /* Vertical scrollbar width */
+            height: 8px; /* Horizontal scrollbar height (for mobile view) */
+        }
+        
+        .custom-scrollbar-container::-webkit-scrollbar-track {
+            background: #1F2937; /* Dark background for the scrollbar track */
+            border-radius: 4px;
+        }
+        
+        .custom-scrollbar-container::-webkit-scrollbar-thumb {
+            background-color: #4B5563; /* Gray color for the thumb */
+            border-radius: 4px; /* Rounded corners for the thumb */
+            border: 2px solid #1F2937; /* Inner spacing/padding */
+        }
+        
+        .custom-scrollbar-container::-webkit-scrollbar-thumb:hover {
+            background-color: #6B7280; /* Lighter color on hover */
+        }
+
+        /* To override Tailwind's default rounded-lg on the container and ensure the thumb is round */
+        .rounded-xl {
+            border-radius: 0.75rem; 
+        }
+}         
+        
 :root {
   /* Temel font tanımları */
   line-height: 1.5;
