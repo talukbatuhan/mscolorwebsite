@@ -41,7 +41,8 @@ export default function ProductsPageClient() {
                     <h1 style={styles.title}>
                         {pageTitle}
                     </h1>
-   
+    
+                    {/* showHero=false hem Video Hero'yu hem de SplashCursor'ı gizler. */}
                     <MachineGrid showHero={false} /> 
                 </div>
             </div>

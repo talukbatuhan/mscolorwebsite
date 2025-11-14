@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900;1,400..900&family=Oswald:wght@200..700;1,200..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
-
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
 .about-page-section {
     padding: 100px 20px;
     background-color: #182D51; 

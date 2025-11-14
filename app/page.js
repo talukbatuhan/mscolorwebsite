@@ -20,7 +20,7 @@ const machines = [
         id: 1,
         brandPrefix: 'SHAKER',
         name: 'MasterMix',
-        image: '/machinesPNG/ShakerMasterMix.png',
+        image: '/machinesPNG/MasterMix.png',
         keyFeaturesKeys: [ 
             'm1_key_f_1', 'm1_key_f_2', 'm1_key_f_3', 'm1_key_f_4', 'm1_key_f_5', 'm1_key_f_6', 'm1_key_f_7',
         ],
@@ -62,7 +62,7 @@ const machines = [
         id: 3,
         brandPrefix: 'DISPENSER',
         name: 'MasterTint',
-        image: '/machinesPNG/DispenserMasterTint.png', 
+        image: '/machinesPNG/Dispenser.png',
         keyFeaturesKeys: [
             'm3_key_f_1', 'm3_key_f_2', 'm3_key_f_3', 'm3_key_f_4', 'm3_key_f_5', 'm3_key_f_6', 'm3_key_f_7',
         ],
@@ -244,7 +244,8 @@ export default function MachineGrid({ showHero = true }) {
         <>
             <div className="homepage-container"> 
                 
-                <SplashCursor />
+                {/* 📌 SplashCursor SADECE showHero TRUE İSE GÖSTERİLİR */}
+                {showHero && <SplashCursor />} 
 
                 {/* VİDEO HERO BÖLÜMÜNÜ KOŞULLU OLARAK GÖSTER */}
                 {showHero && (
@@ -253,7 +254,8 @@ export default function MachineGrid({ showHero = true }) {
                         {/* BACKGROUND VIDEO */}
                         <video 
                             className="hero-background-video"
-                            src={backgroundVideoSrc}
+                            // 📌 VİDEO KAYNAĞI KONTROLÜ: showHero true ise backgroundVideoSrc, değilse boş string.
+                            src={showHero ? backgroundVideoSrc : ''}
                             autoPlay 
                             loop     
                             muted    

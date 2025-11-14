@@ -1,6 +1,13 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 .contact-page-section {
     padding: 60px 0;
     background-color: #182D51;
+    min-height: calc(100vh - var(--header-height, 80px) - var(--footer-height, 200px));
 }
 
 .container {
