@@ -1,3 +1,74 @@
+:root {
+  /* Temel font tanımları */
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light;
+  background-color: #f4f7f6;
+}
+
+/* =================================== */
+/* GLOBAL RESET VE FLEXBOX LAYOUT (FOOTER SABİTLEME) */
+/* =================================== */
+html, body {
+  /* Footer'ı en alta itmek için temel yükseklik ayarı */
+  height: 100%; 
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  /* Mevcut body stilleri */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f4f7f6; /* Açık arka plan rengi */
+  color: #333;
+}
+
+/* app-container, RootLayout.js dosyanızdaki ana div'dir. */
+.app-container {
+  /* Görüntü alanı kadar minimum yükseklik */
+  min-height: 100vh; 
+  /* Flexbox'ı etkinleştir */
+  display: flex;
+  /* İçerikleri dikey olarak düzenle */
+  flex-direction: column; 
+}
+
+/* main etiketi, Header ve Footer arasındaki tüm boşluğu kaplamalıdır */
+main {
+  /* Mevcut tüm boş dikey alanı kapla ve Footer'ı en alta it */
+  flex-grow: 1; 
+}
+
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Genel Container Sınıfı - İçeriği ortalar */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
 /* =================================== */
 /* 1. HOMEPAGE & RESET STİLLERİ */
 /* =================================== */
@@ -552,5 +623,42 @@
     
     .detail-image-main img {
         max-height: 300px;
+    }
+}
+
+aside {
+  /* * Custom Scrollbar Styling (Only works on WebKit browsers: Chrome, Safari, Edge) 
+     * For Firefox, we rely on the subtle 'scrollbar-color' and 'scrollbar-width' 
+     */
+    .custom-scrollbar-container {
+        /* Fallback for Firefox/Edge to show a thin, dark scrollbar */
+        scrollbar-color: #4B5563 #1F2937; /* thumb-color track-color */
+        scrollbar-width: thin;
+    }
+
+    /* WebKit specific styling (Chrome, Safari, Edge) */
+    .custom-scrollbar-container::-webkit-scrollbar {
+        width: 8px; /* Vertical scrollbar width */
+        height: 8px; /* Horizontal scrollbar height (for mobile view) */
+    }
+    
+    .custom-scrollbar-container::-webkit-scrollbar-track {
+        background: #1F2937; /* Dark background for the scrollbar track */
+        border-radius: 4px;
+    }
+    
+    .custom-scrollbar-container::-webkit-scrollbar-thumb {
+        background-color: #4B5563; /* Gray color for the thumb */
+        border-radius: 4px; /* Rounded corners for the thumb */
+        border: 2px solid #1F2937; /* Inner spacing/padding */
+    }
+    
+    .custom-scrollbar-container::-webkit-scrollbar-thumb:hover {
+        background-color: #6B7280; /* Lighter color on hover */
+    }
+
+    /* To override Tailwind's default rounded-lg on the container and ensure the thumb is round */
+    .rounded-xl {
+        border-radius: 0.75rem; 
     }
 }
