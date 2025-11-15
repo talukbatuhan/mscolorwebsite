@@ -75,6 +75,7 @@ a {
 .homepage-container {
     overflow-x: hidden;
     width: 100%;
+    
 }
 
 /* HERO SECTION */
@@ -329,9 +330,9 @@ a {
 .feature-details-box-wrapper.card-back-content {
     background-color: transparent;
     height: 100%;
-    width: 100%;
+    width: 90%;
     display: block;
-    padding: 10px;
+
     gap: 0;
 }
 
@@ -478,7 +479,7 @@ a {
         font-weight: 700;
         color: white;
         margin-top: -10px;
-        margin-bottom: 15px;
+        margin-bottom: 5px;
         border-bottom: 3px solid #ffffff;
         text-align: center;
         padding-bottom: 5px;
@@ -486,7 +487,7 @@ a {
     }
 
     .technical-specs-container.mobile-back-specs-full-width .spec-item {
-        padding: 5px 0;
+        padding:  0;
         border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     }
     

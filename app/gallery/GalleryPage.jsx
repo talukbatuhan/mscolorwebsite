@@ -9,22 +9,22 @@ const galleryItems = [
     {
         id: 1,
         type: "video",
-        src: "",
-        thumb: "",
+        src: "/Gallery/DispenserPose1.JPG",
+        thumb: "/Gallery/DispenserPose1.JPG",
         alt: "MS Color Reklam",
     },
     {
         id: 2,
         type: "video",
-        src: "",
-        thumb: "",
+        src: "/Gallery/DispenserPose1.JPG",
+        thumb: "/Gallery/DispenserPose1.JPG",
         alt: "GyroMix Rehber",
     },
     {
         id: 3,
         type: "video",
-        src: "",
-        thumb: "",
+        src: "/Gallery/DispenserPose1.JPG",
+        thumb: "/Gallery/DispenserPose1.JPG",
         alt: "YouTube Video 2 - Construction Site Footage",
     },
     {
@@ -351,7 +351,7 @@ export default function GalleryApp() {
                                     aria-label={`View ${item.alt}`}
                                 >
                                     <img
-                                        src={item.thumb || item.src}
+                                        src={item.thumb || item.src || null}
                                         alt={item.alt}
                                         className="grid-image"
                                         loading="lazy"
