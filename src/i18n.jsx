@@ -161,14 +161,15 @@ const resources = {
     translation: {
       // ===================================
       // GENEL (HOMEPAGE/HEADER) ÇEVİRİLERİ
-      // ===================================
+      // ===============/*  */====================
       "homepage_title": "Discover the Future of Paint Technologies Today",
       "homepage_punchline": "Highest Efficiency, Flawless Color Quality in Industry.",
       "button_explore": "Click for Our Solutions",
       "section_machines": "Machine Cards Section",
       "nav_home": "HOME",
+      "nav_about": "ABOUT",
+      "nav_about": "ABOUT",
       "nav_products": "PRODUCTS",
-      "nav_about": "ABOUT US",
       "nav_gallery": "GALLERY",
       "nav_contact": "CONTACT",
 

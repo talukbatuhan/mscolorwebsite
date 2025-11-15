@@ -3,14 +3,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Head from 'next/head';
 import { useTranslation } from 'react-i18next';
-import SplashCursor from '@/src/components/SplashCursor'; 
 import './globals.css'; 
 
 // ===================================
 // HOMEPAGE SABİTLERİ
 // ===================================
-const backgroundVideoSrc = '/video1.mp4'; 
-const REFRESH_DELAY_MS = 30000; // 30 saniye
+const backgroundVideoSrc = '/video3.mp4'; 
+const REFRESH_DELAY_MS = 300000; // 300 saniye
 
 // ===================================
 // DATA (Translation Keys for texts used)
@@ -244,8 +243,8 @@ export default function MachineGrid({ showHero = true }) {
         <>
             <div className="homepage-container"> 
                 
-                {/* 📌 SplashCursor SADECE showHero TRUE İSE GÖSTERİLİR */}
-                {showHero && <SplashCursor />} 
+
+
 
                 {/* VİDEO HERO BÖLÜMÜNÜ KOŞULLU OLARAK GÖSTER */}
                 {showHero && (

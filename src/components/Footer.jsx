@@ -17,8 +17,7 @@ function Footer() {
                 {/* Sol Sütun: Logo ve Marka */}
                 <div className="footer-column brand-info">
                     <div className="brand-title-footer">
-                        <img src="/ms-color-logo.png" alt={t('footer_logo_alt')} className="brand-logo-footer" />
-                        <h3>MS COLOR</h3>
+                        <img src="/logo.png" alt={t('footer_logo_alt')} className="brand-logo-footer" />
                     </div>
                     {/* Slogan */}
                     <p className="slogan">{t('footer_slogan')}</p> 

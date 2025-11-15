@@ -1,20 +1,33 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900;1,400..900&family=Oswald:wght@200..700;1,200..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+/* Temel Sıfırlamalar ve Yükseklik */
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+
+    box-sizing: border-box; 
 }
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+/* Ana Bölüm */
 .about-page-section {
     padding: 100px 20px;
     background-color: #182D51; 
-
+    /* Ekranın tamamını kaplaması için minimum yükseklik */
+    min-height: 100vh;
 }
 
+/* Konteyner */
 .container {
     max-width: 1200px;
+    /* Küçük ekranlarda da padding'i korumak için max-width dışına margin: 0 auto; */
     margin: 0 auto;
+    padding: 0 15px; /* Konteynerin kenarlara yapışmasını engeller */
 }
 
+/* Başlık Alanı */
 .about-header {
     text-align: center;
     margin-bottom: 60px;
@@ -25,6 +38,7 @@ html, body {
     font-weight: 700;
     color: white;
     margin-bottom: 10px;
+    line-height: 1.2; /* Başlıkların mobil görünümde taşmasını engeller */
 }
 
 .lead-text {
@@ -35,11 +49,11 @@ html, body {
     line-height: 1.6;
 }
 
+/* Hikaye Bölümü */
 .about-story {
     margin-bottom: 80px;
     padding: 40px;
     background-color: #fff;
-
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
@@ -50,7 +64,8 @@ html, body {
     border-bottom: 3px solid #193770;
     display: inline-block;
     padding-bottom: 5px;
-    
+    /* Mobil görünümde ortalamak için (story-content ortalanmış) */
+    /* .about-story'ye text-align: center; eklediğiniz için bu da ortalanacaktır. */
 }
 
 .story-content p {
@@ -58,34 +73,42 @@ html, body {
     color: black;
     margin-bottom: 15px;
     text-align: center;
+    font-size: 1em; /* Paragraflar için tutarlı bir boyut */
 }
 
+/* Vizyon, Misyon, Değerler Bölümü (VMD) */
 .about-vmd-section {
     display: flex;
     gap: 30px;
     margin-bottom: 80px;
-    flex-wrap: wrap; 
+    flex-wrap: wrap; /* Gerekirse alt satıra geçişi sağlar */
+    justify-content: center; /* Öğeleri ortalamaya yardımcı olur */
 }
 
 .vmd-item {
     flex: 1;
-    min-width: 250px;
+    /* Öğeler en az 300px genişlikte olsun. 
+       Küçük ekranlarda 250px'ten daha iyi. */
+    min-width: 300px; 
     padding: 30px;
     background-color: white; 
     border-top: 5px solid #193770;
+    /* Flexbox hesaplamasını daha tutarlı yapmak için */
+    flex-basis: calc(33.333% - 20px); 
 }
 
 .vmd-icon {
     font-size: 2.5em;
     display: block;
     margin-bottom: 10px;
+    text-align: center; /* İkonu ortalar */
 }
 
 .vmd-item .vmd-icon img {
     height: 50px;
     width: auto;
-    margin: auto;
-    display: flex;
+    margin: 0 auto; /* İmajın ortalanmasını sağlar */
+    display: block;
 }
 
 .vmd-item h3 {
@@ -109,60 +132,31 @@ html, body {
     font-weight: 500;
 }
 
+/* --- DUYARLILIK (RESPONSIVE) KURALLARI --- */
 
-.founder-message-section {
-    background-color: white; 
-    padding: 60px 40px;
-    color: black;
-}
-
-.founder-card {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-}
-
-.founder-photo { 
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border: 5px solid white;
-    flex-shrink: 0;
-}
-
-.founder-text-content h2 {
-    color: #193770;
-    margin-top: 0;
-    font-size: 2em;
-}
-
-.founder-text-content p {
-    font-style: italic;
-    line-height: 1.6;
-    margin-bottom: 20px;
-    
-
-}
-
-.founder-signature {
-    font-style: normal !important;
-    font-weight: 700;
-    font-size: 1.1em;
-    color: #193770;
-    margin-top: 20px;
-}
-.founder-signature span {
-    display: block;
-    font-weight: 400;
-    font-size: 0.9em;
-    color: #ccc;
-}
-
-
-@media (max-width: 768px) {
-    .about-story {
-        text-align: center;
+/* Orta Boy Ekranlar (Tabletler: 992px altı) */
+@media (max-width: 992px) {
+    .about-page-section {
+        padding: 80px 15px;
     }
+
+    .about-header h1 {
+        font-size: 2.5em;
+    }
+
+    .vmd-item {
+        /* 992px altında yan yana ikişerli görünüm için */
+        flex-basis: calc(50% - 15px);
+        min-width: 300px;
+    }
+
+    .about-vmd-section {
+        gap: 20px;
+    }
+}
+
+/* Küçük Ekranlar (Mobil Cihazlar: 768px altı) - Mevcut kuralınızı geliştirdik */
+@media (max-width: 768px) {
     .about-page-section {
         padding: 60px 15px;
     }
@@ -175,25 +169,26 @@ html, body {
         font-size: 1em;
     }
 
+    .about-story {
+        padding: 30px 20px;
+        margin-bottom: 60px;
+        text-align: center;
+    }
+
+    .about-story h2 {
+        font-size: 1.7em;
+        margin-bottom: 15px;
+    }
+
     .about-vmd-section {
+        /* Tek sütunlu görünüm için flex-direction: column; */
         flex-direction: column;
- 
+        gap: 30px;
     }
 
-    .founder-card {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .founder-photo {
-        margin-bottom: 10px;
-    }
-    
-    .founder-text-content {
-        text-align: center;
-    }
-    
-    .founder-text-content h2 {
-        font-size: 1.8em;
+    .vmd-item {
+        /* Tam genişlik (kapsayıcı padding'ini dikkate alarak) */
+        flex-basis: 100%; 
+        min-width: unset;
     }
 }

@@ -9,142 +9,177 @@ const galleryItems = [
     {
         id: 1,
         type: "video",
-        src: "https://www.youtube.com/embed/ZbAOkYlxW8s?si=Oj8hODuR_Yukn6rz",
-        thumb: "https://img.youtube.com/vi/ZbAOkYlxW8s/hqdefault.jpg",
-        alt: "YouTube Video 1 - Project Introduction",
+        src: "Gallery/mscolortanıtımvideosu.mp4",
+        thumb: "",
+        alt: "MS Color Reklam",
     },
     {
         id: 2,
         type: "video",
-        src: "https://www.youtube.com/embed/qCmGkTqehW4?si=jMpkQVdMdPgzvynm",
-        thumb: "https://img.youtube.com/vi/qCmGkTqehW4/hqdefault.jpg",
-        alt: "YouTube Video 2 - Construction Site Footage",
+        src: "Gallery/reklam.mp4",
+        thumb: "",
+        alt: "GyroMix Rehber",
     },
     {
         id: 3,
         type: "video",
-        src: "https://www.youtube.com/embed/Hd5nXTyaXZg?si=cqoJVqaJqLeZL00l",
-        thumb: "https://img.youtube.com/vi/Hd5nXTyaXZg/hqdefault.jpg",
-        alt: "YouTube Video 3 - Customer Reviews",
+        src: "Gallery/tanıtımvideosu.mp4",
+        thumb: "",
+        alt: "YouTube Video 2 - Construction Site Footage",
     },
     {
         id: 4,
         type: "image",
-        src: "/Gallery/dispenserBimo.jpg",
-        thumb: "/Gallery/dispenserBimo.jpg",
-        alt: "Modern Villa Design",
+        src: "/Gallery/DispenserPose1.JPG",
+        thumb: "/Gallery/DispenserPose1.JPG",
+        alt: "Dispenser Pose 1",
     },
     {
         id: 5,
         type: "image",
-        src: "/Gallery/DispenserPose1.JPG",
-        thumb: "/Gallery/DispenserPose1.JPG",
-        alt: "Interior Design Concept",
+        src: "/Gallery/DispenserPose2.JPG",
+        thumb: "/Gallery/DispenserPose2.JPG",
+        alt: "Dispenser Pose 2",
     },
     {
         id: 6,
         type: "image",
-        src: "/Gallery/DispenserPose2.JPG",
-        thumb: "/Gallery/DispenserPose2.JPG",
-        alt: "Construction Site Operations",
-    },
-    {
-        id: 7,
-        type: "image",
         src: "/Gallery/DispenserPose3.png",
         thumb: "/Gallery/DispenserPose3.png",
-        alt: "Completed Project",
+        alt: "Dispenser Pose 3",
+    },
+        {
+        id: 7,
+        type: "image",
+        src: "/Gallery/dispenserBimo.jpg",
+        thumb: "/Gallery/dispenserBimo.jpg",
+        alt: "Dispenser Yazılım",
     },
     {
         id: 8,
         type: "image",
-        src: "/Gallery/DispenserRender.PNG",
-        thumb: "/Gallery/DispenserRender.PNG",
-        alt: "Detail Shots",
+        src: "/Gallery/MasterTint0.png",
+        thumb: "/Gallery/MasterTint0.png",
+        alt: "MasterTint Montaj",
     },
     {
         id: 9,
         type: "image",
-        src: "/Gallery/GyroMixerRender.png",
-        thumb: "/Gallery/GyroMixerRender.png",
-        alt: "Evening View",
+        src: "/Gallery/machines.jpeg",
+        thumb: "/Gallery/machines.jpeg",
+        alt: "Makineler Afiş",
     },
     {
         id: 10,
         type: "image",
-        src: "/Gallery/Machines.png",
-        thumb: "/Gallery/Machines.png",
-        alt: "Landscape Integration",
+        src: "/Gallery/GyroMix_1.PNG",
+        thumb: "/Gallery/GyroMix_1.PNG",
+        alt: "GyroMix Afiş",
     },
     {
         id: 11,
         type: "image",
-        src: "/Gallery/MasterMixPose1.png",
-        thumb: "/Gallery/MasterMixPose1.png",
-        alt: "Interior Design Concept",
+        src: "/Gallery/GyroMix_2.png",
+        thumb: "/Gallery/GyroMix_2.png",
+        alt: "GyroMix Özellikleri",
     },
     {
         id: 12,
         type: "image",
-        src: "/Gallery/MasterMixPose2.png",
-        thumb: "/Gallery/MasterMixPose2.png",
-        alt: "Construction Site Operations",
+        src: "/Gallery/MasterTint_2.png",
+        thumb: "/Gallery/MasterTint_2.png",
+        alt: "MasterTint Afiş",
     },
     {
         id: 13,
         type: "image",
-        src: "/Gallery/MasterMixPose3.png",
-        thumb: "/Gallery/MasterMixPose3.png",
-        alt: "Completed Project",
+        src: "/Gallery/MasterTint_1.png",
+        thumb: "/Gallery/MasterTint_1.png",
+        alt: "MasterTint Özellikleri",
     },
     {
         id: 14,
         type: "image",
-        src: "/Gallery/MasterMixPose4.png",
-        thumb: "/Gallery/MasterMixPose4.png",
-        alt: "Detail Shots",
+        src: "/Gallery/DispenserRender.png",
+        thumb: "/Gallery/DispenserRender.png",
+        alt: "Dispenser Render",
     },
     {
         id: 15,
         type: "image",
-        src: "/Gallery/MasterMixPose5.png",
-        thumb: "/Gallery/MasterMixPose5.png",
-        alt: "Evening View",
+        src: "/Gallery/GyroMixerRender.png",
+        thumb: "/Gallery/GyroMixerRender.png",
+        alt: "GyroMix Render",
     },
     {
         id: 16,
         type: "image",
-        src: "/Gallery/MasterMixPose6.png",
-        thumb: "/Gallery/MasterMixPose6.png",
-        alt: "Landscape Integration",
+        src: "Gallery/MasterMixRender.png",
+        thumb: "Gallery/MasterMixRender.png",
+        alt: "MasterMix Render",
     },
     {
         id: 17,
         type: "image",
-        src: "/Gallery/MasterMixReel1.png",
-        thumb: "/Gallery/MasterMixReel1.png",
-        alt: "Completed Project",
+        src: "Gallery/MasterMixPose1.png",
+        thumb: "Gallery/MasterMixPose1.png",
+        alt: "MasterMix Pose 1",
     },
     {
         id: 18,
         type: "image",
-        src: "/Gallery/MasterMixRender.PNG",
-        thumb: "/Gallery/MasterMixRender.PNG",
-        alt: "Detail Shots",
+        src: "Gallery/MasterMixPose2.png",
+        thumb: "Gallery/MasterMixPose2.png",
+        alt: "MasterMix Pose 2",
     },
     {
         id: 19,
         type: "image",
-        src: "/Gallery/Seminer.png",
-        thumb: "/Gallery/Seminer.png",
-        alt: "Evening View",
+          src: "Gallery/MasterMixPose3.png",
+        thumb: "Gallery/MasterMixPose3.png",
+        alt: "MasterMix Pose 3",
     },
     {
         id: 20,
         type: "image",
-        src: "/Gallery/GyroMixPose1.png",
-        thumb: "/Gallery/GyroMixPose1.png",
-        alt: "Landscape Integration",
+        src: "Gallery/MasterMixPose4.png",
+        thumb: "Gallery/MasterMixPose4.png",
+        alt: "MasterMix Pose 4",
+    },
+    {
+        id: 21,
+        type: "image",
+        src: "Gallery/MasterMixPose5.png",
+        thumb: "Gallery/MasterMixPose5.png",
+        alt: "MasterMix Pose 5",
+    },
+    {
+        id: 22,
+        type: "image",
+        src: "Gallery/MasterMixPose6.png",
+        thumb: "Gallery/MasterMixPose6.png",
+        alt: "MasterMix Pose 6",
+    },
+        {
+        id: 23,
+        type: "image",
+        src: "Gallery/mscolor5.jpg",
+        thumb: "Gallery/mscolor5.jpg",
+        alt: "Fabrika Akşam",
+    },
+    {
+        id: 24,
+        type: "image",
+        src: "Gallery/mscolor4.jpg",
+        thumb: "Gallery/mscolor4.jpg",
+        alt: "Fabrika Dışarıdan Görüntü",
+    },
+    {
+        id: 25,
+        type: "image",
+        src: "Gallery/mscolor2.jpg",
+        thumb: "Gallery/mscolor2.jpg",
+        alt: "Fabrika Dışarıdan Görüntü",
     },
 ];
 
@@ -162,12 +197,21 @@ const Loader = () => (
     </div>
 );
 
+// Close Icon for Fullscreen
+const CloseIcon = () => (
+    <svg className="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+);
+
 export default function GalleryApp() {
     const [viewMode, setViewMode] = useState("grid");
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
+    const [isFullscreen, setIsFullscreen] = useState(false);
     const thumbnailRefs = useRef([]); 
     const galleryWrapperRef = useRef(null);
+    const mediaContentRef = useRef(null);
     const currentItem = galleryItems[currentIndex];
 
     const { t, i18n } = useTranslation(); 
@@ -209,6 +253,7 @@ export default function GalleryApp() {
 
     const handleBackToGrid = useCallback(() => {
         setViewMode("grid");
+        setIsFullscreen(false);
     }, []); 
 
     const handleNext = useCallback(() => {
@@ -223,17 +268,251 @@ export default function GalleryApp() {
         setIsLoading(true);
     }, []);
 
-    return (
-        <div className="gallery-container">{" "}
-            <div className="gallery-wrapper" ref={galleryWrapperRef}>
+    // Çift tıklama ile tam ekran modunu açma
+    const handleMediaDoubleClick = useCallback(() => {
+        if (currentItem.type === "image") {
+            setIsFullscreen(true);
+        }
+    }, [currentItem.type]);
 
-                <header className="gallery-header">
-                    {/* DÜZELTME: Başlık için koşullu sınıflandırma kaldırıldı, hizalama CSS'te yapıldı. */}
-                    <h1 className="gallery-title">
-                        {t("gallery_title_h1")}
-                    </h1>
-                    {viewMode === "detail" && (
-                        <button onClick={handleBackToGrid} className="gallery-back-button">
+    // Tam ekrandan çıkış
+    const handleCloseFullscreen = useCallback(() => {
+        setIsFullscreen(false);
+    }, []);
+
+    // ESC tuşu ile tam ekran modundan çıkma
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape' && isFullscreen) {
+                setIsFullscreen(false);
+            } else if (e.key === 'ArrowRight' && isFullscreen) {
+                handleNext();
+            } else if (e.key === 'ArrowLeft' && isFullscreen) {
+                handlePrev();
+            }
+        };
+
+        document.addEventListener('keydown', handleKeyDown);
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [isFullscreen, handleNext, handlePrev]);
+
+    // Body overflow kontrolü
+    useEffect(() => {
+        if (isFullscreen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [isFullscreen]);
+
+    return (
+        <>
+            <div className="gallery-container">
+                <div className="gallery-wrapper" ref={galleryWrapperRef}>
+
+                    <header className="gallery-header">
+                        <h3 className="gallery-title">
+                            {t("gallery_title_h1")}
+                        </h3>
+                        {viewMode === "detail" && (
+                            <button onClick={handleBackToGrid} className="gallery-btn gallery-back-button">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="icon"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                                    />
+                                </svg>
+                                {t("gallery_back_button")}
+                            </button>
+                        )}
+                    </header>
+                                     
+                    {viewMode === "grid" ? (
+                        // GRID VIEW
+                        <div className="grid-container">
+                            {galleryItems.map((item, index) => (
+                                <button
+                                    key={item.id}
+                                    className="grid-item"
+                                    onClick={() => handleThumbnailClick(index)}
+                                    aria-label={`View ${item.alt}`}
+                                >
+                                    <img
+                                        src={item.thumb || item.src}
+                                        alt={item.alt}
+                                        className="grid-image"
+                                        loading="lazy"
+                                        onError={(e) => {
+                                            e.currentTarget.src =
+                                                "https://placehold.co/300x200/4B5563/FFFFFF?text=Media+Not+Found";
+                                            e.currentTarget.onerror = null;
+                                        }}
+                                    />
+                                    {item.type === "video" && (
+                                        <div className="video-overlay">
+                                            <PlayIcon />        
+                                        </div>
+                                    )}
+                                </button>
+                            ))}
+                        </div>
+                    ) : (
+                        // DETAIL VIEW
+                        <div className="detail-container">
+                            <div className="main-media-area">
+                                <div className="media-container">
+                                    {isLoading && <Loader />}        
+                                    
+                                    <button
+                                        onClick={handlePrev}
+                                        className="nav-button prev-button"
+                                        aria-label="Previous item"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            className="icon"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                            strokeWidth="2"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                d="M15 19l-7-7 7-7"
+                                            />
+                                        </svg>
+                                    </button>
+                                    
+                                    <button
+                                        onClick={handleNext}
+                                        className="nav-button next-button"
+                                        aria-label="Next item"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            className="icon"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                            strokeWidth="2"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                d="M9 5l7 7-7 7"
+                                            />
+                                        </svg>
+                                    </button>
+                                    
+                                    <div
+                                        ref={mediaContentRef}
+                                        className={`media-content ${
+                                            isLoading ? "loading" : "loaded"
+                                        }`}
+                                        onDoubleClick={handleMediaDoubleClick}
+                                    >
+                                        {currentItem.type === "image" ? (
+                                            <img
+                                                src={currentItem.src}
+                                                alt={currentItem.alt}
+                                                className="media-image"
+                                                onLoad={handleMediaLoad}
+                                                onError={handleMediaLoad}
+                                            />
+                                        ) : (
+                                            <iframe 
+                                                key={currentItem.src}
+                                                className="media-iframe"
+                                                src={currentItem.src}
+                                                title={currentItem.alt}
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                allowFullScreen
+                                                onLoad={handleVideoLoad}
+                                                onError={handleVideoLoad}
+                                            />
+                                        )}
+                                    </div>
+                                </div>
+                                
+                                <div className="media-info">
+                                    <h2 className="media-title">{currentItem.alt}</h2>
+                                    <p className="media-counter">
+                                        {currentIndex + 1} / {galleryItems.length}
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <aside className="thumbnail-sidebar">
+                                <div className="thumbnail-container">
+                                    {galleryItems.map((item, index) => (
+                                        <button
+                                            ref={(el) => (thumbnailRefs.current[index] = el)}
+                                            key={item.id}
+                                            className={`thumbnail-item ${
+                                                index === currentIndex ? "active" : ""
+                                            }`}
+                                            onClick={() => handleThumbnailClick(index)}
+                                            aria-label={`View ${item.alt}`}
+                                            aria-current={index === currentIndex ? "true" : "false"}
+                                        >
+                                            <img
+                                                src={item.thumb || item.src}
+                                                alt={item.alt}
+                                                className="thumbnail-image"
+                                                loading="lazy"
+                                                onError={(e) => {
+                                                    e.currentTarget.src =
+                                                        "https://placehold.co/300x200/4B5563/FFFFFF?text=Thumb+Not+Found";
+                                                    e.currentTarget.onerror = null;
+                                                }}
+                                            />
+                                            {item.type === "video" && (
+                                                <div className="thumbnail-video-overlay">
+                                                    <PlayIcon />                
+                                                </div>
+                                            )}
+                                        </button>
+                                    ))}
+                                </div>
+                            </aside>
+                        </div>
+                    )}
+                </div>
+            </div>
+
+            {/* FULLSCREEN OVERLAY */}
+            {isFullscreen && currentItem.type === "image" && (
+                <div className="fullscreen-overlay" onClick={handleCloseFullscreen}>
+                    <button 
+                        className="fullscreen-close"
+                        onClick={handleCloseFullscreen}
+                        aria-label="Close fullscreen"
+                    >
+                        <CloseIcon />
+                    </button>
+
+                    <div className="media-container fullscreen" onClick={(e) => e.stopPropagation()}>
+                        {isLoading && <Loader />}
+
+                        <button
+                            onClick={handlePrev}
+                            className="nav-button prev-button"
+                            aria-label="Previous item"
+                        >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="icon"
@@ -245,198 +524,51 @@ export default function GalleryApp() {
                                 <path
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
-                                    d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                                    d="M15 19l-7-7 7-7"
                                 />
                             </svg>
-                            {t("gallery_back_button")}
                         </button>
-                    )}
-                </header>
-                                 
-                {/* Conditional Rendering based on viewMode */}                       
-                {viewMode === "grid" ? (
-                    // GRID VIEW
-                    <div className="grid-container">
-                                              
-                        {galleryItems.map((item, index) => (
-                            <button
-                                key={item.id}
-                                className="grid-item"
-                                onClick={() => handleThumbnailClick(index)}
-                                aria-label={`View ${item.alt}`}
+
+                        <button
+                            onClick={handleNext}
+                            className="nav-button next-button"
+                            aria-label="Next item"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="icon"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                strokeWidth="2"
                             >
-                                                                  
-                                <img
-                                    src={item.thumb || item.src}
-                                    alt={item.alt}
-                                    className="grid-image"
-                                    loading="lazy"
-                                    onError={(e) => {
-                                        e.currentTarget.src =
-                                            "https://placehold.co/300x200/4B5563/FFFFFF?text=Media+Not+Found";
-                                        e.currentTarget.onerror = null;
-                                    }}
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M9 5l7 7-7 7"
                                 />
-                                                                  
-                                {item.type === "video" && (
-                                    <div className="video-overlay">
-                                        <PlayIcon />        
-                                    </div>
-                                )}
-                                                                
-                            </button>
-                        ))}
-                                              
-                    </div>
-                ) : (
-                    // DETAIL VIEW
-                    <div className="detail-container">
-                        {/* Main Media Area */}
-                        <div className="main-media-area">
-                                            
-                            <div className="media-container">
-                                {isLoading && <Loader />}        
-                                                                      
-                                {/* Prev Button */}                        
-                                <button
-                                    onClick={handlePrev}
-                                    className="nav-button prev-button"
-                                    aria-label="Previous item"
-                                >
-                                                                            
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        className="icon"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                        strokeWidth="2"
-                                    >
-                                                                                
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            d="M15 19l-7-7 7-7"
-                                        />
-                                                                            
-                                    </svg>
-                                                                        
-                                </button>
-                                                                          
-                                {/* Next Button */}                        
-                                <button
-                                    onClick={handleNext}
-                                    className="nav-button next-button"
-                                    aria-label="Next item"
-                                >
-                                                                            
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        className="icon"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                        strokeWidth="2"
-                                    >
-                                                                                
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            d="M9 5l7 7-7 7"
-                                        />
-                                                                            
-                                    </svg>
-                                                                        
-                                </button>
-                                                                        
-                                <div
-                                    className={`media-content ${
-                                        isLoading ? "loading" : "loaded"
-                                    }`}
-                                >
-                                                                            
-                                    {currentItem.type === "image" ? (
-                                        <img
-                                            src={currentItem.src}
-                                            alt={currentItem.alt}
-                                            className="media-image"
-                                            onLoad={handleMediaLoad}
-                                            onError={handleMediaLoad}
-                                        />
-                                    ) : (
-                                        <iframe 
-                                            key={currentItem.src}
-                                            className="media-iframe"
-                                            src={currentItem.src}
-                                            title={currentItem.alt}
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowFullScreen
-                                            onLoad={handleVideoLoad}
-                                            onError={handleVideoLoad}
-                                        />
-                                    )}
-                                                                        
-                                </div>
-                                                                        
-                            </div>
-                            
-                            {/* EKLEME: Detay görünümündeki medya başlığı ve sayaç bilgisi */}
-                            <div className="media-info">
-                                <h2 className="media-title">{currentItem.alt}</h2>
-                                <p className="media-counter">
-                                    {currentIndex + 1} / {galleryItems.length}
-                                </p>
-                            </div>
-                                            
+                            </svg>
+                        </button>
+
+                        <div className={`media-content ${isLoading ? "loading" : "loaded"}`}>
+                            <img
+                                src={currentItem.src}
+                                alt={currentItem.alt}
+                                className="media-image"
+                                onLoad={handleMediaLoad}
+                                onError={handleMediaLoad}
+                            />
                         </div>
-                        {/* Vertical Thumbnail Sidebar */}                      
-                        <aside className="thumbnail-sidebar">
-                                            
-                            <div className="thumbnail-container hide-scrollbar">
-                                                              
-                                {galleryItems.map((item, index) => (
-                                    <button
-                                        ref={(el) => (thumbnailRefs.current[index] = el)}
-                                        key={item.id}
-                                        className={`thumbnail-item ${
-                                            index === currentIndex ? "active" : ""
-                                        }`}
-                                        onClick={() => handleThumbnailClick(index)}
-                                        aria-label={`View ${item.alt}`}
-                                        aria-current={index === currentIndex ? "true" : "false"}
-                                    >
-                                                                            
-                                        <img
-                                            src={item.thumb || item.src}
-                                            alt={item.alt}
-                                            className="thumbnail-image"
-                                            loading="lazy"
-                                            onError={(e) => {
-                                                // Fallback for missing thumbnails
-                                                e.currentTarget.src =
-                                                    "https://placehold.co/300x200/4B5563/FFFFFF?text=Thumb+Not+Found";
-                                                e.currentTarget.onerror = null;
-                                            }}
-                                        />
-                                                                            
-                                        {item.type === "video" && (
-                                            <div className="thumbnail-video-overlay">
-                                                <PlayIcon />                
-                                            </div>
-                                        )}
-                                                                        
-                                    </button>
-                                ))}
-                                                              
-                            </div>
-                                            
-                        </aside>
-                                            
+
+                        <div className="fullscreen-info">
+                            <h2 className="media-title">{currentItem.alt}</h2>
+                            <p className="media-counter">
+                                {currentIndex + 1} / {galleryItems.length}
+                            </p>
+                        </div>
                     </div>
-                )}
-                                
-            </div>
-              
-        </div>
+                </div>
+            )}
+        </>
     );
 }

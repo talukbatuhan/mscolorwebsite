@@ -26,17 +26,12 @@
 }
 
 .brand-logo-footer {
-  width: 45px; /* Footer'da daha küçük logo */
-  height: 45px;
+  width: 200px; /* Footer'da daha küçük logo */
+  height: 200px;
   object-fit: contain;
+
 }
 
-.brand-title-footer h3 {
-  margin: 0;
-  font-size: 1.5em;
-  font-weight: 700;
-  color: #ecf0f1;
-}
 
 .slogan {
   font-size: 0.9em;

@@ -64,24 +64,7 @@ function AboutPageClient() {
                             </ul>
                         </div>
                     </section>
-                    <section className="founder-message-section">
-                        <div className="founder-card">
-                            <Image 
-                                src="/images/kurucu-foto.jpg" 
-                                alt={`Kurucu ${founderName} fotoğrafı`} 
-                                className="founder-photo"
-                                width={200} 
-                                height={200}
-                            />
-                            <div className="founder-text-content">
-                                <h2>{t('founder_message_h2')}</h2>
-                                <p>
-                                    {t('founder_message_p', { companyName: companyName })}
-                                </p>
-                                <p className="founder-signature">{founderName} <br/> <span>{t('founder_title')}</span></p>
-                            </div>
-                        </div>
-                    </section>
+
                 </div>
             </div>
         </>
