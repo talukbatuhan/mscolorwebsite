@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+/* Detay sayfasındaki görsel için */
+.detail-image-main {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.detail-col-left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Kart içindeki görsel için */
+.machine-image-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 250px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+/* Responsive ayarlar */
+@media (max-width: 768px) {
+  .detail-image-main {
+    max-width: 300px;
+  }
+  
+  .machine-image-wrapper {
+    max-width: 200px;
+    height: 150px;
+  }
+}
