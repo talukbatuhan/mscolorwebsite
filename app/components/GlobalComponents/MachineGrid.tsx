@@ -83,25 +83,6 @@ export const MachineGrid: React.FC<MachineGridProps> = ({ showHero = true }) => 
             </div>
           )}
 
-          {/* Alt Bilgi Çubuğu */}
-          <div className="mt-16 pt-12 border-t border-white/10">
-            <div className="text-center">
-              <div className="flex flex-wrap justify-center gap-6 text-xs text-gray-500">
-                <span className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                  Kalite Garantili
-                </span>
-                <span className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-cyan-500 rounded-full"></span>
-                  Hızlı Teslimat
-                </span>
-                <span className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-teal-500 rounded-full"></span>
-                  Uzman Ekip
-                </span>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

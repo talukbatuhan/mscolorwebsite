@@ -1,14 +1,68 @@
-'use client';
+// app/page.tsx
 
-// Süslü parantez ile import edin (named export)
-import { MachineGrid } from '@/app/components/GlobalComponents/MachineGrid';
-// veya dosya yapınıza göre:
-// import { MachineGrid } from '@/components/MachineGrid';
+import type { Metadata } from 'next';
 
-export default function HomePage() {
-  return (
-    <div className="min-h-screen bg-[#193770]">
-      <MachineGrid showHero={true} />
-    </div>
-  );
+import HomePageClient from '@/HomePageClient'; 
+
+
+export const metadata: Metadata = {
+    title: 'MS Color - Profesyonel Boya Karıştırma Makineleri | Denizli',
+    description: 'Türkiye\'nin önde gelen boya karıştırma makinesi üreticisi. Dispenser, GyroMix mikser ve MasterTint dozajlama sistemleri. CE sertifikalı, yüksek hassasiyetli çözümler.',
+    
+    keywords: [
+        'boya karıştırma makinesi',
+        'paint tinting machine',
+        'boya mikseri',
+        'dispenser makinesi',
+        'gyromix',
+        'mastertint',
+        'denizli boya makinesi',
+        'endüstriyel karıştırıcı'
+    ],
+
+    openGraph: {
+        title: 'MS Color | Boya Karıştırma Makineleri Üreticisi',
+        description: 'Profesyonel boya dozajlama ve karıştırma sistemleri',
+        type: 'website',
+        locale: 'tr_TR',
+        url: 'https://mscolor.com',
+        siteName: 'MS Color',
+        images: [
+            {
+                url: '/og-home.jpg',
+                width: 1200,
+                height: 630,
+                alt: 'MS Color Ana Sayfa',
+            },
+        ],
+    },
+
+    twitter: {
+        card: 'summary_large_image',
+        title: 'MS Color | Boya Karıştırma Makineleri',
+        description: 'Türkiye\'nin önde gelen boya makinesi üreticisi',
+        images: ['/og-home.jpg'],
+    },
+
+    robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+            index: true,
+            follow: true,
+        },
+    },
+
+    verification: {
+        google: 'your-google-verification-code', // Google Search Console'dan alınacak
+        yandex: 'your-yandex-verification-code',
+    },
+
+    alternates: {
+        canonical: 'https://mscolor.com',
+    },
+}
+
+export default function Home() {
+    return <HomePageClient />;
 }

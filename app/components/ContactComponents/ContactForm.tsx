@@ -36,13 +36,13 @@ const ContactForm: React.FC = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    // --- 4. SUBMIT HANDLER (Mock API CALL) ---
+    // --- 4. SUBMIT HANDLER (API CALL) ---
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
         setStatus(null); 
 
-        // Not: Bu kısım mock bir API çağrısıdır. Gerçek bir Next.js API rotasına işaret eder.
+        // Not: Gerçek Next.js API rotasına istek gönderiliyor
         try {
             const response = await fetch('/api/contact', { 
                 method: 'POST',
@@ -52,11 +52,10 @@ const ContactForm: React.FC = () => {
                 body: JSON.stringify(formData),
             });
 
-            // Gerçekçi bir sonuç simülasyonu
             const result = await response.json(); 
 
             if (response.ok && result.success) {
-                // Çeviri anahtarları ile güncellendi
+                // E-posta gönderimi başarılı
                 setStatus({ type: 'success', message: t('form_success_alert') });
                 setFormData({ name: '', email: '', phone: '', message: '' });
             } else {

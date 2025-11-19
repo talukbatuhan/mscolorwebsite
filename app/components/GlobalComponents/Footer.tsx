@@ -17,8 +17,8 @@ const Footer: React.FC = () => {
         copyrightText: 'Tüm hakları saklıdır.',
         linksHeader: 'Hızlı Bağlantılar',
         contactHeader: 'İletişim',
-        addressLine1: 'Örnek Mahallesi, Deneme Sokak No: 15/A',
-        addressLine2: 'Bayraklı / İZMİR',
+        addressLine1: 'Bozburun Mahallesi Ahmet Nazif Zorlu Sanayi Sitesi 7153 Sokak No 15',
+        addressLine2: 'Merkezefendi / DENİZLİ',
         phoneNumber: '+90 555 123 45 67',
         emailAddress: 'info@mscolor.com',
         navHome: 'Anasayfa',
@@ -32,7 +32,7 @@ const Footer: React.FC = () => {
     const siteFooterClasses = "bg-[#193770] text-[#ecf0f1] py-12 px-5 md:px-10"; 
     const footerContainerClasses = "max-w-[1200px] mx-auto flex justify-between gap-10 flex-wrap"; 
     const footerColumnClasses = "flex-1 min-w-[250px] md:text-left text-center"; 
-    const brandTitleClasses = "flex items-center mb-5 md:justify-start justify-center"; 
+    const brandTitleClasses = "flex items-center md:justify-start justify-center"; 
     const brandLogoClasses = "w-32 h-32 object-contain"; 
     const sloganClasses = "text-sm text-white"; 
     const copyrightClasses = "text-xs text-white mt-4"; 
@@ -42,8 +42,8 @@ const Footer: React.FC = () => {
     const quickLinksAnchorClasses = "text-[#ecf0f1] no-underline transition-colors duration-300 hover:text-white"; 
 
     // İletişim
-    const contactInfoPClasses = "text-sm mb-2 text-[#ecf0f1]"; 
-    const contactIconClasses = "inline-block mr-3 text-white"; 
+    const contactInfoPClasses = "text-sm text-[#ecf0f1]"; 
+    const contactIconClasses = "inline-block text-white"; 
 
     return (
         <footer className={siteFooterClasses}>
@@ -74,7 +74,7 @@ const Footer: React.FC = () => {
                        
                         <i className={`${contactIconClasses} fas fa-map-marker-alt`}></i>
                         {texts.addressLine1} <br />
-                        <span className="ml-7 block">{texts.addressLine2}</span> 
+                        <span className=" block">{texts.addressLine2}</span> 
                     </p>
                     
                     <p className={contactInfoPClasses}>

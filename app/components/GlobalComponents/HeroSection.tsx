@@ -33,9 +33,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ videoSrc }) => {
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-4 tracking-wide leading-tight drop-shadow-2xl">
           {t('homepage_title')}
         </h1>
-        <p className="text-xl md:text-3xl font-light mb-12 opacity-95 drop-shadow-lg">
-          {t('homepage_punchline')}
-        </p>
       </div>
     </header>
   );
