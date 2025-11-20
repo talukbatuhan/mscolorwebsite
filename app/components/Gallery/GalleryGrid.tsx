@@ -10,12 +10,12 @@ interface GalleryGridProps {
 }
 
 /**
- * Bir kaynağın (src) dosya uzantısına bakarak video olup olmadığını belirler.
+ * Bir kaynağın (src) yaygın bir video uzantısına sahip olup olmadığını belirler.
  * @param src Medya dosyasının yolu
  * @returns Kaynak bir video dosyası uzantısına sahipse true döner.
  */
 const isVideo = (src: string): boolean => {
-    // Yaygın video uzantılarını kontrol et
+    // Yaygın video uzantıları
     const videoExtensions = ['.mp4', '.webm', '.ogg', '.mov', '.avi'];
     const lowercasedSrc = src.toLowerCase();
     
@@ -23,7 +23,7 @@ const isVideo = (src: string): boolean => {
 };
 
 
-// Otomatik video thumbnail bileşeni (Öncekiyle aynı)
+// Otomatik video thumbnail bileşeni
 const VideoThumbnail = ({ src, alt }: { src: string; alt: string }) => {
     const [thumbnail, setThumbnail] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
@@ -129,7 +129,8 @@ const GalleryGrid: React.FC<GalleryGridProps> = ({ onItemClick }) => {
             <div className="w-full max-w-7xl mx-auto">
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:gap-6 pt-8">
                     {GALLERY_ITEMS.map((item, index) => {
-                        const isMediaVideo = isVideo(item.src); // src kontrolü ile türü belirle
+                        // isVideo yardımcı fonksiyonu ile türü belirle
+                        const isMediaVideo = isVideo(item.src); 
                         
                         return (
                             <button
@@ -138,10 +139,11 @@ const GalleryGrid: React.FC<GalleryGridProps> = ({ onItemClick }) => {
                                 onClick={() => onItemClick(index)}
                                 aria-label={`View ${item.alt}`}
                             >
-                                {/* isMediaVideo değişkenine göre doğru bileşeni seçme mantığı */}
+                                {/* Dosya uzantısı video ise VideoThumbnail, değilse Image kullan */}
                                 {isMediaVideo ? (
                                     <VideoThumbnail src={item.src} alt={item.alt} />
                                 ) : (
+                                    // Resim öğeleri
                                     <Image 
                                         src={item.src}
                                         alt={item.alt}
