@@ -41,12 +41,12 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     },
     {
         id: 7,
-        src: "/Gallery/MasterMixBrochureEN.png",
+        src: "/Gallery/MastermixBrochureEN.png",
         alt: "GyroMix Özellikleri",
     },
     {
         id: 8,
-        src: "/Gallery/GyromixBrochureEN1.jpg",
+        src: "/Gallery/MastermixBrochureEN1.jpg",
         alt: "MasterTint Afiş",
     },
     {
