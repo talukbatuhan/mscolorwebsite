@@ -26,17 +26,6 @@ export default function GalleryDetail({
     const [isLoading, setIsLoading] = useState(true); 
     const item = GALLERY_ITEMS[currentIndex];
 
-    // Video ile ilgili tüm state'ler kaldırıldı:
-    // const [isPlaying, setIsPlaying] = useState(true);
-    // const [isMuted, setIsMuted] = useState(true);
-    // const [currentTime, setCurrentTime] = useState(0);
-    // const [duration, setDuration] = useState(0);
-    // const [showControls, setShowControls] = useState(false);
-    // const [isMobile, setIsMobile] = useState(false);
-
-    // const videoRef = useRef<HTMLVideoElement>(null);
-
-    // Mobil cihaz kontrolü ve video logic'i kaldırıldı
     useEffect(() => {
         const timer = setTimeout(() => {
             console.log(`Medya değişimi algılandı: Yükleme başlatıldı (Asenkron).`);
@@ -46,18 +35,10 @@ export default function GalleryDetail({
         return () => clearTimeout(timer);
     }, [currentIndex]);
 
-    // Video ile ilgili sıfırlamalar kaldırıldı
-    // useEffect(() => {
-    //     ...
-    // }, [currentIndex, isMobile, item.type]); 
-
-    // Medya Yüklendiğinde çağrılır
     const handleMediaLoad = useCallback(() => {
         setIsLoading(false);
-        // Video duration logic'i kaldırıldı
     }, []);
 
-    // Medya Yüklenemediğinde çağrılır
     const handleMediaError = useCallback(() => {
         console.error(`Medya yüklenirken hata oluştu: ${item.alt}`);
         setIsLoading(false); 
@@ -74,72 +55,58 @@ export default function GalleryDetail({
         onSetCurrentIndex(nextIndex);
     }, [currentIndex, onSetCurrentIndex]);
 
-    // Video kontrol fonksiyonları ve yardımcıları (togglePlayPause, formatTime, vb.) kaldırıldı.
-    // ...
-
-    // Klavye kontrolleri
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
             if (event.key === 'ArrowLeft') {
-                // Video geri sarma mantığı kaldırıldı
                 handlePrev();
             } else if (event.key === 'ArrowRight') {
-                // Video ileri sarma mantığı kaldırıldı
                 handleNext();
             } else if (event.key === 'Escape') {
                 onClose();
             } 
-            // Oynat/Duraklat (Space) ve Ses (M) kısayolları kaldırıldı
         };
 
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [handlePrev, handleNext, onClose]); // Bağımlılıklar basitleştirildi.
+    }, [handlePrev, handleNext, onClose]); 
 
 
     return (
-        <div className="fixed inset-0 z-[9999] bg-linear-to-tr from-black/95 via-slate-900/98 to-black/95 backdrop-blur-2xl animate-in fade-in duration-300">
-            
-            {/* Kapatma Butonu - Responsive */}
+        <div className="fixed inset-0 z-9999 bg-linear-to-tr from-black/95 via-slate-900/98 to-black/95 backdrop-blur-2xl animate-in fade-in duration-300">
+
             <button 
                 onClick={onClose}
-                className="absolute top-3 right-3 sm:top-6 sm:right-6 z-[10001] w-10 h-10 sm:w-14 sm:h-14 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-red-500/90 hover:border-red-500 hover:rotate-90 hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-red-500/50"
+                className="absolute top-3 right-3 sm:top-6 sm:right-6 z-10001 w-10 h-10 sm:w-14 sm:h-14 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-red-500/90 hover:border-red-500 hover:rotate-90 hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-red-500/50"
                 aria-label="Kapat"
             >
                 <XMarkIcon className="w-5 h-5 sm:w-8 sm:h-8" />
             </button>
 
-            {/* Navigasyon Butonları - Responsive */}
-            <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 flex justify-between px-2 sm:px-4 z-[10000] pointer-events-none">
+            <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 flex justify-between px-2 sm:px-4 z-10000 pointer-events-none">
                 <button 
                     onClick={handlePrev}
-                    className="pointer-events-auto w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center rounded-full bg-gradient-to-tr from-white/15 to-white/5 backdrop-blur-xl border border-white/25 text-white hover:bg-white/25 hover:scale-110 hover:-translate-x-1 transition-all duration-300 shadow-2xl hover:shadow-blue-500/30 group"
+                    className="pointer-events-auto w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center rounded-full bg-linear-to-tr from-white/15 to-white/5 backdrop-blur-xl border border-white/25 text-white hover:bg-white/25 hover:scale-110 hover:-translate-x-1 transition-all duration-300 shadow-2xl hover:shadow-blue-500/30 group"
                     aria-label="Önceki"
                 >
                     <ArrowLeftIcon className="w-5 h-5 sm:w-8 sm:h-8 group-hover:-translate-x-1 transition-transform duration-300" />
                 </button>
                 <button 
                     onClick={handleNext}
-                    className="pointer-events-auto w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center rounded-full bg-gradient-to-tr from-white/15 to-white/5 backdrop-blur-xl border border-white/25 text-white hover:bg-white/25 hover:scale-110 hover:translate-x-1 transition-all duration-300 shadow-2xl hover:shadow-blue-500/30 group"
+                    className="pointer-events-auto w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center rounded-full bg-linear-to-tr from-white/15 to-white/5 backdrop-blur-xl border border-white/25 text-white hover:bg-white/25 hover:scale-110 hover:translate-x-1 transition-all duration-300 shadow-2xl hover:shadow-blue-500/30 group"
                     aria-label="Sonraki"
                 >
                     <ArrowRightIcon className="w-5 h-5 sm:w-8 sm:h-8 group-hover:translate-x-1 transition-transform duration-300" />
                 </button>
             </div>
             
-            {/* Medya ve Bilgi Alanı - Responsive */}
             <div className="h-full flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto">
-                
-                {/* Medya Konteyneri - Responsive */}
+
                 <div 
                     className="relative w-full h-[70vh] sm:h-[75vh] lg:h-[80vh] flex items-center justify-center"
-                    // Video ile ilgili olaylar kaldırıldı
                 >
                     
-                    {/* Dekoratif Arka Plan Efekti */}
-                    <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 via-purple-500/5 to-pink-500/10 rounded-2xl sm:rounded-3xl blur-2xl sm:blur-3xl"></div>
+                    <div className="absolute inset-0 bg-linear-to-tr from-blue-500/10 via-purple-500/5 to-pink-500/10 rounded-2xl sm:rounded-3xl blur-2xl sm:blur-3xl"></div>
                     
-                    {/* Yükleniyor Spinner - Responsive */}
                     {isLoading && (
                         <div className="absolute inset-0 flex flex-col items-center justify-center z-10 bg-black/40 backdrop-blur-sm rounded-2xl sm:rounded-3xl">
                             <div className="animate-spin rounded-full h-12 w-12 sm:h-16 sm:w-16 border-4 border-white/20 border-t-blue-500"></div>
@@ -147,17 +114,15 @@ export default function GalleryDetail({
                         </div>
                     )}
 
-                    {/* Resim - Resim kontrolü de kgit aaldırıldı (Çünkü tüm öğeler resim varsayılıyor) */}
                     <Image
                         src={item.src}
                         alt={item.alt}
+                        width={500}
+                        height={100}
                         onLoad={handleMediaLoad} 
                         onError={handleMediaError} 
-                        className={`relative z-[1] max-w-full max-h-full object-contain rounded-xl sm:rounded-2xl shadow-2xl border border-white/10 transition-all duration-700 ${isLoading ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}
+                        className={`relative z-1 max-w-full max-h-full object-contain rounded-xl sm:rounded-2xl shadow-2xl border border-white/10 transition-all duration-700 ${isLoading ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}
                     />
-                    
-                    {/* Video mantığı tamamen kaldırıldı */}
-
                 </div>
             </div>
         </div>

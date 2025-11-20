@@ -2,88 +2,76 @@
 "use client";
 
 import React from 'react';
-import Image from 'next/image';
+import Image from 'next/image'; // Image komponenti hala kullanılıyor (örneğin gelecekteki resimler için)
 import { useTranslation } from 'react-i18next'; 
 import type { Metadata } from 'next';
+
 const companyName = "MS Color";
 const foundingYear = 2020;
 
 
-
-type ImageSrc = string | import('next/image').StaticImageData;
-
+// Metadata (OpenGraph ve SEO için)
 export const aboutMetadata: Metadata = {
-  title: 'Hakkımızda - Türkiye\'nin Boya Makinesi Üreticisi | MS Color',
-  description: 'MS Color, Denizli\'de 20+ yıldır endüstriyel boya karıştırma makineleri üretiyor. Ar-Ge odaklı üretim, CE sertifikalı ürünler ve dünya çapında ihracat.',
-  
-  keywords: [
-    'ms color hakkında',
-    'türk boya makinesi üreticisi',
-    'denizli boya fabrikası',
-    'boya makinesi ar-ge',
-    'ce sertifikalı boya makinesi',
-    'boya makinesi ihracat'
-  ],
+    title: 'Hakkımızda - Türkiye\'nin Boya Makinesi Üreticisi | MS Color',
+    description: 'MS Color, Denizli\'de 20+ yıldır endüstriyel boya karıştırma makineleri üretiyor. Ar-Ge odaklı üretim, CE sertifikalı ürünler ve dünya çapında ihracat.',
+    
+    keywords: [
+        'ms color hakkında',
+        'türk boya makinesi üreticisi',
+        'denizli boya fabrikası',
+        'boya makinesi ar-ge',
+        'ce sertifikalı boya makinesi',
+        'boya makinesi ihracat'
+    ],
 
-  openGraph: {
-    title: 'Hakkımızda | MS Color - Boya Makineleri Üreticisi',
-    description: 'Denizli\'de 20+ yıldır boya karıştırma makineleri üretiyoruz',
-    type: 'website',
-    locale: 'tr_TR',
-    siteName: 'MS Color',
-  },
+    openGraph: {
+        title: 'Hakkımızda | MS Color - Boya Makineleri Üreticisi',
+        description: 'Denizli\'de 20+ yıldır boya karıştırma makineleri üretiyoruz',
+        type: 'website',
+        locale: 'tr_TR',
+        siteName: 'MS Color',
+    },
 
-  robots: {
-    index: true,
-    follow: true,
-  },
+    robots: {
+        index: true,
+        follow: true,
+    },
 
-  alternates: {
-    canonical: 'https://mscolor.com/about',
-  },
+    alternates: {
+        canonical: 'https://mscolor.com/about',
+    },
 }
 
+// İkon listesi kaldırıldı.
+// const icons: { [key: string]: ImageSrc } = { ... };
 
-const icons: { [key: string]: ImageSrc } = {
-    target: "/images/target.png", 
-    visions: "/images/visions.png", 
-    award: "/images/award.png", 
-};
 
 interface VMDItemProps {
-    icon: keyof typeof icons;
-
-    titleKey: string; 
-    contentKey: string | string[];
+    // İkon props'u kaldırıldı
+    titleKey: string; 
+    contentKey: string | string[];
 }
 
-const VMDItem: React.FC<VMDItemProps> = ({ icon, titleKey, contentKey }) => {
+/**
+ * Vizyon, Misyon, Değerler kartlarını render eden bileşen.
+ * İkonlar kaldırıldı.
+ */
+const VMDItem: React.FC<VMDItemProps> = ({ titleKey, contentKey }) => {
     const { t } = useTranslation();
-
 
     let content: string | string[];
 
     if (Array.isArray(contentKey)) {
-
         content = contentKey.map(key => t(key));
     } else {
-
         content = t(contentKey);
     }
 
     return (
         <div className="w-full md:w-1/2 lg:w-1/3 p-4">
-            <div className="bg-white p-6 sm:p-8 h-full rounded-xl shadow-xl transition duration-300 hover:shadow-2xl hover:border-[#193770] border-t-4 border-[#193770]">
-                <div className="flex justify-center mb-4">
-
-                    <Image
-                        src={icons[icon]}
-                        alt={`${t(titleKey)} icon`}
-                        width={50}
-                        height={50}
-                        className="w-12 h-12 object-contain"
-                    />
-                </div>
+            <div className="bg-white p-6 sm:p-8 h-full  shadow-xl transition duration-300 hover:shadow-2xl hover:border-[#193770] border-t-4 border-[#193770]">
+                
+                {/* İkon renderlama bloğu kaldırıldı. */}
 
                 <h3 className="text-2xl font-bold text-[#193770] mb-4 text-center">{t(titleKey)}</h3>
 
@@ -92,7 +80,7 @@ const VMDItem: React.FC<VMDItemProps> = ({ icon, titleKey, contentKey }) => {
                     <ul className="space-y-3 text-gray-700 list-none p-0">
                         {content.map((item, index) => (
                             <li key={index} className="flex items-start text-base font-medium">
-                                {/* SVG Checkmark ikonu */}
+                                {/* SVG Checkmark ikonu korundu */}
                                 <svg className="w-4 h-4 mr-2 mt-1 text-red-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path></svg>
                                 <span>{item}</span>
                             </li>
@@ -108,7 +96,9 @@ const VMDItem: React.FC<VMDItemProps> = ({ icon, titleKey, contentKey }) => {
 };
 
 
-
+/**
+ * Hakkımızda sayfasının ana istemci bileşeni.
+ */
 function About() {
     const { t } = useTranslation();
 
@@ -124,7 +114,6 @@ function About() {
         "value_accessibility",
     ];
     
-    // JSON'daki "about_lead_text_1" - "about_lead_text_4" anahtarlarını bir diziye alın.
     const leadTextKeys = [
         "about_lead_text_1",
         "about_lead_text_2",
@@ -133,12 +122,11 @@ function About() {
     ];
 
     return (
-        <div className="bg-linear-to-br from-slate-900 via-blue-950 to-slate-900 min-h-screen py-16 sm:py-20 lg:py-24">
+        // Gradient rengi güncellendi: from-slate-800 via-blue-900 to-slate-800
+        <div className="bg-linear-to-br from-slate-800 via-blue-900 to-slate-800 min-h-screen py-16 sm:py-20 lg:py-24">
             
-
             <div className="max-w-7xl mx-auto mt-6 px-4 sm:px-6 lg:px-8">
                 
-
                 <header className="text-center mb-16 lg:mb-20">
                     <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight">
 
@@ -155,7 +143,7 @@ function About() {
                 </header>
 
 
-                <section className="bg-white p-6 sm:p-12 rounded-xl shadow-2xl mb-12 lg:mb-10">
+                <section className="bg-white p-6 sm:p-12 shadow-2xl mb-12 lg:mb-10">
                     <div className="max-w-3xl mx-auto text-center">
                         <h2 className="text-3xl sm:text-4xl font-extrabold text-[#193770] mb-6 inline-block pb-1">
 
@@ -172,19 +160,16 @@ function About() {
                 <section className="flex flex-wrap -m-4">
                     
                     <VMDItem 
-                        icon="target" 
                         titleKey="about_vision_h3" 
                         contentKey="about_vision_p" 
                     />
                     
                     <VMDItem 
-                        icon="visions" 
                         titleKey="about_mission_h3"
                         contentKey="about_mission_p" 
                     />
 
                     <VMDItem 
-                        icon="award" 
                         titleKey="about_values_h3" 
                         contentKey={valueKeys} 
                     />

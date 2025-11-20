@@ -35,7 +35,7 @@ export const MachineGrid: React.FC<MachineGridProps> = ({ showHero = true }) => 
       {showHero && <HeroSection videoSrc="/video3.mp4" />}
 
       <div 
-        className="relative w-full py-20 px-5 bg-linear-to-br from-slate-900 via-blue-950 to-slate-900 overflow-hidden" 
+        className="relative w-full py-20 px-5 bg-linear-to-br from-slate-800 via-blue-900 to-slate-800 overflow-hidden" 
         style={!showHero ? { marginTop: 0, paddingTop: '80px' } : {}}
       >
         {/* Animasyonlu Arka Plan Efektleri */}
@@ -71,8 +71,7 @@ export const MachineGrid: React.FC<MachineGridProps> = ({ showHero = true }) => 
           {selectedMachine && !isMobile && (
             <div ref={detailsRef} className="mt-16 animate-in fade-in slide-in-from-bottom-4 duration-500">
               <div className="bg-linear-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl overflow-hidden">
-                {/* Dekoratif Üst Çizgi */}
-                <div className="h-1 bg-linear-to-br from-blue-500 via-cyan-500 to-teal-500"></div>
+
                 
                 {/* İçerik Wrapper */}
                 <div className="p-8">

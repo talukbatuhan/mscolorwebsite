@@ -71,7 +71,7 @@ export const MachineCard: React.FC<MachineCardProps> = ({
 
         {/* Back Face */}
         <div
-          className="absolute w-full h-full bg-[#193770] text-white shadow-lg border-2 border-gray-200 flex items-center justify-center p-5"
+          className="absolute w-full h-full from-slate-700 via-blue-800 to-slate-700 text-white shadow-lg border-2 border-gray-200 flex items-center justify-center p-5"
           style={{
             backfaceVisibility: 'hidden',
             transform: 'rotateY(180deg)'

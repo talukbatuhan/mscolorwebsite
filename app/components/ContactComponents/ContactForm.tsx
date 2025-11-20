@@ -80,10 +80,10 @@ const ContactForm: React.FC = () => {
     const inputFocusClasses = "focus:border-[#193770] focus:ring-4 focus:ring-[#193770]/40 focus:outline-none focus:bg-white";
 
     // Submit Button Styling
-    const submitButtonBaseClasses = "block w-full py-4 bg-[#193770] text-white border-none rounded-lg text-xl cursor-pointer transition-all duration-300 ease-in-out font-bold tracking-wider shadow-lg";
+    const submitButtonBaseClasses = "block w-full py-4 from-slate-800 via-blue-900 to-slate-800 text-white border-none rounded-lg text-xl cursor-pointer transition-all duration-300 ease-in-out font-bold tracking-wider shadow-lg";
     
     // Submit Button Hover/Disabled Styling
-    const submitButtonInteractiveClasses = "hover:bg-[#152e5d] hover:-translate-y-0.5 hover:shadow-xl active:translate-y-0 disabled:opacity-60 disabled:cursor-not-allowed";
+    const submitButtonInteractiveClasses = "hover:via-blue-800 hover:-translate-y-0.5 hover:shadow-xl active:translate-y-0 disabled:opacity-60 disabled:cursor-not-allowed";
 
     // Status Message Styling
     const statusSuccessClasses = "p-3 mb-4 rounded-md text-sm border border-green-600 text-green-700 bg-green-50";
@@ -93,7 +93,7 @@ const ContactForm: React.FC = () => {
 
         <form 
 
-            className="w-full max-w-lg mx-auto px-1 sm:px-2 mt-0 bg-[#182D51]" 
+            className="w-full max-w-lg mx-auto px-1 sm:px-2 mt-0 from-slate-700 via-blue-800 to-slate-700" 
             onSubmit={handleSubmit}
         >
             
