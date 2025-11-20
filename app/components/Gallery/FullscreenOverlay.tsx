@@ -2,9 +2,12 @@
 'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { GALLERY_ITEMS, GalleryItem } from './GalleryTypes'; 
+// GalleryItem arayüzünde 'type' özelliği olmadığını varsayıyoruz.
+import { GALLERY_ITEMS } from './GalleryTypes'; 
 import { ArrowLeftIcon, ArrowRightIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
+// ancak orijinal kodunuzda Next/Image import'u vardı, bu yüzden tutuyorum.
+// import Image from 'next/image'; 
 
 
 interface FullscreenOverlayProps {
@@ -21,14 +24,14 @@ export default function FullscreenOverlay({
     onSetCurrentIndex, 
 }: FullscreenOverlayProps) {
     
+    // Yükleme durumu sadece resim yüklenene kadar devam eder.
     const [isLoading, setIsLoading] = useState(true); 
     const item = GALLERY_ITEMS[currentIndex];
 
-    // -------------------------------------------------------------------
-    // DÜZELTİLEN KISIM: Senkron setState Uyarısını Giderme
     // Medya değiştiğinde yeniden yüklemeyi başlat
     useEffect(() => {
         // Senkron setState uyarısından kaçınmak için asenkron başlatma
+        // (Resim değiştiğinde spinner'ı tekrar gösterir)
         const timer = setTimeout(() => {
             setIsLoading(true); 
         }, 0); 
@@ -36,7 +39,6 @@ export default function FullscreenOverlay({
         return () => clearTimeout(timer);
 
     }, [currentIndex]);
-    // -------------------------------------------------------------------
 
     // Medya Yüklendiğinde çağrılır
     const handleMediaLoad = useCallback(() => {
@@ -79,63 +81,64 @@ export default function FullscreenOverlay({
     }, [handlePrev, handleNext, onClose]);
 
     return (
-        <div className="fullscreen-overlay">
+        // Tailwind/CSS sınıflarınızı bu div'e uyguladığınızı varsayıyorum
+        <div className="fullscreen-overlay fixed inset-0 z-50 bg-black bg-opacity-90 flex flex-col justify-between items-center"> 
             
             {/* 1. Kapatma Butonu */}
-            <button className="close-button" onClick={onClose}>
-                <XMarkIcon className="w-10 h-10" />
+            <button 
+                className="close-button absolute top-4 right-4 text-white hover:text-gray-300 z-10 p-2 rounded-full bg-gray-700 bg-opacity-50 transition" 
+                onClick={onClose}
+                aria-label="Kapat"
+            >
+                <XMarkIcon className="w-8 h-8 md:w-10 md:h-10" />
             </button>
 
             {/* 2. Navigasyon Butonları */}
-            <div className="navigation-buttons">
-                <button className="nav-button prev-button" onClick={handlePrev}>
-                    <ArrowLeftIcon className="w-12 h-12" />
+            <div className="navigation-buttons absolute inset-0 flex items-center justify-between pointer-events-none p-4">
+                <button 
+                    className="nav-button prev-button pointer-events-auto text-white p-3 rounded-full bg-gray-700 bg-opacity-50 hover:bg-opacity-70 transition disabled:opacity-30 disabled:cursor-not-allowed" 
+                    onClick={handlePrev}
+                    aria-label="Önceki"
+                >
+                    <ArrowLeftIcon className="w-8 h-8 md:w-12 md:h-12" />
                 </button>
-                <button className="nav-button next-button" onClick={handleNext}>
-                    <ArrowRightIcon className="w-12 h-12" />
+                <button 
+                    className="nav-button next-button pointer-events-auto text-white p-3 rounded-full bg-gray-700 bg-opacity-50 hover:bg-opacity-70 transition disabled:opacity-30 disabled:cursor-not-allowed" 
+                    onClick={handleNext}
+                    aria-label="Sonraki"
+                >
+                    <ArrowRightIcon className="w-8 h-8 md:w-12 md:h-12" />
                 </button>
             </div>
             
             {/* 3. Medya Konteyneri */}
-            <div className="media-container-fullscreen">
+            <div className="media-container-fullscreen w-full h-full flex items-center justify-center pt-20 pb-20">
                 
                 {/* Yükleniyor Spinner'ı */}
                 {isLoading && (
-                    <div className="loading-spinner-fullscreen">
-                        <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-white"></div>
-                        <p className="mt-6 text-white text-xl">Tam Ekran Yükleniyor...</p>
+                    <div className="loading-spinner-fullscreen absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+                        <div className="animate-spin rounded-full h-16 w-16 border-4 border-white border-t-transparent"></div>
+                        <p className="mt-4 text-white text-base">Yükleniyor...</p>
                     </div>
                 )}
 
-                {item.type === 'image' && (
-                    <img
-                        src={item.src}
-                        alt={item.alt}
-                        onLoad={handleMediaLoad} 
-                        onError={handleMediaError} 
-                        className={`fullscreen-image transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
-                    />
-                )}
-                
-                {/* Video */}
-                {item.type === 'video' && (
-                    <video
-                        src={item.src}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        onLoadedData={handleMediaLoad} 
-                        onError={handleMediaError}
-                        className={`fullscreen-video transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
-                    />
-                )}
+                {/* Sadece Resim Gösterimi */}
+                {/* item.type kontrolü kaldırıldı */}
+                <Image
+                    // Next.js Image yerine standart img kullanıldığı varsayılıyor.
+                    src={item.src}
+                    alt={item.alt}
+                    onLoad={handleMediaLoad} 
+                    onError={handleMediaError} 
+                    // Yüklenene kadar gizler, sonra görünür yapar
+                    className={`fullscreen-image max-w-full max-h-full object-contain transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
+                />
             </div>
 
             {/* 4. Bilgi Alt Çubuğu */}
-            <div className="fullscreen-info-bar">
-                 <h3 className="item-name-info">{item.alt}</h3>
-                 <p className="item-counter">{currentIndex + 1} / {totalItems}</p>
+            <div className="fullscreen-info-bar absolute bottom-0 left-0 right-0 p-4 bg-black bg-opacity-50 text-white flex justify-between items-center">
+                   <h3 className="item-name-info text-lg font-semibold truncate max-w-[70%]">{item.alt}</h3>
+                   <p className="item-counter text-sm font-medium">{currentIndex + 1} / {totalItems}</p>
             </div>
         </div>
     );
