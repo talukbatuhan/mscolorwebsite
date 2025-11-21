@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
         contactHeader: 'İletişim',
         addressLine1: 'Bozburun Mahallesi Ahmet Nazif Zorlu Sanayi Sitesi 7153 Sokak No 15',
         addressLine2: 'Merkezefendi / DENİZLİ',
-        phoneNumber: '+90 555 123 45 67',
+        phoneNumber: '+90 546 437 62 18',
         emailAddress: 'info@mscolor.com',
         navHome: 'Anasayfa',
         navProducts: 'Ürünler',
