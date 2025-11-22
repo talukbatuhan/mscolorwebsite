@@ -6,7 +6,7 @@ import Header from './components/GlobalComponents/Header';
 import Footer from './components/GlobalComponents/Footer';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://mscolor.com'),
+  metadataBase: new URL('https://mscolormachine.com'),
   
   title: {
     default: 'MS Color | Boya Karıştırma Makineleri',
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   
   authors: [
     { name: 'MS Color' },
-    { name: 'MS Color Mühendislik', url: 'https://mscolor.com' },
+    { name: 'MS Color Mühendislik', url: 'https://mscolormachine.com' },
   ],
 
   generator: 'Next.js',
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'tr_TR',
-    url: 'https://mscolor.com',
+    url: 'https://mscolormachine.com',
     siteName: 'MS Color',
     title: 'MS Color | Boya Karıştırma Makineleri',
     description: 'Profesyonel boya dozajlama ve karıştırma sistemleri',
@@ -75,8 +75,6 @@ export const metadata: Metadata = {
       { url: '/favicon.ico' },
     ],
   },
-
-  manifest: '/site.webmanifest',
 
   category: 'Industrial Equipment',
 }

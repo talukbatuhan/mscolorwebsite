@@ -36,7 +36,7 @@ export const metadata: Metadata= {
   },
 
   alternates: {
-    canonical: 'https://mscolor.com/contact',
+    canonical: 'https://mscolormachine.com/contact',
   },
 }
 
@@ -46,7 +46,7 @@ export default function Contact() {
       <div className="max-w-6xl mx-auto sm:px-6 lg:px-2 w-full">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
           <div className="p-5 rounded-xl 
-             bg-gradient-to-br from-slate-700 via-blue-800 to-slate-700 
+             bg-linear-to-br from-slate-700 via-blue-800 to-slate-700 
              h-[500px]">
             <ContactForm />
           </div>

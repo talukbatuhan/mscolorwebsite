@@ -2,7 +2,6 @@
 "use client";
 
 import React from 'react';
-import Image from 'next/image'; // Image komponenti hala kullanılıyor (örneğin gelecekteki resimler için)
 import { useTranslation } from 'react-i18next'; 
 import type { Metadata } from 'next';
 
@@ -13,7 +12,7 @@ const foundingYear = 2020;
 // Metadata (OpenGraph ve SEO için)
 export const aboutMetadata: Metadata = {
     title: 'Hakkımızda - Türkiye\'nin Boya Makinesi Üreticisi | MS Color',
-    description: 'MS Color, Denizli\'de 20+ yıldır endüstriyel boya karıştırma makineleri üretiyor. Ar-Ge odaklı üretim, CE sertifikalı ürünler ve dünya çapında ihracat.',
+    description: 'MS Color, Denizli\'de endüstriyel boya karıştırma makineleri üretiyor. Ar-Ge odaklı üretim, CE sertifikalı ürünler ve dünya çapında ihracat.',
     
     keywords: [
         'ms color hakkında',
@@ -26,7 +25,7 @@ export const aboutMetadata: Metadata = {
 
     openGraph: {
         title: 'Hakkımızda | MS Color - Boya Makineleri Üreticisi',
-        description: 'Denizli\'de 20+ yıldır boya karıştırma makineleri üretiyoruz',
+        description: 'Denizli\'de boya karıştırma makineleri üretiyoruz',
         type: 'website',
         locale: 'tr_TR',
         siteName: 'MS Color',
@@ -38,13 +37,9 @@ export const aboutMetadata: Metadata = {
     },
 
     alternates: {
-        canonical: 'https://mscolor.com/about',
+        canonical: 'https://mscolormachine.com/about',
     },
 }
-
-// İkon listesi kaldırıldı.
-// const icons: { [key: string]: ImageSrc } = { ... };
-
 
 interface VMDItemProps {
     // İkon props'u kaldırıldı

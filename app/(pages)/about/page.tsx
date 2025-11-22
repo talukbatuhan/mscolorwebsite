@@ -4,7 +4,7 @@ import About from './AboutPageClient';
 
 export const metadata: Metadata = {
   title: 'Hakkımızda - Türkiye\'nin Boya Makinesi Üreticisi | MS Color',
-  description: 'MS Color, Denizli\'de 20+ yıldır endüstriyel boya karıştırma makineleri üretiyor. Ar-Ge odaklı üretim, CE sertifikalı ürünler ve dünya çapında ihracat.',
+  description: 'MS Color, Denizli\'de endüstriyel boya karıştırma makineleri üretiyor. Ar-Ge odaklı üretim, CE sertifikalı ürünler ve dünya çapında ihracat.',
   
   keywords: [
     'ms color hakkında',
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
   openGraph: {
     title: 'Hakkımızda | MS Color - Boya Makineleri Üreticisi',
-    description: 'Denizli\'de 20+ yıldır boya karıştırma makineleri üretiyoruz',
+    description: 'Denizli\'de boya karıştırma makineleri üretiyoruz',
     type: 'website',
     locale: 'tr_TR',
     siteName: 'MS Color',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   },
 
   alternates: {
-    canonical: 'https://mscolor.com/about',
+    canonical: 'https://mscolormachine.com/about',
   },
 }
 // page.tsx, varsayılan (default) olarak Sunucu Bileşenidir ve metadata'yı dışa aktarabilir.

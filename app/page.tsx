@@ -25,7 +25,7 @@ export const metadata: Metadata = {
         description: 'Profesyonel boya dozajlama ve karıştırma sistemleri',
         type: 'website',
         locale: 'tr_TR',
-        url: 'https://mscolor.com',
+        url: 'https://mscolormachine.com',
         siteName: 'MS Color',
         images: [
             {
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
         card: 'summary_large_image',
         title: 'MS Color | Boya Karıştırma Makineleri',
         description: 'Türkiye\'nin önde gelen boya makinesi üreticisi',
-        images: ['/og-home.jpg'],
+        images: ['/logo.png'],
     },
 
     robots: {
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     },
 
     alternates: {
-        canonical: 'https://mscolor.com',
+        canonical: 'https://mscolormachine.com',
     },
 }
 

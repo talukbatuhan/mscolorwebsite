@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   },
 
   alternates: {
-    canonical: 'https://mscolor.com/gallery',
+    canonical: 'https://mscolormachine.com/gallery',
   },
 }
 

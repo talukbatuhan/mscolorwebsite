@@ -27,9 +27,9 @@ export const metadata: Metadata = {
     siteName: 'MS Color',
     images: [
       {
-        url: '/og-machines.jpg', // Bu görseli eklemelisiniz
-        width: 1200,
-        height: 630,
+        url: '/logo.png', 
+        width: 974,
+        height: 256,
         alt: 'MS Color Boya Karıştırma Makineleri',
       },
     ],
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Boya Karıştırma Makineleri | MS Color',
     description: 'Profesyonel boya dozajlama ve mikser sistemleri',
-    images: ['/og-machines.jpg'],
+    images: ['/logo.png'],
   },
 
   robots: {
@@ -54,10 +54,10 @@ export const metadata: Metadata = {
   },
 
   alternates: {
-    canonical: 'https://mscolor.com/products',
+    canonical: 'https://mscolormachine.com/products',
     languages: {
-      'tr-TR': 'https://mscolor.com/tr/products',
-      'en-US': 'https://mscolor.com/en/products',
+      'tr-TR': 'https://mscolormachine.com/tr/products',
+      'en-US': 'https://mscolormachine.com/en/products',
     },
   },
 
