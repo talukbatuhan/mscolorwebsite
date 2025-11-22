@@ -3,9 +3,19 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Machine } from '@/app/types/machine';
 import { machines } from '@/app/data/machines';
-import { HeroSection } from './HeroSection';
+// HeroSection'ı normal import etmiyoruz, aşağıda dynamic olarak alacağız
+// import { HeroSection } from './HeroSection'; 
 import { MachineCard } from './MachineCard';
 import { FeatureDetailsBox } from './FeatureDetailsBox';
+import dynamic from 'next/dynamic';
+
+// --- ÖNEMLİ DEĞİŞİKLİK ---
+// HeroSection'ı "ssr: false" ile yüklüyoruz. 
+// Bu, isMounted kontrolüne gerek kalmadan Hydration (#418) hatalarını ve video sorununu çözer.
+const HeroSection = dynamic(
+  () => import('./HeroSection').then((mod) => mod.HeroSection),
+  { ssr: false }
+);
 
 // BURAYA DİKKAT: Vercel'den aldığınız linki tırnak içine yapıştırın
 const VIDEO_URL = "https://gjl2pfkcbqwaf8lh.public.blob.vercel-storage.com/intro.mp4"; 
@@ -17,15 +27,19 @@ interface MachineGridProps {
 export const MachineGrid: React.FC<MachineGridProps> = ({ showHero = true }) => {
   const [selectedMachine, setSelectedMachine] = useState<Machine>(machines[0]);
   const [flippedCardIds, setFlippedCardIds] = useState<number[]>([]);
+  
+  // Mobil kontrolü için state
   const [isMobile, setIsMobile] = useState(false);
-  // Bu isMounted state'i #418 hatasını çözer
-  const [isMounted, setIsMounted] = useState(false);
+  
   const detailsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setIsMounted(true); // Sayfa tarayıcıda yüklendiğinde true olur
+    // Sadece mobil uyumluluk kontrolü (Linter hatası vermez)
     const checkMobile = () => setIsMobile(window.innerWidth < 900);
+    
+    // İlk yüklemede kontrol et
     checkMobile();
+    
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
@@ -36,15 +50,9 @@ export const MachineGrid: React.FC<MachineGridProps> = ({ showHero = true }) => 
     );
   };
 
-  // Eğer sayfa henüz "mount" olmadıysa (sunucu tarafındaysa) null döndür.
-  // Bu işlem #418 Hydration hatasını %100 engeller.
-  if (!isMounted) {
-    return null; 
-  }
-
   return (
     <div className="w-full overflow-x-hidden">
-      {/* showHero true ise ve video linki varsa HeroSection göster */}
+      {/* HeroSection artık dynamic olduğu için sunucu hatası vermez */}
       {showHero && <HeroSection videoSrc={VIDEO_URL} />}
 
       <div 
