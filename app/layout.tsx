@@ -7,6 +7,10 @@ import Footer from './components/GlobalComponents/Footer';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://mscolormachine.com'),
+
+  verification: {
+    google: 'google40e8da556df0c1df', 
+  },
   
   title: {
     default: 'MS Color | Boya Karıştırma Makineleri',
