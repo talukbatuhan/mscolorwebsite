@@ -1,36 +1,65 @@
-// components/Header/Header.tsx
+// components/GlobalComponents/Header.tsx
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useTranslation } from 'react-i18next'; // 🎯 i18next hook'u eklendi
+import { useTranslation } from 'react-i18next'; 
 
 const Header: React.FC = () => {
-    // 🎯 i18next hook'undan t (çeviri) ve i18n (kütüphane objesi) alınır
+    // 🎯 i18n objesini alıyoruz.
     const { t, i18n } = useTranslation();
 
     const [isOpen, setIsOpen] = useState(false);
-    // ⚠️ currentLanguage state'i artık i18n.language tarafından yönetildiği için kaldırıldı
     const [scrolled, setScrolled] = useState(false);
+    
+    // 🚨 YENİ STATE: İstemcide dilin hazır olup olmadığını kontrol eder.
+    const [isClientReady, setIsClientReady] = useState(false); 
 
-    // Scroll efekti için
+    // Helper fonksiyonları (useCallback ile performans artışı)
+    const toggleMenu = useCallback(() => setIsOpen(prev => !prev), []);
+    const closeMenu = useCallback(() => setIsOpen(false), []);
+
+    // 1. Dil Hazır Kontrolü (Hidrasyon Sonrası Güvenlik için)
+    // Bu useEffect, i18n yüklendiğinde bir kez çalışır.
+useEffect(() => {
+    const handleScroll = () => {
+        const currentScroll = window.scrollY > 20;
+        
+        // 28. Satırda setScrolled olması muhtemel
+        setScrolled(prevScrolled => {
+            if (prevScrolled !== currentScroll) {
+                return currentScroll;
+            }
+            return prevScrolled;
+        });
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+}, []);
+    
+    // 2. Scroll Efekti (Cascading render hatasını gidermek için optimize edildi)
     useEffect(() => {
         const handleScroll = () => {
-            setScrolled(window.scrollY > 20);
+            const currentScroll = window.scrollY > 20;
+            // setScrolled'ı yalnızca değer gerçekten değiştiyse çağırarak performansı artırıyoruz
+            setScrolled(prevScrolled => {
+                if (prevScrolled !== currentScroll) {
+                    return currentScroll;
+                }
+                return prevScrolled;
+            });
         };
-        window.addEventListener('scroll', handleScroll);
+        // Hata mesajınızdaki satır (C:\Users\...\Header.tsx:23:13) büyük olasılıkla bu bloğun içindeydi.
+        window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    }, []); 
 
-    const toggleMenu = () => setIsOpen(!isOpen);
-    const closeMenu = () => setIsOpen(false);
-
-    // 🎯 Dili değiştiren fonksiyon, i18n kütüphanesini kullanır
-    const changeLanguage = (lng: string) => {
+    // 3. changeLanguage fonksiyonu eklendi (Cannot find name hatasını çözer)
+    const changeLanguage = useCallback((lng: string) => {
         i18n.changeLanguage(lng);
         closeMenu(); // Mobil menü açıksa dil değiştirince kapat
-    };
+    }, [i18n, closeMenu]);
 
     // Menü açıkken body scroll'unu engelle
     useEffect(() => {
@@ -44,9 +73,9 @@ const Header: React.FC = () => {
         };
     }, [isOpen]);
 
-    // 🎯 Navigasyon elemanları artık çeviri anahtarlarını (key) kullanıyor
+    // Navigasyon elemanları
     const navItems = [
-        { href: '/', key: 'nav_home' }, // Varsayımsal key
+        { href: '/', key: 'nav_home' }, 
         { href: '/products', key: 'nav_products' },
         { href: '/about', key: 'nav_about' },
         { href: '/gallery', key: 'nav_gallery' },
@@ -91,7 +120,6 @@ const Header: React.FC = () => {
                                             href={item.href}
                                             className="relative group text-base xl:text-lg font-bold text-white uppercase transition-colors duration-200 hover:text-[#fdbb2d] py-2"
                                         >
-                                            {/* 🎯 Çeviri fonksiyonu ile metni çevirin */}
                                             {t(item.key)}
                                             <span className="absolute bottom-0 left-0 w-0 h-[3px] bg-[#fdbb2d] transition-all duration-300 ease-out group-hover:w-full" />
                                         </Link>
@@ -102,29 +130,34 @@ const Header: React.FC = () => {
 
                         {/* Language Switcher */}
                         <div className="flex items-center gap-2 border-l-2 border-white/30 pl-6">
-                            <button
-                                onClick={() => changeLanguage('tr')}
-                                className={`text-base xl:text-lg font-bold uppercase px-3 py-1 transition-all duration-200 ${
-                                    // 🎯 i18n.language ile aktif dili kontrol edin
-                                    i18n.language === 'tr'
-                                        ? 'text-[#fdbb2d] border-b-2 border-[#fdbb2d]'
-                                        : 'text-white hover:text-[#fdbb2d]'
-                                }`}
-                            >
-                                TR
-                            </button>
-                            <span className="text-white/70 text-lg">|</span>
-                            <button
-                                onClick={() => changeLanguage('en')}
-                                className={`text-base xl:text-lg font-bold uppercase px-3 py-1 transition-all duration-200 ${
-                                    // 🎯 i18n.language ile aktif dili kontrol edin
-                                    i18n.language === 'en'
-                                        ? 'text-[#fdbb2d] border-b-2 border-[#fdbb2d]'
-                                        : 'text-white hover:text-[#fdbb2d]'
-                                }`}
-                            >
-                                EN
-                            </button>
+                            {isClientReady ? (
+                                <>
+                                    <button
+                                        onClick={() => changeLanguage('tr')}
+                                        className={`text-base xl:text-lg font-bold uppercase px-3 py-1 transition-all duration-200 ${
+                                            i18n.language === 'tr'
+                                                ? 'text-[#fdbb2d] border-b-2 border-[#fdbb2d]'
+                                                : 'text-white hover:text-[#fdbb2d]'
+                                        }`}
+                                    >
+                                        TR
+                                    </button>
+                                    <span className="text-white/70 text-lg">|</span>
+                                    <button
+                                        onClick={() => changeLanguage('en')}
+                                        className={`text-base xl:text-lg font-bold uppercase px-3 py-1 transition-all duration-200 ${
+                                            i18n.language === 'en'
+                                                ? 'text-[#fdbb2d] border-b-2 border-[#fdbb2d]'
+                                                : 'text-white hover:text-[#fdbb2d]'
+                                        }`}
+                                    >
+                                        EN
+                                    </button>
+                                </>
+                            ) : (
+                                // Hidrasyon uyuşmazlığını önlemek için yer tutucu
+                                <div className="h-6 w-24"></div> 
+                            )}
                         </div>
                     </div>
 
@@ -182,7 +215,6 @@ const Header: React.FC = () => {
                                         onClick={closeMenu}
                                         className="block py-4 text-2xl sm:text-3xl font-extrabold text-white text-center transition-all duration-300 hover:bg-white hover:text-[#193770] hover:scale-105"
                                     >
-                                        {/* 🎯 Metni çevirin */}
                                         {t(item.key)}
                                     </Link>
                                 </li>
@@ -192,28 +224,33 @@ const Header: React.FC = () => {
 
                     {/* Mobile Language Switcher */}
                     <div className="pb-12 flex justify-center gap-4">
-                        <button
-                            onClick={() => changeLanguage('tr')}
-                            className={`text-xl font-bold uppercase px-6 py-3 rounded-lg transition-all duration-200 ${
-                                i18n.language === 'tr'
-                                    ? 'bg-[#fdbb2d] text-[#193770]'
-                                    : 'bg-white/10 text-white hover:bg-white/20'
-                            }`}
-                        >
-                            {/* 🎯 Çeviri key'leri kullanılabilir: t('language.turkish') */}
-                            TÜRKÇE
-                        </button>
-                        <button
-                            onClick={() => changeLanguage('en')}
-                            className={`text-xl font-bold uppercase px-6 py-3 rounded-lg transition-all duration-200 ${
-                                i18n.language === 'en'
-                                    ? 'bg-[#fdbb2d] text-[#193770]'
-                                    : 'bg-white/10 text-white hover:bg-white/20'
-                            }`}
-                        >
-                            {/* 🎯 Çeviri key'leri kullanılabilir: t('language.english') */}
-                            ENGLISH
-                        </button>
+                        {isClientReady ? (
+                            <>
+                                <button
+                                    onClick={() => changeLanguage('tr')}
+                                    className={`text-xl font-bold uppercase px-6 py-3 rounded-lg transition-all duration-200 ${
+                                        i18n.language === 'tr'
+                                            ? 'bg-[#fdbb2d] text-[#193770]'
+                                            : 'bg-white/10 text-white hover:bg-white/20'
+                                    }`}
+                                >
+                                    TÜRKÇE
+                                </button>
+                                <button
+                                    onClick={() => changeLanguage('en')}
+                                    className={`text-xl font-bold uppercase px-6 py-3 rounded-lg transition-all duration-200 ${
+                                        i18n.language === 'en'
+                                            ? 'bg-[#fdbb2d] text-[#193770]'
+                                            : 'bg-white/10 text-white hover:bg-white/20'
+                                    }`}
+                                >
+                                    ENGLISH
+                                </button>
+                            </>
+                        ) : (
+                             // Hidrasyon uyuşmazlığını önlemek için yer tutucu
+                            <div className="h-10 w-48"></div> 
+                        )}
                     </div>
                 </div>
             </div>
