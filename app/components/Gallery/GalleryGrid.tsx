@@ -4,7 +4,6 @@ import React from 'react';
 import Image from 'next/image';
 import { GALLERY_ITEMS } from './GalleryTypes'; 
 
-// YouTube Play Ikonu için basit bir SVG bileşeni ekleyelim.
 const PlayIcon: React.FC = () => (
     <svg className="w-12 h-12 text-white opacity-80 group-hover:opacity-100" fill="currentColor" viewBox="0 0 24 24">
         <path d="M21.409 7.005c-.068-.521-.297-.978-.737-1.417C19.782 5.09 18.23 4.5 12 4.5c-6.23 0-7.782.59-8.672 1.088-.44.439-.67 1.088-.738 1.417C2.5 7.636 2.5 12 2.5 12c0 4.365.001 6.364.737 7.005.068.33.297.896.737 1.336.89.497 2.443 1.088 8.672 1.088 6.23 0 7.782-.59 8.672-1.088.44-.439.67-.978.737-1.417C21.5 16.364 21.5 12 21.5 12c0-4.365-.001-6.364-.091-4.995zM10.5 16.5v-9L16 12l-5.5 4.5z"/>

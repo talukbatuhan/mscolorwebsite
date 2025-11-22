@@ -7,6 +7,9 @@ import { HeroSection } from './HeroSection';
 import { MachineCard } from './MachineCard';
 import { FeatureDetailsBox } from './FeatureDetailsBox';
 
+// BURAYA DİKKAT: Vercel'den aldığınız linki tırnak içine yapıştırın
+const VIDEO_URL = "https://gjl2pfkcbqwaf8lh.public.blob.vercel-storage.com/intro.mp4"; 
+
 interface MachineGridProps {
   showHero?: boolean;
 }
@@ -15,9 +18,12 @@ export const MachineGrid: React.FC<MachineGridProps> = ({ showHero = true }) => 
   const [selectedMachine, setSelectedMachine] = useState<Machine>(machines[0]);
   const [flippedCardIds, setFlippedCardIds] = useState<number[]>([]);
   const [isMobile, setIsMobile] = useState(false);
+  // Bu isMounted state'i #418 hatasını çözer
+  const [isMounted, setIsMounted] = useState(false);
   const detailsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    setIsMounted(true); // Sayfa tarayıcıda yüklendiğinde true olur
     const checkMobile = () => setIsMobile(window.innerWidth < 900);
     checkMobile();
     window.addEventListener('resize', checkMobile);
@@ -30,9 +36,16 @@ export const MachineGrid: React.FC<MachineGridProps> = ({ showHero = true }) => 
     );
   };
 
+  // Eğer sayfa henüz "mount" olmadıysa (sunucu tarafındaysa) null döndür.
+  // Bu işlem #418 Hydration hatasını %100 engeller.
+  if (!isMounted) {
+    return null; 
+  }
+
   return (
     <div className="w-full overflow-x-hidden">
-      {showHero && <HeroSection videoSrc="/intro.mp4" />}
+      {/* showHero true ise ve video linki varsa HeroSection göster */}
+      {showHero && <HeroSection videoSrc={VIDEO_URL} />}
 
       <div 
         className="relative w-full py-20 px-5 bg-linear-to-br from-slate-800 via-blue-900 to-slate-800 overflow-hidden" 
@@ -48,9 +61,6 @@ export const MachineGrid: React.FC<MachineGridProps> = ({ showHero = true }) => 
         {/* İçerik Konteyneri */}
         <div className="relative z-10 max-w-7xl mx-auto">
           
-          {/* Başlık Bölümü */}
-
-
           {/* Makine Kartları Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {machines.map((machine) => (
@@ -71,11 +81,7 @@ export const MachineGrid: React.FC<MachineGridProps> = ({ showHero = true }) => 
           {selectedMachine && !isMobile && (
             <div ref={detailsRef} className="mt-16 animate-in fade-in slide-in-from-bottom-4 duration-500">
               <div className="bg-linear-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl overflow-hidden">
-
-                
-                {/* İçerik Wrapper */}
                 <div className="p-8">
-                  
                   <FeatureDetailsBox machine={selectedMachine} isCardBack={false} />
                 </div>
               </div>

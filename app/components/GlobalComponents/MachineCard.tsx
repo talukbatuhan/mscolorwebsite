@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Machine } from '@/app/types/machine';
-import { FeatureDetailsBox } from './FeatureDetailsBox';
+import { FeatureDetailsBox } from '@/app/components/GlobalComponents/FeatureDetailsBox';
 
 interface MachineCardProps {
   machine: Machine;
