@@ -61,7 +61,7 @@ const GalleryGrid: React.FC<GalleryGridProps> = ({ onItemClick }) => {
                                 )}
                                 
                                 {/* Alt metin (Sizin orijinal kodunuzda yoktu, ama isteğe bağlı eklenebilir) */}
-                                <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/70 to-transparent text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                                <div className="absolute bottom-0 left-0 right-0 p-3 bg-linear-to-t from-black/70 to-transparent text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                                     <span className="text-sm font-medium">{item.alt}</span>
                                 </div>
                             </button>

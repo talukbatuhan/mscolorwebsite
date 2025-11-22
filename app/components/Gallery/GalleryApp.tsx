@@ -1,7 +1,7 @@
 // components/Gallery/GalleryApp.tsx
 "use client";
 import React, { useState, useCallback } from 'react';
-import { GALLERY_ITEMS, GALLERY_TEXTS } from './GalleryTypes';
+import { GALLERY_ITEMS } from './GalleryTypes';
 import GalleryGrid from './GalleryGrid';
 import GalleryDetail from './GalleryDetail';
 import FullscreenOverlay from './FullscreenOverlay';
