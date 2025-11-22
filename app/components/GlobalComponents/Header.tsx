@@ -7,58 +7,48 @@ import Image from 'next/image';
 import { useTranslation } from 'react-i18next'; 
 
 const Header: React.FC = () => {
-    // 🎯 i18n objesini alıyoruz.
     const { t, i18n } = useTranslation();
 
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
-    
-    // 🚨 YENİ STATE: İstemcide dilin hazır olup olmadığını kontrol eder.
     const [isClientReady, setIsClientReady] = useState(false); 
 
-    // Helper fonksiyonları (useCallback ile performans artışı)
+    // Helper fonksiyonları
     const toggleMenu = useCallback(() => setIsOpen(prev => !prev), []);
     const closeMenu = useCallback(() => setIsOpen(false), []);
 
-    // 1. 
-useEffect(() => {
-    const handleScroll = () => {
-        const currentScroll = window.scrollY > 20;
-        
+    const changeLanguage = useCallback((lng: string) => {
+        i18n.changeLanguage(lng);
+        closeMenu(); 
+    }, [i18n, closeMenu]);
 
-        setScrolled(prevScrolled => {
-            if (prevScrolled !== currentScroll) {
-                return currentScroll;
-            }
-            return prevScrolled;
-        });
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-}, []);
-    
-    // 2. Scroll Efekti (Cascading render hatasını gidermek için optimize edildi)
+    // --- DÜZELTİLEN KISIM BURASI ---
+    // setTimeout kullanarak işlemi "asenkron" yapıyoruz.
+    // Bu sayede "synchronous setState" hatası ortadan kalkar.
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsClientReady(true);
+        }, 0);
+        
+        return () => clearTimeout(timer);
+    }, []);
+    // -------------------------------
+
+    // Scroll Efekti
     useEffect(() => {
         const handleScroll = () => {
             const currentScroll = window.scrollY > 20;
-            // setScrolled'ı yalnızca değer gerçekten değiştiyse çağırarak performansı artırıyoruz
-            setScrolled(prevScrolled => {
-                if (prevScrolled !== currentScroll) {
+            setScrolled(prev => {
+                if (prev !== currentScroll) {
                     return currentScroll;
                 }
-                return prevScrolled;
+                return prev;
             });
         };
-        // Hata mesajınızdaki satır (C:\Users\...\Header.tsx:23:13) büyük olasılıkla bu bloğun içindeydi.
+        
         window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, []); 
-
-    // 3. changeLanguage fonksiyonu eklendi (Cannot find name hatasını çözer)
-    const changeLanguage = useCallback((lng: string) => {
-        i18n.changeLanguage(lng);
-        closeMenu(); // Mobil menü açıksa dil değiştirince kapat
-    }, [i18n, closeMenu]);
 
     // Menü açıkken body scroll'unu engelle
     useEffect(() => {
@@ -72,7 +62,6 @@ useEffect(() => {
         };
     }, [isOpen]);
 
-    // Navigasyon elemanları
     const navItems = [
         { href: '/', key: 'nav_home' }, 
         { href: '/products', key: 'nav_products' },
@@ -154,7 +143,6 @@ useEffect(() => {
                                     </button>
                                 </>
                             ) : (
-                                // Hidrasyon uyuşmazlığını önlemek için yer tutucu
                                 <div className="h-6 w-24"></div> 
                             )}
                         </div>
@@ -247,14 +235,13 @@ useEffect(() => {
                                 </button>
                             </>
                         ) : (
-                             // Hidrasyon uyuşmazlığını önlemek için yer tutucu
                             <div className="h-10 w-48"></div> 
                         )}
                     </div>
                 </div>
             </div>
 
-            {/* SPACER (Header için boşluk) */}
+            {/* SPACER */}
             <div className="h-16 sm:h-20 md:h-24" />
         </>
     );
