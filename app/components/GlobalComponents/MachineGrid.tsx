@@ -32,7 +32,7 @@ export const MachineGrid: React.FC<MachineGridProps> = ({ showHero = true }) => 
 
   return (
     <div className="w-full overflow-x-hidden">
-      {showHero && <HeroSection videoSrc="/video3.mp4" />}
+      {showHero && <HeroSection videoSrc="/intro.mp4" />}
 
       <div 
         className="relative w-full py-20 px-5 bg-linear-to-br from-slate-800 via-blue-900 to-slate-800 overflow-hidden" 

@@ -65,10 +65,10 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     {
         id: 10,
         // **ÖNEMLİ:** YouTube video ID'sini (örn: `xTqhdtE2XaI`) kendi videonuzla değiştirin.
-        youtubeEmbedUrl: "https://www.youtube.com/embed/AgEgmdoYoRo",
+        youtubeEmbedUrl: "https://www.youtube.com/embed/JQHMy7R12M4",
         alt: "Ürün Tanıtım Videosu",
         // Önizleme görseli (thumbnail) için YouTube'un standart URL formatını kullanıyoruz.
-        thumb: "https://img.youtube.com/vi/AgEgmdoYoRo/hqdefault.jpg"
+        thumb: "https://img.youtube.com/vi/JQHMy7R12M4/hqdefault.jpg"
     },
 ];
 
