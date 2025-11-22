@@ -20,13 +20,12 @@ const Header: React.FC = () => {
     const toggleMenu = useCallback(() => setIsOpen(prev => !prev), []);
     const closeMenu = useCallback(() => setIsOpen(false), []);
 
-    // 1. Dil Hazır Kontrolü (Hidrasyon Sonrası Güvenlik için)
-    // Bu useEffect, i18n yüklendiğinde bir kez çalışır.
+    // 1. 
 useEffect(() => {
     const handleScroll = () => {
         const currentScroll = window.scrollY > 20;
         
-        // 28. Satırda setScrolled olması muhtemel
+
         setScrolled(prevScrolled => {
             if (prevScrolled !== currentScroll) {
                 return currentScroll;
