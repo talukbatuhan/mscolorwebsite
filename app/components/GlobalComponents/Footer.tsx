@@ -19,8 +19,7 @@ const Footer: React.FC = () => {
         contactHeader: 'İletişim',
         addressLine1: 'Bozburun Mahallesi Ahmet Nazif Zorlu Sanayi Sitesi 7153 Sokak No 15',
         addressLine2: 'Merkezefendi / DENİZLİ',
-        phoneNumber: '+90 546 437 62 18',
-        emailAddress: 'info@mscolor.com',
+        emailAddress: 'info@mscolormachine.com',
         navHome: 'Anasayfa',
         navProducts: 'Ürünler',
         navAbout: 'Hakkımızda',
@@ -77,9 +76,6 @@ const Footer: React.FC = () => {
                         <span className=" block">{texts.addressLine2}</span> 
                     </p>
                     
-                    <p className={contactInfoPClasses}>
-                        <i className={`${contactIconClasses} fas fa-phone`}></i> {texts.phoneNumber}
-                    </p>
                     
                     <p className={contactInfoPClasses}>
                         <i className={`${contactIconClasses} fas fa-envelope`}></i> {texts.emailAddress}
